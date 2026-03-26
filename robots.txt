@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://quickomate.com/sitemap.xml
+
+# Quickomate - AI Growth Partner for B2B Companies
+# https://quickomate.com
