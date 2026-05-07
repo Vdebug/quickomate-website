@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    /* Set default light background and dark text for Brutalist Signal */
+    @apply bg-background text-textMain font-sans overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.05;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Base custom animations & overrides for premium feel */
+::selection {
+  @apply bg-accent text-background;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+/* Magnetic Button helper classes */
+.magnetic-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.magnetic-btn:hover {
+  transform: scale(1.03);
+}
+
+.magnetic-link {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.magnetic-link:hover {
+  transform: translateY(-1px);
+}
+
+/* Hide scrollbar for cleanly designed look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background border-l border-primary/10;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/40;
+}

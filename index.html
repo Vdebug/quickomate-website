@@ -5,39 +5,35 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F5F3EE" />
 
-  <!-- Primary Meta Tags -->
+  <!-- Default Meta (per-page values are set via react-helmet-async) -->
   <title>Quickomate – The Definitive AI Growth Partner for B2B Companies</title>
-  <meta name="title" content="Quickomate – The Definitive AI Growth Partner for B2B Companies" />
   <meta name="description"
-    content="Quickomate builds custom AI-powered lead generation, cold email systems, and growth infrastructure for fast-moving B2B companies. Get 20+ qualified appointments per month." />
-  <meta name="keywords"
-    content="AI growth partner, B2B lead generation, cold email system, AI automation, sales automation, lead gen, CRM automation, B2B marketing, Quickomate, Vasu Gupta" />
+    content="Quickomate builds custom AI-powered lead generation, cold email systems, and growth infrastructure for fast-moving B2B companies. Generate 15-20 qualified appointments per month with a realistic 4% reply rate." />
   <meta name="author" content="Vasu Gupta" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://quickomate.com/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Default OG/Twitter (Helmet overrides per route) -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://quickomate.com/" />
   <meta property="og:title" content="Quickomate – The Definitive AI Growth Partner for B2B Companies" />
   <meta property="og:description"
-    content="Custom AI-powered lead generation and growth infrastructure for fast-moving B2B companies. Get 20+ qualified appointments per month." />
+    content="Custom AI-powered lead generation and growth infrastructure for fast-moving B2B companies. 15-20 qualified appointments per month at a realistic 4% reply rate." />
   <meta property="og:image" content="https://quickomate.com/vasu-gupta.jpg" />
   <meta property="og:site_name" content="Quickomate" />
   <meta property="og:locale" content="en_US" />
 
-  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://quickomate.com/" />
   <meta name="twitter:title" content="Quickomate – The Definitive AI Growth Partner for B2B Companies" />
   <meta name="twitter:description"
-    content="Custom AI-powered lead generation and growth infrastructure for fast-moving B2B companies. Get 20+ qualified appointments per month." />
+    content="Custom AI-powered lead generation and growth infrastructure for fast-moving B2B companies." />
   <meta name="twitter:image" content="https://quickomate.com/vasu-gupta.jpg" />
   <meta name="twitter:site" content="@vaaasug" />
   <meta name="twitter:creator" content="@vaaasug" />
 
-  <!-- JSON-LD Structured Data: Organization -->
+  <!-- Site-wide structured data: Organization -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,9 +64,9 @@
       "areaServed": "Worldwide",
       "serviceType": ["AI Automation", "Lead Generation", "Cold Email Systems", "B2B Growth Infrastructure", "CRM Automation", "Sales Automation"]
     }
-    </script>
+  </script>
 
-  <!-- JSON-LD Structured Data: WebSite (for sitelinks search) -->
+  <!-- Site-wide structured data: WebSite (sitelinks search) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -84,9 +80,9 @@
         "query-input": "required name=search_term_string"
       }
     }
-    </script>
+  </script>
 
-  <!-- JSON-LD Structured Data: ProfessionalService -->
+  <!-- Site-wide structured data: ProfessionalService -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -108,7 +104,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "AI Cold Email Lead Generation",
-              "description": "Custom cold email system delivering 20+ qualified appointments per month using AI-assisted research and human-crafted messaging."
+              "description": "Custom cold email system delivering 15-20 qualified appointments per month at a realistic 4% reply rate using AI-assisted research and human-crafted messaging."
             }
           },
           {
@@ -130,7 +126,7 @@
         ]
       }
     }
-    </script>
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,20 +134,19 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-DZxvenPT.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B8cfBi9C.css">
 </head>
 
 <body>
   <!-- Global Noise Overlay using SVG Filter -->
-  <svg class="pointer-events-none fixed z-[100] h-0 w-0">
+  <svg class="pointer-events-none fixed z-[100] h-0 w-0" aria-hidden="true">
     <filter id="noiseFilter">
       <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
     </filter>
   </svg>
-  <div class="noise-overlay" style="filter: url(#noiseFilter);"></div>
+  <div class="noise-overlay" style="filter: url(#noiseFilter);" aria-hidden="true"></div>
 
   <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
