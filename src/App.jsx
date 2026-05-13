@@ -20,6 +20,11 @@ import BlogColdEmailVsPaidAds from './components/BlogColdEmailVsPaidAds';
 import BlogFollowUpSystem from './components/BlogFollowUpSystem';
 import BlogCrmAutomation from './components/BlogCrmAutomation';
 import BlogReadinessCheck from './components/BlogReadinessCheck';
+import BlogColdEmailSubjectLines from './components/BlogColdEmailSubjectLines';
+import BlogFindEmails from './components/BlogFindEmails';
+import BlogDeliverability from './components/BlogDeliverability';
+import BlogQualification from './components/BlogQualification';
+import BlogAiSalesAgents from './components/BlogAiSalesAgents';
 import NotFound from './components/NotFound';
 
 const SITE_URL = 'https://quickomate.com';
@@ -169,6 +174,11 @@ function PrivacyPage() {
 }
 
 const BLOG_POSTS_META = [
+  { slug: 'ai-sales-agents-2026-what-works', title: "AI Sales Agents in 2026: What Actually Works (and What's Just Demos)", datePublished: '2026-05-10' },
+  { slug: 'b2b-lead-qualification-bant-meddic-champ-2026', title: 'B2B Lead Qualification in 2026: BANT vs MEDDIC vs CHAMP (and What Actually Works)', datePublished: '2026-05-08' },
+  { slug: 'cold-email-deliverability-spf-dkim-dmarc-guide', title: 'Cold Email Deliverability: SPF, DKIM, DMARC & Sender Reputation (B2B Guide)', datePublished: '2026-04-30' },
+  { slug: 'cold-email-subject-lines-that-get-b2b-replies', title: 'Cold Email Subject Lines That Actually Get B2B Replies (2026 Playbook)', datePublished: '2026-04-30' },
+  { slug: 'how-to-find-verified-emails-b2b-cold-outreach', title: 'How To Find Verified Emails for B2B Cold Outreach (Without Buying Lists)', datePublished: '2026-04-30' },
   { slug: 'how-to-know-if-your-business-needs-ai-automation', title: 'How To Know If Your Business Is Ready For AI Automation', datePublished: '2026-04-29' },
   { slug: 'crm-automation-systems-for-b2b', title: 'CRM Automation: How Stage-Based Triggers Free Up Your Sales Team', datePublished: '2026-04-29' },
   { slug: 'follow-up-system-for-b2b', title: "You Don't Have a Lead Problem. You Have a Follow-Up Problem.", datePublished: '2026-04-29' },
@@ -693,6 +703,284 @@ function BlogReadinessCheckPage() {
   );
 }
 
+function BlogColdEmailSubjectLinesPage() {
+  const slug = 'cold-email-subject-lines-that-get-b2b-replies';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Cold Email Subject Lines That Actually Get B2B Replies (2026 Playbook)';
+  const ogImg = ogImage({ title, tag: 'COLD EMAIL', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Most cold emails die at the subject line. Six subject-line archetypes that hit 60-70% opens, eight patterns that kill reply rate, and A/B testing rules that produce statistically real winners on cold B2B traffic." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Six B2B subject-line archetypes that work, eight that don't, and the A/B testing rules that actually produce winners." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-04-30T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Cold Email" />
+        <meta property="article:tag" content="Cold Email" />
+        <meta property="article:tag" content="Subject Lines" />
+        <meta property="article:tag" content="Conversion" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Six B2B subject-line archetypes that work, eight patterns that kill reply rate, and the A/B testing rules that produce real winners.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "datePublished": "2026-04-30",
+          "dateModified": "2026-04-30",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email subject lines, B2B subject lines, cold email open rate, cold email A/B testing",
+          "articleSection": "Cold Email"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogColdEmailSubjectLines /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogFindEmailsPage() {
+  const slug = 'how-to-find-verified-emails-b2b-cold-outreach';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'How To Find Verified Emails for B2B Cold Outreach (Without Buying Lists)';
+  const ogImg = ogImage({ title, tag: 'LEAD GEN', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="A 3-layer source/enrichment/verification stack that produces clean, fresh B2B emails at >95% deliverability. Tools, workflows, catch-all domain handling, and GDPR/CAN-SPAM ground rules." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="A 3-layer source/enrichment/verification stack that gets you clean B2B emails — without buying lists or destroying your sender reputation." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-04-30T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Lead Generation" />
+        <meta property="article:tag" content="Lead Gen" />
+        <meta property="article:tag" content="Prospecting" />
+        <meta property="article:tag" content="Email Verification" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "A 3-layer stack to source, enrich, and verify B2B prospect emails at >95% deliverability — without buying lists.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "datePublished": "2026-04-30",
+          "dateModified": "2026-04-30",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "find emails for cold outreach, B2B email finder, email verification, prospect emails, catch-all domains",
+          "articleSection": "Lead Generation"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogFindEmails /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogDeliverabilityPage() {
+  const slug = 'cold-email-deliverability-spf-dkim-dmarc-guide';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Cold Email Deliverability: SPF, DKIM, DMARC & Sender Reputation (B2B Guide)';
+  const ogImg = ogImage({ title, tag: 'DELIVERABILITY', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="If your email lands in spam, copy doesn't matter. The full B2B deliverability stack: SPF/DKIM/DMARC setup, dedicated cold-email domains, mailbox warm-up timelines, send volume thresholds, reputation killers, and blocklist recovery." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="SPF/DKIM/DMARC, dedicated sending domains, warm-up timelines, reputation killers, and blocklist recovery — the full technical deliverability guide." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-04-30T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Email Infrastructure" />
+        <meta property="article:tag" content="Cold Email" />
+        <meta property="article:tag" content="Deliverability" />
+        <meta property="article:tag" content="SPF" />
+        <meta property="article:tag" content="DKIM" />
+        <meta property="article:tag" content="DMARC" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "The full B2B cold email deliverability stack: SPF, DKIM, DMARC, dedicated domains, mailbox warm-up, send volume, reputation killers, blocklist recovery.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "datePublished": "2026-04-30",
+          "dateModified": "2026-04-30",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email deliverability, SPF DKIM DMARC, sender reputation, inbox placement, email warm-up, mailbox infrastructure",
+          "articleSection": "Email Infrastructure"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What does email deliverability actually mean?", "acceptedAnswer": { "@type": "Answer", "text": "Deliverability is your inbox placement rate (IPR) — the percentage of emails that land in the primary inbox rather than Promotions, Spam, or being bounced/deferred. Open rate is a vanity metric if your IPR is below 80%; you're only seeing the top of a leaky funnel." } },
+            { "@type": "Question", "name": "What are SPF, DKIM, and DMARC?", "acceptedAnswer": { "@type": "Answer", "text": "SPF is a DNS TXT record listing which servers are allowed to send on your domain's behalf. DKIM cryptographically signs each outgoing message so receivers can verify it wasn't tampered with. DMARC ties the two together with a policy (none, quarantine, reject) and forwards reports so you can see who's spoofing your domain." } },
+            { "@type": "Question", "name": "Why use a separate domain for cold email?", "acceptedAnswer": { "@type": "Answer", "text": "Because one bad campaign can tank your sending reputation, and you don't want that to take your transactional and internal email with it. Buy 3-5 lookalike domains (e.g. get-yourbrand.com, try-yourbrand.com), set up 2-3 mailboxes per domain, rotate sends, and isolate the blast radius from your primary domain." } },
+            { "@type": "Question", "name": "How long should mailbox warm-up take?", "acceptedAnswer": { "@type": "Answer", "text": "2-3 weeks of pure warm-up traffic before sending real campaigns, and you should keep 10-20% of all volume as ongoing warm-up traffic indefinitely. Skipping warm-up tanks your IPR within the first few hundred sends — there's no shortcut." } },
+            { "@type": "Question", "name": "How many cold emails can one mailbox send per day?", "acceptedAnswer": { "@type": "Answer", "text": "30-40 emails per mailbox per day is the safe upper limit on Google Workspace or Microsoft 365 for cold sending. Scale by adding mailboxes, not by raising per-mailbox volume. 6-12 mailboxes gives you 200-400 sends/day across the fleet, which is enough to generate 15-20 qualified appointments per month at realistic reply rates." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogDeliverability /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogQualificationPage() {
+  const slug = 'b2b-lead-qualification-bant-meddic-champ-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'B2B Lead Qualification in 2026: BANT vs MEDDIC vs CHAMP (and What Actually Works)';
+  const ogImg = ogImage({ title, tag: 'SALES PROCESS', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="A decision matrix for B2B sales qualification frameworks: BANT, MEDDIC, MEDDPICC, CHAMP, GPCT, ANUM, FAINT. Which one fits your motion by ACV — plus a leaner four-question framework that works across deal sizes." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Comparing BANT, MEDDIC, MEDDPICC, CHAMP and the rest — which framework fits your B2B motion, plus the leaner four-question alternative." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-08T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Sales Process" />
+        <meta property="article:tag" content="Sales" />
+        <meta property="article:tag" content="Qualification" />
+        <meta property="article:tag" content="BANT" />
+        <meta property="article:tag" content="MEDDIC" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Comparison of B2B sales qualification frameworks (BANT, MEDDIC, MEDDPICC, CHAMP, GPCT, ANUM, FAINT) with a deal-size decision matrix.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "datePublished": "2026-05-08",
+          "dateModified": "2026-05-08",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "B2B lead qualification, BANT vs MEDDIC, CHAMP qualification, sales qualification framework, MEDDPICC",
+          "articleSection": "Sales Process"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What is the BANT framework?", "acceptedAnswer": { "@type": "Answer", "text": "BANT stands for Budget, Authority, Need, Timeline — a four-criterion qualification framework invented at IBM in the 1960s. It's still useful for fast disqualification of small-to-mid deals but breaks down in modern buyer-controlled B2B where there's rarely one decision-maker and budget conversations early in the cycle kill warm leads." } },
+            { "@type": "Question", "name": "What is the difference between BANT, MEDDIC, and CHAMP?", "acceptedAnswer": { "@type": "Answer", "text": "BANT is the lightest (4 criteria, budget-first), best for transactional B2B. MEDDIC is the heaviest (6 criteria including Metrics, Economic Buyer, Champion) and is built for enterprise complex sales with multiple stakeholders. CHAMP reorders BANT to put Challenges first instead of Budget, which fits modern buyer behavior better at mid-market ACVs." } },
+            { "@type": "Question", "name": "Which qualification framework should I use?", "acceptedAnswer": { "@type": "Answer", "text": "Match the framework to your average contract value. Under $10k ACV: BANT or CHAMP (fast, lightweight). $10k-$100k ACV: CHAMP or MEDDPICC-Lite. Over $100k ACV with multi-stakeholder buying committees: full MEDDIC or MEDDPICC. The heavier the framework, the longer the qualification cycle — match it to your deal velocity." } },
+            { "@type": "Question", "name": "Can AI handle B2B lead qualification?", "acceptedAnswer": { "@type": "Answer", "text": "AI augments qualification but doesn't replace it. Pre-call AI handles enrichment (job changes, funding events, hiring signals) and ICP scoring. Mid-call AI tools like Gong and Chorus extract MEDDIC signals from call recordings automatically. Post-call AI scores recordings against the framework. But final judgment on champion strength, urgency, and competitive risk still requires a human rep." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogQualification /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAiSalesAgentsPage() {
+  const slug = 'ai-sales-agents-2026-what-works';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = "AI Sales Agents in 2026: What Actually Works (and What's Just Demos)";
+  const ogImg = ogImage({ title, tag: 'AI AGENTS', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="An honest 2026 read on AI sales agents: where they reliably work (research, enrichment, CRM hygiene, inbound triage), where they still fail (cold copy, multi-stakeholder navigation, objection handling), and how to evaluate AI SDR products before buying." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="What AI sales agents actually do in 2026: the landscape, what works, what fails, the 11x-style pitch deconstructed, and a buying checklist." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-10T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="AI Systems" />
+        <meta property="article:tag" content="AI Agents" />
+        <meta property="article:tag" content="Sales Automation" />
+        <meta property="article:tag" content="AI SDR" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "An honest 2026 read on AI sales agents: what works, what fails, and how to evaluate AI SDR products before buying.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "datePublished": "2026-05-10",
+          "dateModified": "2026-05-10",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "AI sales agents, AI SDR, AI sales automation, autonomous sales agents, 11x AI, AiSDR",
+          "articleSection": "AI Systems"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Can AI sales agents replace human SDRs in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Not entirely. AI agents reliably handle prospect enrichment, trigger event monitoring, initial draft cold email copy, inbound triage and meeting booking, CRM hygiene, and call-recording analysis. They still fail at authentic-sounding cold outreach at scale, multi-stakeholder navigation, real-time objection handling, pricing negotiations, and reading enterprise call dynamics. The realistic 2026 setup is 1 rep + AI stack producing the output of 1.7-2.2 reps — not the '10x AI SDR' marketing pitch." } },
+            { "@type": "Question", "name": "What's the difference between AI sales agent products like 11x, AiSDR, and Artisan?", "acceptedAnswer": { "@type": "Answer", "text": "Most of these are similar stacks underneath: a research agent (Clay-style enrichment) plus an LLM email writer plus a sending platform (Smartlead/Instantly). The differences are mostly UX, brand, and whether they hide the human-in-loop. You can build the same functionality yourself for roughly $300/month vs $1,500-3,000/month for packaged products — the trade-off is build time vs polish." } },
+            { "@type": "Question", "name": "How do you evaluate an AI sales agent before buying?", "acceptedAnswer": { "@type": "Answer", "text": "Five questions: (1) Exactly where in your funnel does it sit? (2) What's the human-in-loop rate in real customer setups? (3) Show me 30-day output from a similar ICP. (4) Can I export the data, prompts, and infrastructure if I leave? (5) What's the LLM context window per prospect? Small windows produce generic outputs." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAiSalesAgents /></main>
+      <Footer />
+    </>
+  );
+}
+
 function NotFoundPage() {
   return (
     <>
@@ -727,6 +1015,11 @@ function App() {
             <Route path="/blog/follow-up-system-for-b2b" element={<BlogFollowUpSystemPage />} />
             <Route path="/blog/crm-automation-systems-for-b2b" element={<BlogCrmAutomationPage />} />
             <Route path="/blog/how-to-know-if-your-business-needs-ai-automation" element={<BlogReadinessCheckPage />} />
+            <Route path="/blog/cold-email-subject-lines-that-get-b2b-replies" element={<BlogColdEmailSubjectLinesPage />} />
+            <Route path="/blog/how-to-find-verified-emails-b2b-cold-outreach" element={<BlogFindEmailsPage />} />
+            <Route path="/blog/cold-email-deliverability-spf-dkim-dmarc-guide" element={<BlogDeliverabilityPage />} />
+            <Route path="/blog/b2b-lead-qualification-bant-meddic-champ-2026" element={<BlogQualificationPage />} />
+            <Route path="/blog/ai-sales-agents-2026-what-works" element={<BlogAiSalesAgentsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
