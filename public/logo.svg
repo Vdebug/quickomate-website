@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Quickomate">
+  <rect width="512" height="512" fill="#F5F3EE"/>
+  <rect x="40" y="40" width="432" height="432" fill="none" stroke="#111111" stroke-width="20"/>
+  <text x="50%" y="48%" font-family="Space Grotesk, Arial, sans-serif" font-weight="900" font-size="160" text-anchor="middle" fill="#111111" letter-spacing="-6">Q</text>
+  <rect x="246" y="320" width="20" height="80" fill="#E63B2E"/>
+  <text x="50%" y="78%" font-family="Space Mono, Courier, monospace" font-weight="700" font-size="42" text-anchor="middle" fill="#111111" letter-spacing="6">QCKMTE</text>
+</svg>

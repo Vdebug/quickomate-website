@@ -49,7 +49,7 @@ export default function AboutUs() {
                     <div className="font-mono text-xs text-accent font-bold tracking-widest uppercase mb-4 bg-accent/10 px-3 py-1 inline-block border border-accent/30">
                         ABOUT_US
                     </div>
-                    <h2 className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-textInverted tracking-tighter uppercase leading-none">
+                    <h2 className="font-heading font-black text-[2.5rem] sm:text-6xl md:text-7xl text-textInverted tracking-tighter uppercase leading-[1.05] sm:leading-none">
                         AI-native since
                         <br />
                         <span className="font-drama italic text-accent lowercase tracking-normal">day one.</span>

@@ -7,7 +7,7 @@ export default function Footer() {
                 className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
                 style={{
                     backgroundImage:
-                        'url("https://images.unsplash.com/photo-1542382103332-6bb04abfae7f?q=80&w=2600&auto=format&fit=crop")',
+                        'url("https://images.unsplash.com/photo-1542382103332-6bb04abfae7f?q=60&w=1200&auto=format&fit=crop")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     filter: 'grayscale(100%)',

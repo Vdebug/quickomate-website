@@ -4,12 +4,17 @@ import gsap from 'gsap';
 export default function Hero() {
     const sectionRef = useRef(null);
 
+    const buildUrl = (id, w) => `https://images.unsplash.com/${id}?q=70&w=${w}&auto=format&fit=crop`;
     const backgrounds = [
-        { id: 1, name: 'Concrete Matrix', url: 'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2600&auto=format&fit=crop' },
-        { id: 2, name: 'Server Rack Grid', url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2600&auto=format&fit=crop' },
-        { id: 3, name: 'Fiber Optics', url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2600&auto=format&fit=crop' },
-        { id: 4, name: 'Hardware Circuit', url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2600&auto=format&fit=crop' }
-    ];
+        { id: 1, name: 'Concrete Matrix', photo: 'photo-1498084393753-b411b2d26b34' },
+        { id: 2, name: 'Server Rack Grid', photo: 'photo-1558494949-ef010cbdcc31' },
+        { id: 3, name: 'Fiber Optics', photo: 'photo-1620712943543-bcc4688e7485' },
+        { id: 4, name: 'Hardware Circuit', photo: 'photo-1518770660439-4636190af475' }
+    ].map((b) => ({
+        ...b,
+        url: buildUrl(b.photo, 1600),
+        srcSet: `${buildUrl(b.photo, 640)} 640w, ${buildUrl(b.photo, 1024)} 1024w, ${buildUrl(b.photo, 1600)} 1600w, ${buildUrl(b.photo, 2200)} 2200w`
+    }));
 
     const [bgIndex, setBgIndex] = useState(0);
 
@@ -49,10 +54,15 @@ export default function Hero() {
                     <img
                         key={bg.id}
                         src={bg.url}
+                        srcSet={bg.srcSet}
+                        sizes="100vw"
                         alt=""
                         aria-hidden="true"
                         loading={index === 0 ? 'eager' : 'lazy'}
+                        fetchpriority={index === 0 ? 'high' : 'low'}
                         decoding="async"
+                        width="1600"
+                        height="900"
                         className={`absolute inset-0 w-full h-full object-cover origin-center scale-105 filter grayscale invert transition-opacity duration-1000 ${index === bgIndex ? 'opacity-100' : 'opacity-0'
                             }`}
                     />

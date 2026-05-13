@@ -9,7 +9,7 @@ export default function NotFound() {
                 <div className="font-mono text-xs text-accent font-bold tracking-widest uppercase mb-4 bg-accent/10 px-3 py-1 inline-block border border-accent/30">
                     ERR_404 // ROUTE_NOT_FOUND
                 </div>
-                <h1 className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-primary tracking-tighter uppercase leading-none mb-6">
+                <h1 className="font-heading font-black text-[2.75rem] sm:text-6xl md:text-7xl text-primary tracking-tighter uppercase leading-[1.05] sm:leading-none mb-6">
                     404
                     <br />
                     <span className="text-accent">No signal here.</span>
