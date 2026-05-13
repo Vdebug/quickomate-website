@@ -23,14 +23,21 @@ import BlogReadinessCheck from './components/BlogReadinessCheck';
 import NotFound from './components/NotFound';
 
 const SITE_URL = 'https://quickomate.com';
-const OG_IMAGE = `${SITE_URL}/vasu-gupta.jpg`;
+
+function ogImage({ title, tag, kind = 'article' } = {}) {
+  const params = new URLSearchParams();
+  if (title) params.set('title', title);
+  if (tag) params.set('tag', tag);
+  params.set('kind', kind);
+  return `${SITE_URL}/api/og?${params.toString()}`;
+}
 
 const PERSON_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Vasu Gupta",
   "url": `${SITE_URL}/#vasu-gupta`,
-  "image": OG_IMAGE,
+  "image": `${SITE_URL}/vasu-gupta.jpg`,
   "jobTitle": "CEO & Founder, Quickomate",
   "worksFor": {
     "@type": "Organization",
@@ -62,6 +69,7 @@ const breadcrumbSchema = (postTitle, postSlug) => ({
 });
 
 function HomePage() {
+  const homeOg = ogImage({ title: 'AI Cold Email & Lead Gen for B2B Companies', tag: 'AI GROWTH PARTNER', kind: 'site' });
   return (
     <>
       <Helmet>
@@ -72,8 +80,10 @@ function HomePage() {
         <meta property="og:description" content="15-20 qualified B2B appointments per month with AI-powered cold email infrastructure you own. Real 4% reply rates. No retainers." />
         <meta property="og:url" content={`${SITE_URL}/`} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={homeOg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={homeOg} />
         <script type="application/ld+json">{JSON.stringify(PERSON_SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -146,7 +156,7 @@ function PrivacyPage() {
         <meta property="og:title" content="Privacy Policy – Quickomate" />
         <meta property="og:url" content={`${SITE_URL}/privacy`} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImage({ title: 'Privacy Policy', tag: 'LEGAL', kind: 'site' })} />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <Navbar />
@@ -170,6 +180,7 @@ const BLOG_POSTS_META = [
 ];
 
 function BlogPage() {
+  const blogOg = ogImage({ title: 'B2B Growth Blog: Cold Email, AI Lead Gen, Sales Infra', tag: 'BLOG INDEX', kind: 'site' });
   return (
     <>
       <Helmet>
@@ -180,7 +191,10 @@ function BlogPage() {
         <meta property="og:description" content="Practical playbooks for B2B founders: AI cold email, lead generation, sales infrastructure, and how to book 15-20 qualified meetings a month." />
         <meta property="og:url" content={`${SITE_URL}/blog`} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image" content={blogOg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={blogOg} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Blog",
@@ -224,6 +238,7 @@ function BlogColdEmailPage() {
   const slug = 'cold-email-system-20-appointments-month';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'How We Get 15-20 Qualified Appointments Per Month With Cold Email';
+  const ogImg = ogImage({ title, tag: 'COLD EMAIL', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -234,8 +249,8 @@ function BlogColdEmailPage() {
         <meta property="og:description" content="Learn how Quickomate's cold email system consistently delivers 15-20 qualified appointments per month at a realistic 4% reply rate." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-03-06T00:00:00Z" />
         <meta property="article:modified_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
@@ -249,7 +264,7 @@ function BlogColdEmailPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "The average B2B company gets 2-3 meetings per month from referrals. Learn how Quickomate's cold email system consistently delivers 15-20 qualified appointments at a realistic 4% reply rate.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": {
             "@type": "Person",
             "name": "Vasu Gupta",
@@ -304,6 +319,7 @@ function BlogOwnInfraPage() {
   const slug = 'why-you-should-own-your-cold-email-infrastructure';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'Why You Should Own Your Cold Email Infrastructure (Not Rent It From An Agency)';
+  const ogImg = ogImage({ title, tag: 'COLD EMAIL', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -314,8 +330,8 @@ function BlogOwnInfraPage() {
         <meta property="og:description" content="Why you should own your cold email infrastructure end-to-end instead of renting it from an agency on retainer." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-15T00:00:00Z" />
         <meta property="article:modified_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
@@ -328,7 +344,7 @@ function BlogOwnInfraPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "Most B2B agencies trap you in a monthly retainer and walk off with your leads when you leave. Here's why owning your cold email infrastructure is the only sustainable path to scale.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-15",
@@ -353,6 +369,7 @@ function BlogAiVsHumanPage() {
   const slug = 'ai-vs-human-cold-email-copy';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'AI vs Human Cold Email Copy: Why Full Automation Kills Your Reply Rate';
+  const ogImg = ogImage({ title, tag: 'AI SYSTEMS', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -363,8 +380,8 @@ function BlogAiVsHumanPage() {
         <meta property="og:description" content="Why fully AI-generated cold email copy kills your reply rate, and the AI-assisted hybrid approach that actually works." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-22T00:00:00Z" />
         <meta property="article:modified_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
@@ -377,7 +394,7 @@ function BlogAiVsHumanPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "Fully AI-generated cold email copy looks personalized but reads like a template. Here's the AI-assisted, human-written hybrid that actually books meetings on cold traffic.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-22",
@@ -402,6 +419,7 @@ function BlogAiLeadGenPage() {
   const slug = 'ai-lead-generation-for-b2b-companies';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'AI Lead Generation for B2B Companies: A 2026 Playbook';
+  const ogImg = ogImage({ title, tag: 'LEAD GEN', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -412,8 +430,8 @@ function BlogAiLeadGenPage() {
         <meta property="og:description" content="The 2026 guide to AI lead generation for B2B: which AI does what, where humans still win, realistic benchmarks, and the exact stack we deploy." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-28T00:00:00Z" />
         <meta property="article:modified_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
@@ -426,7 +444,7 @@ function BlogAiLeadGenPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "The 2026 guide to AI lead generation for B2B: which AI does what, where humans still win, realistic benchmarks, and the exact stack we deploy to book 15-20 qualified meetings per month.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-28",
@@ -461,6 +479,7 @@ function BlogColdEmailVsPaidAdsPage() {
   const slug = 'cold-email-vs-paid-ads-b2b';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'Cold Email vs Paid Ads: Which Actually Works for B2B in 2026?';
+  const ogImg = ogImage({ title, tag: 'B2B MARKETING', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -471,8 +490,8 @@ function BlogColdEmailVsPaidAdsPage() {
         <meta property="og:description" content="Cold email vs paid ads for B2B: real CAC numbers, intent quality, scaling ceilings, and which channel wins for your stage." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-25T00:00:00Z" />
         <meta property="article:modified_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
@@ -485,7 +504,7 @@ function BlogColdEmailVsPaidAdsPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "Cold email vs paid ads for B2B: real CAC numbers, intent quality, scaling ceilings, and which channel wins for your stage.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-25",
@@ -510,6 +529,7 @@ function BlogFollowUpSystemPage() {
   const slug = 'follow-up-system-for-b2b';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = "You Don't Have a Lead Problem. You Have a Follow-Up Problem.";
+  const ogImg = ogImage({ title, tag: 'GROWTH SYSTEMS', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -520,8 +540,8 @@ function BlogFollowUpSystemPage() {
         <meta property="og:description" content="Most B2B companies have enough leads — they just stop following up after 2-3 touches. Here's the automated follow-up system that recovers that revenue." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Growth Systems" />
@@ -533,7 +553,7 @@ function BlogFollowUpSystemPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "Most B2B companies have enough leads — they just stop following up after 2-3 touches. Here's how an automated follow-up system recovers that revenue with ROI from day one.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-29",
@@ -565,6 +585,7 @@ function BlogCrmAutomationPage() {
   const slug = 'crm-automation-systems-for-b2b';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'CRM Automation: How Stage-Based Triggers Free Up Your Sales Team';
+  const ogImg = ogImage({ title, tag: 'CRM AUTOMATION', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -575,8 +596,8 @@ function BlogCrmAutomationPage() {
         <meta property="og:description" content="Stage-based CRM automation: every time a lead moves in your pipeline, the right action fires automatically. Here's what that system looks like and what it recovers." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Growth Systems" />
@@ -588,7 +609,7 @@ function BlogCrmAutomationPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "Stage-based CRM automation: every time a lead moves in your pipeline, the right action fires automatically. 9-14 hours recovered per rep per week.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-29",
@@ -620,6 +641,7 @@ function BlogReadinessCheckPage() {
   const slug = 'how-to-know-if-your-business-needs-ai-automation';
   const url = `${SITE_URL}/blog/${slug}`;
   const title = 'How To Know If Your Business Is Ready For AI Automation';
+  const ogImg = ogImage({ title, tag: 'GROWTH SYSTEMS', kind: 'article' });
   return (
     <>
       <Helmet>
@@ -630,8 +652,8 @@ function BlogReadinessCheckPage() {
         <meta property="og:description" content="5-question readiness framework: is your business ready for AI automation? What to build first, and how to calculate ROI before spending a dollar." />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImg} />
+        <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-29T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Growth Systems" />
@@ -643,7 +665,7 @@ function BlogReadinessCheckPage() {
           "@type": "BlogPosting",
           "headline": title,
           "description": "A 5-question framework to know if your business is ready for AI automation, what to build first, and how to calculate ROI before spending a dollar.",
-          "image": OG_IMAGE,
+          "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
           "datePublished": "2026-04-29",
