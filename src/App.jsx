@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -1024,6 +1025,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <SpeedInsights />
     </HelmetProvider>
   );
 }
