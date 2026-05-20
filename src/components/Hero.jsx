@@ -84,7 +84,7 @@ export default function Hero() {
                         The definitive
                     </span>
                     <span className="hero-el font-drama italic text-[2.75rem] sm:text-7xl md:text-[6.5rem] leading-[0.85] text-accent lowercase -ml-1 tracking-normal py-2 underline decoration-4 underline-offset-[10px] sm:underline-offset-[16px]">
-                        ai growth partner
+                        <span className="uppercase">AI</span> growth partner
                     </span>
                     <span className="hero-el font-heading font-black text-[2rem] sm:text-5xl md:text-[4.5rem] leading-[0.9] text-textInverted uppercase">
                         for fast-moving B2B companies.

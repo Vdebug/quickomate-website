@@ -66,7 +66,7 @@ export default function AboutUs() {
                             <img
                                 src="/vasu-gupta.jpg"
                                 alt="Vasu Gupta - CEO & Founder of Quickomate"
-                                className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+                                className="w-full h-full object-cover"
                             />
                         </div>
                     </div>
