@@ -25,6 +25,18 @@ import BlogFindEmails from './components/BlogFindEmails';
 import BlogDeliverability from './components/BlogDeliverability';
 import BlogQualification from './components/BlogQualification';
 import BlogAiSalesAgents from './components/BlogAiSalesAgents';
+import BlogAgencyCost from './components/BlogAgencyCost';
+import BlogVetAgency from './components/BlogVetAgency';
+import BlogInfraSetup from './components/BlogInfraSetup';
+import BlogPromotionsTab from './components/BlogPromotionsTab';
+import BlogColdEmailVsLinkedIn from './components/BlogColdEmailVsLinkedIn';
+import BlogAutomationToolsCompared from './components/BlogAutomationToolsCompared';
+import BlogIsColdEmailWorthIt from './components/BlogIsColdEmailWorthIt';
+import BlogAutomationROI from './components/BlogAutomationROI';
+import BlogColdEmailBenchmarks from './components/BlogColdEmailBenchmarks';
+import BlogPersonalizationAtScale from './components/BlogPersonalizationAtScale';
+import BlogBuildVsHire from './components/BlogBuildVsHire';
+import BlogColdEmailRecruiting from './components/BlogColdEmailRecruiting';
 import NotFound from './components/NotFound';
 
 const SITE_URL = 'https://quickomate.com';
@@ -174,6 +186,18 @@ function PrivacyPage() {
 }
 
 const BLOG_POSTS_META = [
+  { slug: 'cold-email-personalization-at-scale', title: 'Personalization at Scale Without Sounding Like a Bot: The AI + Spintax Division of Labor', datePublished: '2026-05-20' },
+  { slug: 'build-in-house-or-hire-cold-email-agency', title: 'Build It In-House or Hire an Agency? A B2B Outbound Decision Framework', datePublished: '2026-05-20' },
+  { slug: 'cold-email-for-recruiting-agencies', title: "Cold Email for Recruiting Agencies: What's Different (2026 Playbook)", datePublished: '2026-05-20' },
+  { slug: 'sales-automation-roi-calculator', title: 'The Real ROI of Sales Automation: How to Calculate Hours and Dollars Before You Spend', datePublished: '2026-05-19' },
+  { slug: 'b2b-cold-email-benchmarks-2026', title: 'Realistic B2B Cold Email Benchmarks in 2026: Reply Rates, Meetings & Why Small Sends Win', datePublished: '2026-05-19' },
+  { slug: 'is-cold-email-still-worth-it-2026', title: "Is Cold Email Still Worth It in 2026? An Honest Operator's Answer", datePublished: '2026-05-18' },
+  { slug: 'n8n-vs-make-vs-zapier-sales-automation', title: 'n8n vs Make vs Zapier for Sales Automation: Which to Use at Your Volume', datePublished: '2026-05-17' },
+  { slug: 'cold-email-vs-linkedin-outreach-2026', title: 'Cold Email vs LinkedIn Outreach in 2026: Why the Winners Run Both', datePublished: '2026-05-16' },
+  { slug: 'cold-email-gmail-promotions-tab-fix', title: "Why Your Cold Email Lands in Gmail's Promotions Tab (and the Plain-Text Fix)", datePublished: '2026-05-15' },
+  { slug: 'cold-email-infrastructure-how-many-domains-inboxes', title: 'Cold Email Infrastructure in 2026: Exactly How Many Domains and Inboxes You Need', datePublished: '2026-05-14' },
+  { slug: 'how-to-vet-a-cold-email-agency-red-flags', title: 'How to Vet a Cold Email Agency: 9 Red Flags That Predict a Failed Engagement', datePublished: '2026-05-13' },
+  { slug: 'cold-email-agency-cost-2026', title: 'What a B2B Cold Email Agency Actually Costs in 2026 (And What You Get at Each Tier)', datePublished: '2026-05-12' },
   { slug: 'ai-sales-agents-2026-what-works', title: "AI Sales Agents in 2026: What Actually Works (and What's Just Demos)", datePublished: '2026-05-10' },
   { slug: 'b2b-lead-qualification-bant-meddic-champ-2026', title: 'B2B Lead Qualification in 2026: BANT vs MEDDIC vs CHAMP (and What Actually Works)', datePublished: '2026-05-08' },
   { slug: 'cold-email-deliverability-spf-dkim-dmarc-guide', title: 'Cold Email Deliverability: SPF, DKIM, DMARC & Sender Reputation (B2B Guide)', datePublished: '2026-04-30' },
@@ -356,7 +380,7 @@ function BlogOwnInfraPage() {
           "description": "Most B2B agencies trap you in a monthly retainer and walk off with your leads when you leave. Here's why owning your cold email infrastructure is the only sustainable path to scale.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-15",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -406,7 +430,7 @@ function BlogAiVsHumanPage() {
           "description": "Fully AI-generated cold email copy looks personalized but reads like a template. Here's the AI-assisted, human-written hybrid that actually books meetings on cold traffic.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-22",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -456,7 +480,7 @@ function BlogAiLeadGenPage() {
           "description": "The 2026 guide to AI lead generation for B2B: which AI does what, where humans still win, realistic benchmarks, and the exact stack we deploy to book 15-20 qualified meetings per month.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-28",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -516,7 +540,7 @@ function BlogColdEmailVsPaidAdsPage() {
           "description": "Cold email vs paid ads for B2B: real CAC numbers, intent quality, scaling ceilings, and which channel wins for your stage.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-25",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -565,7 +589,7 @@ function BlogFollowUpSystemPage() {
           "description": "Most B2B companies have enough leads — they just stop following up after 2-3 touches. Here's how an automated follow-up system recovers that revenue with ROI from day one.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-29",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -621,7 +645,7 @@ function BlogCrmAutomationPage() {
           "description": "Stage-based CRM automation: every time a lead moves in your pipeline, the right action fires automatically. 9-14 hours recovered per rep per week.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-29",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -677,7 +701,7 @@ function BlogReadinessCheckPage() {
           "description": "A 5-question framework to know if your business is ready for AI automation, what to build first, and how to calculate ROI before spending a dollar.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-29",
           "dateModified": "2026-04-29",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -735,7 +759,7 @@ function BlogColdEmailSubjectLinesPage() {
           "description": "Six B2B subject-line archetypes that work, eight patterns that kill reply rate, and the A/B testing rules that produce real winners.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-30",
           "dateModified": "2026-04-30",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -784,7 +808,7 @@ function BlogFindEmailsPage() {
           "description": "A 3-layer stack to source, enrich, and verify B2B prospect emails at >95% deliverability — without buying lists.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-30",
           "dateModified": "2026-04-30",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -835,7 +859,7 @@ function BlogDeliverabilityPage() {
           "description": "The full B2B cold email deliverability stack: SPF, DKIM, DMARC, dedicated domains, mailbox warm-up, send volume, reputation killers, blocklist recovery.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-30",
           "dateModified": "2026-04-30",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -896,7 +920,7 @@ function BlogQualificationPage() {
           "description": "Comparison of B2B sales qualification frameworks (BANT, MEDDIC, MEDDPICC, CHAMP, GPCT, ANUM, FAINT) with a deal-size decision matrix.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-08",
           "dateModified": "2026-05-08",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -955,7 +979,7 @@ function BlogAiSalesAgentsPage() {
           "description": "An honest 2026 read on AI sales agents: what works, what fails, and how to evaluate AI SDR products before buying.",
           "image": ogImg,
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
-          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` } },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-10",
           "dateModified": "2026-05-10",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
@@ -976,6 +1000,618 @@ function BlogAiSalesAgentsPage() {
       </Helmet>
       <Navbar />
       <main><BlogAiSalesAgents /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAgencyCostPage() {
+  const slug = 'cold-email-agency-cost-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'What a B2B Cold Email Agency Actually Costs in 2026 (And What You Get at Each Tier)';
+  const ogImg = ogImage({ title, tag: 'PRICING', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="What does a B2B cold email agency cost in 2026? The three real price tiers ($2.5k–$15k+/mo), cost per meeting, how it compares to a loaded in-house SDR, and the pricing red flags that signal overpaying." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="The three real B2B cold email agency price tiers, cost per meeting, agency vs in-house SDR math, and pricing red flags." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-12T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Agency & Buying" />
+        <meta property="article:tag" content="Pricing" />
+        <meta property="article:tag" content="Agency vs In-House" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "What a B2B cold email agency costs in 2026: the three price tiers, cost per meeting, agency vs in-house SDR comparison, and pricing red flags.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-12",
+          "dateModified": "2026-05-12",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email agency cost, B2B lead generation agency pricing, cost per meeting, agency vs in-house SDR, cold email pricing",
+          "articleSection": "Agency & Buying"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How much does a B2B cold email agency cost in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "B2B cold email agencies fall into three tiers: entry ($2,500–$5,000/month, often shared infrastructure and lighter copy), mid ($5,000–$10,000/month, dedicated infrastructure and managed campaigns), and full-service ($10,000–$15,000+/month, multi-channel with strategy). Build-and-own engagements front-load a one-time setup and hand you the infrastructure instead of charging an indefinite retainer." } },
+            { "@type": "Question", "name": "What is a realistic cost per meeting from cold email?", "acceptedAnswer": { "@type": "Answer", "text": "Cost per qualified meeting from agency-run cold email typically runs $150–$1,500 depending on ICP difficulty, ACV, and how qualified the meeting is. Cheap per-lead pricing usually means low-quality, unvetted meetings; the meaningful number is cost per meeting that actually shows up and fits your ICP." } },
+            { "@type": "Question", "name": "Is a cold email agency cheaper than hiring an SDR?", "acceptedAnswer": { "@type": "Answer", "text": "A fully loaded in-house SDR costs roughly $95,000–$140,000/year once you include salary, tools, management, and ramp time. A mid-tier agency at $5,000–$10,000/month is comparable in cash but faster to deploy and doesn't carry hiring/ramp risk. The build-and-own model is cheapest over a 12-month horizon because the retainer stops." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAgencyCost /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogVetAgencyPage() {
+  const slug = 'how-to-vet-a-cold-email-agency-red-flags';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'How to Vet a Cold Email Agency: 9 Red Flags That Predict a Failed Engagement';
+  const ogImg = ogImage({ title, tag: 'AGENCY VETTING', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Most cold email agency horror stories were predictable on the sales call. Nine red flags — main-domain sending, vanity metrics, who keeps the infrastructure, long lock-ins — and the exact questions to ask before you sign." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Nine red flags that predict a failed cold email agency engagement, plus the questions to ask on the sales call." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-13T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Agency & Buying" />
+        <meta property="article:tag" content="Agency Vetting" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Nine red flags that predict a failed cold email agency engagement, and the exact questions to ask before you sign.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-13",
+          "dateModified": "2026-05-13",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "how to choose a cold email agency, cold email agency red flags, vet lead gen agency, B2B agency due diligence",
+          "articleSection": "Agency & Buying"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogVetAgency /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogInfraSetupPage() {
+  const slug = 'cold-email-infrastructure-how-many-domains-inboxes';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Cold Email Infrastructure in 2026: Exactly How Many Domains and Inboxes You Need';
+  const ogImg = ogImage({ title, tag: 'INFRASTRUCTURE', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="The tactical math, not vague advice: 3 inboxes per domain, 30-40 sends per inbox per day, the warm-up timeline, the Feb-2024 bulk-sender rules, and how to size cold email infrastructure for a target monthly volume." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="How many domains and inboxes you actually need for cold email in 2026, with the volume-sizing math and a deployment checklist." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-14T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Email Infrastructure" />
+        <meta property="article:tag" content="Infrastructure" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "How many domains and inboxes you need for cold email in 2026, the per-inbox send caps, warm-up timeline, bulk-sender rules, and a deployment checklist.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-14",
+          "dateModified": "2026-05-14",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email infrastructure, how many domains inboxes, sending volume, mailbox warm-up, bulk sender rules, cold email setup",
+          "articleSection": "Email Infrastructure"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How many inboxes per domain should I use for cold email?", "acceptedAnswer": { "@type": "Answer", "text": "Run 2-3 inboxes per sending domain. More than three mailboxes on one domain concentrates risk — if the domain's reputation slips, every mailbox on it goes down together. Spreading inboxes across multiple lookalike domains isolates the blast radius." } },
+            { "@type": "Question", "name": "How many cold emails can one inbox send per day?", "acceptedAnswer": { "@type": "Answer", "text": "Keep each mailbox to 30-40 cold sends per day, including follow-ups, on Google Workspace or Microsoft 365. Scale total volume by adding mailboxes, not by raising per-mailbox volume — that's what keeps inbox placement high." } },
+            { "@type": "Question", "name": "How many domains and inboxes do I need to send 8,000 cold emails a month?", "acceptedAnswer": { "@type": "Answer", "text": "At 30-40 sends per inbox per day across ~22 working days, each inbox does roughly 700-880 sends/month. To hit 8,000/month you need about 10-12 inboxes, which means 4-5 dedicated lookalike domains at 2-3 inboxes each, all fully warmed and authenticated." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogInfraSetup /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogPromotionsTabPage() {
+  const slug = 'cold-email-gmail-promotions-tab-fix';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = "Why Your Cold Email Lands in Gmail's Promotions Tab (and the Plain-Text Fix)";
+  const ogImg = ogImage({ title, tag: 'DELIVERABILITY', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Promotions isn't spam — but it's where cold outreach goes to die. The exact signals that trigger Gmail's tab classifier (including the counterintuitive List-Unsubscribe header and tracking pixels), and the plain-text fix that gets you to Primary." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Why cold email lands in Gmail's Promotions tab, the signals that trigger it, and the plain-text fix that gets you to Primary." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-15T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Email Infrastructure" />
+        <meta property="article:tag" content="Deliverability" />
+        <meta property="article:tag" content="Gmail" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Why cold email lands in Gmail's Promotions tab, the signals that trigger the classifier, and the plain-text fix that gets you into the Primary inbox.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-15",
+          "dateModified": "2026-05-15",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email promotions tab, gmail primary inbox, plain text cold email, list-unsubscribe header, email tabs",
+          "articleSection": "Email Infrastructure"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Why does my cold email go to the Promotions tab instead of Primary?", "acceptedAnswer": { "@type": "Answer", "text": "Gmail's tab classifier reads marketing signals: embedded images, multiple links, HTML wrappers, tracking pixels, a List-Unsubscribe header, and bulk-sender categorization. Any of these can route a one-to-one-looking cold email into Promotions, where reply rates collapse. Plain-text, link-light emails read as personal mail and land in Primary." } },
+            { "@type": "Question", "name": "Does the List-Unsubscribe header send cold email to Promotions?", "acceptedAnswer": { "@type": "Answer", "text": "It can. Gmail treats a List-Unsubscribe header as a bulk/marketing signal, which nudges messages toward Promotions. For true one-to-one cold outreach under Google's bulk-sender thresholds you generally don't need it; if you send at bulk volumes (5,000+/day to Gmail) Google requires it, so it's a real tradeoff to manage by volume." } },
+            { "@type": "Question", "name": "How do I get cold email out of the Promotions tab?", "acceptedAnswer": { "@type": "Answer", "text": "Send plain text (no HTML wrapper), keep it to three or four short sentences, remove tracking pixels, limit to a single plain-text link or none, drop image signatures, and write like a human one-off. Then seed-test a few accounts to confirm the message lands in Primary before scaling." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogPromotionsTab /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogColdEmailVsLinkedInPage() {
+  const slug = 'cold-email-vs-linkedin-outreach-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Cold Email vs LinkedIn Outreach in 2026: Why the Winners Run Both';
+  const ogImg = ogImage({ title, tag: 'MULTICHANNEL', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Email scales, LinkedIn warms. The realistic reply rates for each channel, LinkedIn's limits and ban risk, and an exact day-by-day multichannel cadence that lifts reply rates above either channel alone." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Cold email vs LinkedIn in 2026: realistic reply rates, the limits of each, and the exact multichannel cadence that wins." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-16T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="B2B Marketing" />
+        <meta property="article:tag" content="Cold Email" />
+        <meta property="article:tag" content="LinkedIn" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Cold email vs LinkedIn outreach in 2026: realistic reply rates, channel limits, and the day-by-day multichannel cadence that lifts results.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-16",
+          "dateModified": "2026-05-16",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email vs linkedin, linkedin outreach, multichannel outreach, B2B cadence, sales sequence",
+          "articleSection": "B2B Marketing"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogColdEmailVsLinkedIn /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAutomationToolsComparedPage() {
+  const slug = 'n8n-vs-make-vs-zapier-sales-automation';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'n8n vs Make vs Zapier for Sales Automation: Which to Use at Your Volume';
+  const ogImg = ogImage({ title, tag: 'AUTOMATION', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Per-task, per-operation, or per-execution billing changes everything at scale. A volume-first comparison of n8n, Make, and Zapier for lead routing, enrichment, CRM sync, and follow-up automation — with the cost math." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="n8n vs Make vs Zapier for sales automation, compared by volume and cost — and which to pick at your lead volume." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-17T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Growth Systems" />
+        <meta property="article:tag" content="Automation" />
+        <meta property="article:tag" content="n8n" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "n8n vs Make vs Zapier for sales automation, compared by billing model, cost at scale, and which fits which lead volume.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-17",
+          "dateModified": "2026-05-17",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "n8n vs make vs zapier, sales automation tools, workflow automation, self-hosted n8n, automation cost",
+          "articleSection": "Growth Systems"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAutomationToolsCompared /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogIsColdEmailWorthItPage() {
+  const slug = 'is-cold-email-still-worth-it-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = "Is Cold Email Still Worth It in 2026? An Honest Operator's Answer";
+  const ogImg = ogImage({ title, tag: 'STRATEGY', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Yes — but only under specific conditions. Where cold email still beats paid ads 3-8x on cost per opportunity, where it quietly fails, and an honest list of when it's simply not right for your business." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="An honest operator's answer on whether cold email is still worth it in 2026 — where it works, where it fails, and when not to bother." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-18T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="B2B Marketing" />
+        <meta property="article:tag" content="Strategy" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "An honest operator's answer on whether cold email is still worth it in 2026: where it works, where it fails, and when it's not right for you.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-18",
+          "dateModified": "2026-05-18",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "is cold email still worth it, does cold email work 2026, cold email roi, cold email vs paid ads",
+          "articleSection": "B2B Marketing"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogIsColdEmailWorthIt /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAutomationROIPage() {
+  const slug = 'sales-automation-roi-calculator';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'The Real ROI of Sales Automation: How to Calculate Hours and Dollars Before You Spend';
+  const ogImg = ogImage({ title, tag: 'ROI', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Before you buy automation, run the math. The three ROI equations (time, cost, revenue), realistic 2026 benchmarks, a worked example, and an honest look at where automation ROI gets overstated." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="How to calculate the real ROI of sales automation before you spend — the three equations, realistic numbers, and a worked example." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-19T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Growth Systems" />
+        <meta property="article:tag" content="ROI" />
+        <meta property="article:tag" content="Sales Automation" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "How to calculate the real ROI of sales automation before you spend: the three equations (time, cost, revenue), realistic benchmarks, and a worked example.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-19",
+          "dateModified": "2026-05-19",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "sales automation roi, automation roi calculator, hours saved automation, automation payback period",
+          "articleSection": "Growth Systems"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAutomationROI /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogColdEmailBenchmarksPage() {
+  const slug = 'b2b-cold-email-benchmarks-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Realistic B2B Cold Email Benchmarks in 2026: Reply Rates, Meetings & Why Small Sends Win';
+  const ogImg = ogImage({ title, tag: 'BENCHMARKS', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Vendor benchmark reports inflate every number. Here are the realistic 2026 figures — reply rates, positive replies, meetings per hundred sends — and why small, targeted sends beat big blasts." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Realistic 2026 B2B cold email benchmarks — reply rates, positive replies, meetings per send — and why small targeted sends win." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-19T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Cold Email" />
+        <meta property="article:tag" content="Benchmarks" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Realistic 2026 B2B cold email benchmarks — reply rates, positive replies, meetings per hundred sends — and why small targeted sends beat big blasts.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-19",
+          "dateModified": "2026-05-19",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email benchmarks 2026, cold email reply rate, b2b cold email statistics, meetings per send, cold email open rate",
+          "articleSection": "Cold Email"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What is a realistic cold email reply rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A realistic overall reply rate on cold B2B email in 2026 is roughly 3.4–5.8%, of which 1-2% are positive replies. Vendor case studies showing 8-12%+ are almost always cherry-picked warm audiences or tiny sends. Above ~5% sustained on genuinely cold traffic is the exception, not the benchmark." } },
+            { "@type": "Question", "name": "How many meetings should 100 cold emails produce?", "acceptedAnswer": { "@type": "Answer", "text": "Expect roughly 1-2 booked meetings per 100 well-targeted cold emails, or about 0.15-0.25% meetings per email sent across a campaign. Tighter targeting and a relevant offer push toward the top of that range; broad lists and generic copy fall below it." } },
+            { "@type": "Question", "name": "Do smaller cold email sends really get higher reply rates?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Highly targeted batches under ~50 recipients commonly see reply rates around 5.8% versus roughly 2.1% for large untargeted blasts. Smaller sends let you research the recipient and write a relevant line, which is the single biggest driver of replies." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogColdEmailBenchmarks /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogPersonalizationAtScalePage() {
+  const slug = 'cold-email-personalization-at-scale';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Personalization at Scale Without Sounding Like a Bot: The AI + Spintax Division of Labor';
+  const ogImg = ogImage({ title, tag: 'PERSONALIZATION', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Fully AI-generated personalization reads generic and prospects can smell it. The division of labor — spintax for structure, AI for the one line that matters, humans for the angle — that keeps reply rates high at volume." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="How to personalize cold email at scale without sounding like a bot — the spintax + AI + human division of labor." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-20T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="AI Systems" />
+        <meta property="article:tag" content="Personalization" />
+        <meta property="article:tag" content="AI Copy" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "How to personalize cold email at scale without sounding like a bot — the spintax + AI + human division of labor, with a research-to-line pipeline.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-20",
+          "dateModified": "2026-05-20",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email personalization at scale, spintax, AI cold email copy, personalization pipeline, cold email reply rate",
+          "articleSection": "AI Systems"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogPersonalizationAtScale /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogBuildVsHirePage() {
+  const slug = 'build-in-house-or-hire-cold-email-agency';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Build It In-House or Hire an Agency? A B2B Outbound Decision Framework';
+  const ogImg = ogImage({ title, tag: 'AGENCY VS DIY', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="The true cost of DIY cold email isn't the tools — it's the ramp time and the domains you'll burn learning. A decision framework for building in-house, hiring an agency, or running the hybrid build-and-own model." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Build cold email in-house or hire an agency? A decision framework by stage, team, and budget — plus the hybrid model." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-20T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Agency & Buying" />
+        <meta property="article:tag" content="Agency vs DIY" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "Build cold email in-house or hire an agency? A decision framework by company stage, team size, and budget, plus the hybrid build-and-own model.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-20",
+          "dateModified": "2026-05-20",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "build vs buy cold email, in-house vs agency outbound, diy cold email cost, hybrid outbound model",
+          "articleSection": "Agency & Buying"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogBuildVsHire /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogColdEmailRecruitingPage() {
+  const slug = 'cold-email-for-recruiting-agencies';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = "Cold Email for Recruiting Agencies: What's Different (2026 Playbook)";
+  const ogImg = ogImage({ title, tag: 'RECRUITING', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Recruiting is a two-sided market — you're selling to clients and sourcing candidates at once. The ICP signals, copy angles, and compliance rules that make cold email work for recruiting agencies specifically." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="A 2026 cold email playbook built specifically for recruiting agencies — the client-side and candidate-side plays, signals, and compliance." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-20T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Lead Generation" />
+        <meta property="article:tag" content="Recruiting" />
+        <meta property="article:tag" content="Cold Email" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "A 2026 cold email playbook for recruiting agencies: the two-sided client/candidate model, recruiting-specific ICP signals, copy angles, and compliance.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-20",
+          "dateModified": "2026-05-20",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "cold email for recruiting agencies, recruitment outreach, recruiter cold email, staffing agency lead generation",
+          "articleSection": "Lead Generation"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogColdEmailRecruiting /></main>
       <Footer />
     </>
   );
@@ -1020,6 +1656,18 @@ function App() {
             <Route path="/blog/cold-email-deliverability-spf-dkim-dmarc-guide" element={<BlogDeliverabilityPage />} />
             <Route path="/blog/b2b-lead-qualification-bant-meddic-champ-2026" element={<BlogQualificationPage />} />
             <Route path="/blog/ai-sales-agents-2026-what-works" element={<BlogAiSalesAgentsPage />} />
+            <Route path="/blog/cold-email-agency-cost-2026" element={<BlogAgencyCostPage />} />
+            <Route path="/blog/how-to-vet-a-cold-email-agency-red-flags" element={<BlogVetAgencyPage />} />
+            <Route path="/blog/cold-email-infrastructure-how-many-domains-inboxes" element={<BlogInfraSetupPage />} />
+            <Route path="/blog/cold-email-gmail-promotions-tab-fix" element={<BlogPromotionsTabPage />} />
+            <Route path="/blog/cold-email-vs-linkedin-outreach-2026" element={<BlogColdEmailVsLinkedInPage />} />
+            <Route path="/blog/n8n-vs-make-vs-zapier-sales-automation" element={<BlogAutomationToolsComparedPage />} />
+            <Route path="/blog/is-cold-email-still-worth-it-2026" element={<BlogIsColdEmailWorthItPage />} />
+            <Route path="/blog/sales-automation-roi-calculator" element={<BlogAutomationROIPage />} />
+            <Route path="/blog/b2b-cold-email-benchmarks-2026" element={<BlogColdEmailBenchmarksPage />} />
+            <Route path="/blog/cold-email-personalization-at-scale" element={<BlogPersonalizationAtScalePage />} />
+            <Route path="/blog/build-in-house-or-hire-cold-email-agency" element={<BlogBuildVsHirePage />} />
+            <Route path="/blog/cold-email-for-recruiting-agencies" element={<BlogColdEmailRecruitingPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

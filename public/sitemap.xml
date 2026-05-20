@@ -2,97 +2,169 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quickomate.com/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://quickomate.com/blog/ai-sales-agents-2026-what-works</loc>
+    <loc>https://quickomate.com/blog/cold-email-personalization-at-scale</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/build-in-house-or-hire-cold-email-agency</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/cold-email-for-recruiting-agencies</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/sales-automation-roi-calculator</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/b2b-cold-email-benchmarks-2026</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/is-cold-email-still-worth-it-2026</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/n8n-vs-make-vs-zapier-sales-automation</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/cold-email-vs-linkedin-outreach-2026</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/cold-email-gmail-promotions-tab-fix</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/cold-email-infrastructure-how-many-domains-inboxes</loc>
     <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/how-to-vet-a-cold-email-agency-red-flags</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/cold-email-agency-cost-2026</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://quickomate.com/blog/ai-sales-agents-2026-what-works</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/b2b-lead-qualification-bant-meddic-champ-2026</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/cold-email-deliverability-spf-dkim-dmarc-guide</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/cold-email-subject-lines-that-get-b2b-replies</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/how-to-find-verified-emails-b2b-cold-outreach</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/how-to-know-if-your-business-needs-ai-automation</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/crm-automation-systems-for-b2b</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/follow-up-system-for-b2b</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/ai-lead-generation-for-b2b-companies</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/cold-email-vs-paid-ads-b2b</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/ai-vs-human-cold-email-copy</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/why-you-should-own-your-cold-email-infrastructure</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/blog/cold-email-system-20-appointments-month</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quickomate.com/privacy</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
