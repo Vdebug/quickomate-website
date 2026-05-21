@@ -3,3 +3,10 @@ dist/
 .vercel/
 .vercel
 .claude/
+
+# Environment / secrets — never commit real keys
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
