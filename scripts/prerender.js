@@ -31,7 +31,7 @@ function getRoutes() {
   const blogPostsSrc = readFileSync(join(ROOT, 'src/components/blogPosts.js'), 'utf8');
   const slugs = [...blogPostsSrc.matchAll(/slug:\s*'([^']+)'/g)].map((m) => m[1]);
   const blogRoutes = slugs.map((s) => `/blog/${s}`);
-  return ['/', '/blog', '/privacy', ...blogRoutes];
+  return ['/', '/blog', '/about', '/privacy', ...blogRoutes];
 }
 
 // --- 2. Find a Chrome/Chromium executable across environments ---

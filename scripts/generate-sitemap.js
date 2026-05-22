@@ -24,6 +24,7 @@ const newest = blogPosts
 
 const entries = [
   url(`${SITE_URL}/`, newest, 'weekly', '1.0'),
+  url(`${SITE_URL}/about`, newest, 'monthly', '0.7'),
   url(`${SITE_URL}/blog`, newest, 'weekly', '0.8'),
   ...blogPosts.map((p) =>
     url(`${SITE_URL}/blog/${p.slug}`, p.dateIso, 'monthly', '0.9')

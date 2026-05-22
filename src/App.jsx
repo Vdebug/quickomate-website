@@ -48,6 +48,7 @@ import BlogAiSmallBusiness from './components/BlogAiSmallBusiness';
 import BlogAiLeadQualification from './components/BlogAiLeadQualification';
 import BlogBusinessProcessAutomation from './components/BlogBusinessProcessAutomation';
 import BlogAiIntegration from './components/BlogAiIntegration';
+import About from './components/About';
 import NotFound from './components/NotFound';
 
 const SITE_URL = 'https://quickomate.com';
@@ -198,6 +199,49 @@ function PrivacyPage() {
       <main>
         <PrivacyPolicy />
       </main>
+      <Footer />
+    </>
+  );
+}
+
+function AboutPage() {
+  const aboutOg = ogImage({ title: 'About Quickomate & Vasu Gupta', tag: 'ABOUT', kind: 'site' });
+  const url = `${SITE_URL}/about`;
+  return (
+    <>
+      <Helmet>
+        <title>About Quickomate – AI Automation & Growth Systems for B2B | Vasu Gupta</title>
+        <meta name="description" content="Quickomate builds custom AI automation and B2B lead-generation systems you own outright — cold email, AI lead gen, CRM and sales automation, LLM agents. Founded by Vasu Gupta, AI systems architect." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content="About Quickomate – AI Automation & Growth Systems for B2B" />
+        <meta property="og:description" content="Custom AI automation and B2B growth infrastructure you own outright. Founded by Vasu Gupta." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={aboutOg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={aboutOg} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Quickomate",
+          "url": url,
+          "description": "About Quickomate — the AI growth partner that builds custom AI automation and B2B lead-generation systems clients own outright.",
+          "mainEntity": PERSON_SCHEMA,
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(PERSON_SCHEMA)}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": url }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><About /></main>
       <Footer />
     </>
   );
@@ -368,6 +412,15 @@ function BlogColdEmailPage() {
             { "@type": "HowToStep", "position": 5, "name": "Hand over the system", "text": "All infrastructure lives on the client's domains, mailboxes, and CRM. Train the team, then step back. No retainers, no lock-in." }
           ]
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How many appointments can a cold email system book per month?", "acceptedAnswer": { "@type": "Answer", "text": "A well-built cold email system consistently books 15-20 qualified B2B appointments per month at a realistic ~4% reply rate, sending roughly 5,000-15,000 emails. Anyone promising far more is usually cherry-picking warm leads or burning sending domains." } },
+            { "@type": "Question", "name": "How long before a cold email system produces meetings?", "acceptedAnswer": { "@type": "Answer", "text": "Mailbox warm-up and infrastructure setup take about 2-3 weeks before sending at scale. End to end, most clients see their first qualified meetings within 30-45 days of kickoff." } },
+            { "@type": "Question", "name": "Should cold email be sent from my main business domain?", "acceptedAnswer": { "@type": "Answer", "text": "No. Always use separate, warmed-up sending domains and mailboxes with SPF, DKIM, and DMARC configured. Sending cold email from your main domain risks its reputation and your whole team's deliverability." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main>
@@ -418,6 +471,15 @@ function BlogOwnInfraPage() {
           "articleSection": "Growth Infrastructure"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Why should I own my cold email infrastructure?", "acceptedAnswer": { "@type": "Answer", "text": "When you rent it from an agency, the domains, mailboxes, lead lists, and CRM live in their accounts and leave with them when you stop paying. Owning the infrastructure makes your pipeline an asset you keep, not a subscription you can never cancel." } },
+            { "@type": "Question", "name": "What does owning cold email infrastructure include?", "acceptedAnswer": { "@type": "Answer", "text": "Your own sending domains, warmed mailboxes, lead data, CRM, and automation logic — all on accounts you control, with documentation your team can run after handover." } },
+            { "@type": "Question", "name": "Is it cheaper to own or rent cold email infrastructure?", "acceptedAnswer": { "@type": "Answer", "text": "Renting looks cheaper in month one but costs more over time because you build no asset and stay dependent. Owning has a higher upfront build but caps long-term cost and keeps every lead and campaign yours." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main>
@@ -468,6 +530,15 @@ function BlogAiVsHumanPage() {
           "articleSection": "AI Systems"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Should cold email copy be written by AI or humans?", "acceptedAnswer": { "@type": "Answer", "text": "Use AI for research and a human for the actual copy. Fully AI-generated cold email reads safe and average, and prospects can tell — which shows up directly in lower reply rates. The hybrid of AI-researched, human-written copy is what books meetings." } },
+            { "@type": "Question", "name": "Why does fully automated AI cold email underperform?", "acceptedAnswer": { "@type": "Answer", "text": "LLMs produce agreeable, generic text, which is the opposite of what cuts through a busy inbox. The opener, hook, and call-to-action still need human judgment to feel specific and earned." } },
+            { "@type": "Question", "name": "Where should AI be used in cold outreach?", "acceptedAnswer": { "@type": "Answer", "text": "Use AI aggressively for scraping and structuring company data, summarizing activity, detecting buying signals, cleaning lists, and routing replies — and keep humans on the message itself." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main>
@@ -578,6 +649,15 @@ function BlogColdEmailVsPaidAdsPage() {
           "articleSection": "B2B Marketing"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Is cold email or paid ads better for B2B?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on ICP fit. Cold email has a capped, predictable cost and reaches B2B decision-makers directly, often beating paid ads 3-8x on cost per opportunity for narrow, definable audiences. Paid ads scale reach faster but bid costs are uncapped and B2B targeting is blunt." } },
+            { "@type": "Question", "name": "Is cold email cheaper than paid ads for B2B?", "acceptedAnswer": { "@type": "Answer", "text": "Usually yes on cost per qualified opportunity, because cold email cost is largely fixed infrastructure while ad costs rise with competition. The trade-off is that cold email scales more slowly." } },
+            { "@type": "Question", "name": "When do paid ads beat cold email?", "acceptedAnswer": { "@type": "Answer", "text": "When your audience is broad, hard to list-build, or already actively searching for your category — there, ads capture demand that cold email cannot reach." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main>
@@ -797,6 +877,15 @@ function BlogColdEmailSubjectLinesPage() {
           "articleSection": "Cold Email"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What makes a good B2B cold email subject line?", "acceptedAnswer": { "@type": "Answer", "text": "Short, specific, and curiosity- or relevance-driven — written like a line a colleague would send, not a marketer. The subject's only job is to earn the open, so avoid salesy phrasing, ALL CAPS, and anything that reads like a campaign." } },
+            { "@type": "Question", "name": "What kills cold email reply rates at the subject line?", "acceptedAnswer": { "@type": "Answer", "text": "Spammy words, exclamation marks, ALL CAPS, fake personalization tokens, and clickbait. These cut opens and can route you to spam or the Promotions tab." } },
+            { "@type": "Question", "name": "Should I A/B test cold email subject lines?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but test one variable at a time and wait for enough sends to reach a statistically real winner. Small samples produce noise, not insight." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogColdEmailSubjectLines /></main>
@@ -846,6 +935,15 @@ function BlogFindEmailsPage() {
           "articleSection": "Lead Generation"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How do I find verified B2B emails without buying lists?", "acceptedAnswer": { "@type": "Answer", "text": "Use a layered stack: source prospects from public data, enrich with multiple providers, then verify before sending. Bought lists tank deliverability and reputation; a source-enrich-verify pipeline produces clean emails at over 95% deliverability." } },
+            { "@type": "Question", "name": "Why are bought email lists a bad idea?", "acceptedAnswer": { "@type": "Answer", "text": "They are stale, often invalid or seeded with spam traps, and gathered without consent — which spikes bounces, wrecks sender reputation, and creates GDPR and CAN-SPAM exposure." } },
+            { "@type": "Question", "name": "What deliverability rate should a verified list hit?", "acceptedAnswer": { "@type": "Answer", "text": "A properly verified list should clear over 95% deliverability, keeping bounce rates low enough to protect sender reputation." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogFindEmails /></main>
@@ -1131,6 +1229,15 @@ function BlogVetAgencyPage() {
           "articleSection": "Agency & Buying"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What are the red flags when hiring a cold email agency?", "acceptedAnswer": { "@type": "Answer", "text": "Sending from your main domain, promising unrealistic reply rates, reporting vanity metrics, vague answers about process, and keeping the infrastructure in their own accounts. Most agency horror stories were predictable on the sales call." } },
+            { "@type": "Question", "name": "What should I ask a cold email agency before signing?", "acceptedAnswer": { "@type": "Answer", "text": "Ask who owns the domains and data, what realistic reply rate they target, how they warm up and protect deliverability, and what happens to the system if you leave." } },
+            { "@type": "Question", "name": "Who should own the cold email infrastructure?", "acceptedAnswer": { "@type": "Answer", "text": "You should. If the domains, mailboxes, and CRM live in the agency's accounts, you are renting — and the system and leads leave when you stop paying." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogVetAgency /></main>
@@ -1293,6 +1400,15 @@ function BlogColdEmailVsLinkedInPage() {
           "articleSection": "B2B Marketing"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Is cold email or LinkedIn outreach better in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "The winners run both. Email scales volume and LinkedIn warms relationships; a coordinated multichannel cadence lifts reply rates above either channel alone. LinkedIn also carries account-ban risk at volume, so email usually carries the scale." } },
+            { "@type": "Question", "name": "What is a realistic LinkedIn outreach reply rate?", "acceptedAnswer": { "@type": "Answer", "text": "LinkedIn can produce higher engagement per touch than cold email, but it does not scale the same way because of connection and messaging limits and account-ban risk." } },
+            { "@type": "Question", "name": "How do I combine cold email and LinkedIn outreach?", "acceptedAnswer": { "@type": "Answer", "text": "Run a day-by-day multichannel cadence that alternates email with light LinkedIn touches so each channel reinforces the other instead of competing." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogColdEmailVsLinkedIn /></main>
@@ -1341,6 +1457,15 @@ function BlogAutomationToolsComparedPage() {
           "articleSection": "Growth Systems"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "n8n vs Make vs Zapier — which is best for sales automation?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on volume and technical depth. Zapier is fastest to start with the biggest app library but per-task pricing punishes scale; Make is cheaper per operation with more logic and a steeper curve; n8n is self-hostable with flat cost at high volume for technical teams." } },
+            { "@type": "Question", "name": "Which automation tool is cheapest at high volume?", "acceptedAnswer": { "@type": "Answer", "text": "n8n, because it is self-hostable and not billed per task. At scale, Zapier's per-task pricing typically becomes the most expensive option." } },
+            { "@type": "Question", "name": "Should I start on Zapier or n8n?", "acceptedAnswer": { "@type": "Answer", "text": "Start on Zapier to prove the workflow quickly, then migrate to Make or n8n when the bill or the complexity outgrows it." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogAutomationToolsCompared /></main>
@@ -1389,6 +1514,15 @@ function BlogIsColdEmailWorthItPage() {
           "articleSection": "B2B Marketing"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Is cold email still worth it in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but only under specific conditions. For B2B companies with a definable ICP and a real offer, cold email still beats paid ads 3-8x on cost per opportunity. It quietly fails for broad consumer audiences or weak, undifferentiated offers." } },
+            { "@type": "Question", "name": "When is cold email not worth it?", "acceptedAnswer": { "@type": "Answer", "text": "When your audience is broad and hard to list-build, your offer is undifferentiated, or you cannot support the infrastructure and deliverability work it requires." } },
+            { "@type": "Question", "name": "What reply rate is realistic for cold email in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Around 4% overall with 1-2% positive replies on cold traffic. Higher claims usually mean cherry-picked warm leads or burned sending domains." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogIsColdEmailWorthIt /></main>
@@ -1437,6 +1571,15 @@ function BlogAutomationROIPage() {
           "articleSection": "Growth Systems"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How do I calculate the ROI of sales automation?", "acceptedAnswer": { "@type": "Answer", "text": "Run three equations: time saved (hours times loaded hourly cost), cost avoided (tools and headcount replaced), and revenue gained (extra meetings or faster follow-up). Compare the total against the automation's cost per outcome, not its sticker price." } },
+            { "@type": "Question", "name": "What is a realistic payback period for sales automation?", "acceptedAnswer": { "@type": "Answer", "text": "Well-scoped automations on high-volume, repetitive tasks often pay back within weeks to a few months. Anything promised as instant 10x ROI is usually overstated." } },
+            { "@type": "Question", "name": "Where is sales automation ROI overstated?", "acceptedAnswer": { "@type": "Answer", "text": "When vendors count theoretical hours saved that never convert to revenue, or automate low-volume tasks where the saved minutes never add up to real value." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogAutomationROI /></main>
@@ -1542,6 +1685,15 @@ function BlogPersonalizationAtScalePage() {
           "articleSection": "AI Systems"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How do you personalize cold email at scale without sounding like a bot?", "acceptedAnswer": { "@type": "Answer", "text": "Split the work: spintax for structure, AI for the one research-driven line that matters, and humans for the angle. Fully AI-generated personalization reads generic, but this division of labor keeps reply rates high at volume." } },
+            { "@type": "Question", "name": "Does AI personalization hurt reply rates?", "acceptedAnswer": { "@type": "Answer", "text": "Fully automated personalization often does, because it reads templated. Used only for the single researched line, with human-set structure and angle, it helps." } },
+            { "@type": "Question", "name": "What is the right level of personalization for cold email?", "acceptedAnswer": { "@type": "Answer", "text": "Enough that the opener could only have been written to that prospect, and no more. Over-engineering every line wastes time without lifting replies." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogPersonalizationAtScale /></main>
@@ -1590,6 +1742,15 @@ function BlogBuildVsHirePage() {
           "articleSection": "Agency & Buying"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Should I build cold email in-house or hire an agency?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on ramp tolerance and ownership goals. In-house has the best long-term ROI but a 4-6 month learning curve and burned domains while learning; an agency is faster but ongoing; the hybrid — an agency builds on your infrastructure and trains your team — captures speed without lock-in." } },
+            { "@type": "Question", "name": "What is the true cost of building cold email in-house?", "acceptedAnswer": { "@type": "Answer", "text": "Not the tools — it is the ramp time and the sending domains you burn learning deliverability before the system reliably works." } },
+            { "@type": "Question", "name": "What is the hybrid model for cold email?", "acceptedAnswer": { "@type": "Answer", "text": "An external team builds the system on your infrastructure, trains your team, and hands over the keys — fast results, an owned asset, and no permanent retainer." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogBuildVsHire /></main>
@@ -1638,6 +1799,15 @@ function BlogColdEmailRecruitingPage() {
           "articleSection": "Lead Generation"
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What is different about cold email for recruiting agencies?", "acceptedAnswer": { "@type": "Answer", "text": "Recruiting is a two-sided market — you sell to clients and source candidates at once — so the ICP signals, copy angles, and compliance rules differ from standard B2B outreach and must be run as two distinct plays." } },
+            { "@type": "Question", "name": "What signals matter for recruiting cold email?", "acceptedAnswer": { "@type": "Answer", "text": "Client-side: hiring activity, growth, and open roles. Candidate-side: role fit and openness signals. Each side needs its own list, message, and cadence." } },
+            { "@type": "Question", "name": "Are there compliance rules for recruiting outreach?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Candidate outreach and client outreach carry different consent and data expectations, and both must respect GDPR and CAN-SPAM ground rules." } }
+          ]
+        })}</script>
       </Helmet>
       <Navbar />
       <main><BlogColdEmailRecruiting /></main>
@@ -2311,6 +2481,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/cold-email-system-20-appointments-month" element={<BlogColdEmailPage />} />
             <Route path="/blog/why-you-should-own-your-cold-email-infrastructure" element={<BlogOwnInfraPage />} />
