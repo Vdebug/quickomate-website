@@ -39,10 +39,11 @@ export default function Footer() {
                             PLATFORM
                         </h4>
                         {[
-                            { label: 'Services', href: '/#services' },
+                            { label: 'AI Automation', href: '/ai-automation-agency' },
+                            { label: 'Cold Email Agency', href: '/cold-email-agency' },
+                            { label: 'B2B Lead Gen', href: '/b2b-lead-generation-agency' },
                             { label: 'Case Studies', href: '/#case-studies' },
                             { label: 'About', href: '/about' },
-                            { label: 'Protocol', href: '/#protocol' },
                             { label: 'Blog', href: '/blog' },
                         ].map((link) => (
                             <a

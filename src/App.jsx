@@ -49,6 +49,9 @@ import BlogAiLeadQualification from './components/BlogAiLeadQualification';
 import BlogBusinessProcessAutomation from './components/BlogBusinessProcessAutomation';
 import BlogAiIntegration from './components/BlogAiIntegration';
 import About from './components/About';
+import ServiceAiAutomation from './components/ServiceAiAutomation';
+import ServiceColdEmail from './components/ServiceColdEmail';
+import ServiceLeadGen from './components/ServiceLeadGen';
 import NotFound from './components/NotFound';
 
 const SITE_URL = 'https://quickomate.com';
@@ -2456,6 +2459,142 @@ function BlogAiIntegrationPage() {
   );
 }
 
+function serviceSchema({ name, url, description, serviceType }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": name,
+    "serviceType": serviceType,
+    "url": url,
+    "description": description,
+    "provider": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+    "areaServed": { "@type": "Place", "name": "Worldwide" },
+    "offers": { "@type": "Offer", "url": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate", "priceCurrency": "USD" }
+  };
+}
+
+function serviceBreadcrumb(name, url) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+      { "@type": "ListItem", "position": 2, "name": name, "item": url }
+    ]
+  };
+}
+
+function ServiceAiAutomationPage() {
+  const url = `${SITE_URL}/ai-automation-agency`;
+  const title = 'AI Automation Agency – Custom AI Systems You Own | Quickomate';
+  const ogImg = ogImage({ title: 'AI Automation Agency', tag: 'SERVICE', kind: 'site' });
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content="Quickomate is an AI automation agency that builds custom AI systems for lead generation, sales operations, and back office — on infrastructure you own outright. Realistic numbers, no lock-in." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content="AI Automation Agency – Custom AI Systems You Own | Quickomate" />
+        <meta property="og:description" content="Custom AI automation systems for lead gen, sales, and operations — built on infrastructure you own. No black box, no endless retainer." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <script type="application/ld+json">{JSON.stringify(serviceSchema({ name: 'AI Automation Agency', serviceType: 'AI Automation', url, description: 'Custom AI automation systems for lead generation, sales operations, and back office, built on infrastructure the client owns.' }))}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceBreadcrumb('AI Automation Agency', url))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What does an AI automation agency do?", "acceptedAnswer": { "@type": "Answer", "text": "It finds the repetitive, rules-based, or research-heavy work in your business and replaces the manual version with a system — across lead generation, sales operations, support, and back office — built on your own infrastructure." } },
+            { "@type": "Question", "name": "How much does an AI automation agency cost?", "acceptedAnswer": { "@type": "Answer", "text": "Realistic 2026 ranges: $1,500–$5,000 for a single workflow build, $3,000–$12,000 per month for a multi-system retainer, and $10,000–$30,000+ for a full revenue engine. We price against cost per outcome, not sticker price." } },
+            { "@type": "Question", "name": "Do I own the systems Quickomate builds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything is built on your accounts, domains, and CRM with documentation your team can run. When the engagement ends, nothing leaves with us." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><ServiceAiAutomation /></main>
+      <Footer />
+    </>
+  );
+}
+
+function ServiceColdEmailPage() {
+  const url = `${SITE_URL}/cold-email-agency`;
+  const title = 'B2B Cold Email Agency – 15-20 Appointments a Month | Quickomate';
+  const ogImg = ogImage({ title: 'B2B Cold Email Agency', tag: 'SERVICE', kind: 'site' });
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content="Quickomate is a B2B cold email agency that books 15-20 qualified appointments a month at a realistic ~4% reply rate — AI-assisted research, human-written copy, and infrastructure you own." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content="B2B Cold Email Agency – 15-20 Appointments a Month | Quickomate" />
+        <meta property="og:description" content="A cold email agency that books 15-20 qualified B2B appointments a month at a realistic ~4% reply rate, on infrastructure you own." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <script type="application/ld+json">{JSON.stringify(serviceSchema({ name: 'B2B Cold Email Agency', serviceType: 'Cold Email Lead Generation', url, description: 'Done-for-you B2B cold email systems that book 15-20 qualified appointments a month at a realistic ~4% reply rate, on infrastructure the client owns.' }))}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceBreadcrumb('Cold Email Agency', url))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How many appointments will a cold email system book per month?", "acceptedAnswer": { "@type": "Answer", "text": "A well-built system consistently books 15-20 qualified B2B appointments per month at a realistic ~4% reply rate, sending roughly 5,000-15,000 emails." } },
+            { "@type": "Question", "name": "How long until I see meetings?", "acceptedAnswer": { "@type": "Answer", "text": "Mailbox warm-up and infrastructure setup take about 2-3 weeks before sending at scale. Most clients see their first qualified meetings within 30-45 days of kickoff." } },
+            { "@type": "Question", "name": "Do I own the cold email system?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Unlike agencies that lock you into a retainer and take their leads when you leave, we build everything on your infrastructure — you own every domain, mailbox, lead, and campaign from day one." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><ServiceColdEmail /></main>
+      <Footer />
+    </>
+  );
+}
+
+function ServiceLeadGenPage() {
+  const url = `${SITE_URL}/b2b-lead-generation-agency`;
+  const title = 'B2B Lead Generation Agency for SaaS & B2B | Quickomate';
+  const ogImg = ogImage({ title: 'B2B Lead Generation Agency', tag: 'SERVICE', kind: 'site' });
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content="Quickomate is a B2B lead generation agency that builds AI-powered pipeline engines — sourcing, enrichment, qualification, and outreach — for SaaS and B2B teams, all owned by you." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content="B2B Lead Generation Agency for SaaS & B2B | Quickomate" />
+        <meta property="og:description" content="AI-powered B2B lead generation systems that fill your pipeline with qualified opportunities — built for SaaS and B2B, owned by you." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <script type="application/ld+json">{JSON.stringify(serviceSchema({ name: 'B2B Lead Generation Agency', serviceType: 'B2B Lead Generation', url, description: 'AI-powered B2B lead generation systems — sourcing, enrichment, qualification, and outreach — built for SaaS and B2B teams and owned by the client.' }))}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceBreadcrumb('B2B Lead Generation Agency', url))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What does a B2B lead generation agency do?", "acceptedAnswer": { "@type": "Answer", "text": "It builds and runs the system that fills your pipeline — sourcing prospects to your ICP, enriching and qualifying them, and activating outreach — so your sales team spends time selling, not prospecting." } },
+            { "@type": "Question", "name": "Is this better for SaaS and B2B specifically?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Targeted outbound works best for narrow, definable B2B and SaaS audiences, where it beats paid ads on cost per qualified opportunity." } },
+            { "@type": "Question", "name": "Do I own the lead generation system and data?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The infrastructure, lead data, and CRM all live on your accounts. You keep every lead and the whole engine if you ever stop working with us." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><ServiceLeadGen /></main>
+      <Footer />
+    </>
+  );
+}
+
 function NotFoundPage() {
   return (
     <>
@@ -2482,6 +2621,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/ai-automation-agency" element={<ServiceAiAutomationPage />} />
+            <Route path="/cold-email-agency" element={<ServiceColdEmailPage />} />
+            <Route path="/b2b-lead-generation-agency" element={<ServiceLeadGenPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/cold-email-system-20-appointments-month" element={<BlogColdEmailPage />} />
             <Route path="/blog/why-you-should-own-your-cold-email-infrastructure" element={<BlogOwnInfraPage />} />

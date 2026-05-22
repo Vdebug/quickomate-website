@@ -24,6 +24,9 @@ const newest = blogPosts
 
 const entries = [
   url(`${SITE_URL}/`, newest, 'weekly', '1.0'),
+  url(`${SITE_URL}/ai-automation-agency`, newest, 'monthly', '0.9'),
+  url(`${SITE_URL}/cold-email-agency`, newest, 'monthly', '0.9'),
+  url(`${SITE_URL}/b2b-lead-generation-agency`, newest, 'monthly', '0.9'),
   url(`${SITE_URL}/about`, newest, 'monthly', '0.7'),
   url(`${SITE_URL}/blog`, newest, 'weekly', '0.8'),
   ...blogPosts.map((p) =>
