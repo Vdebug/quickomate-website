@@ -1,5 +1,14 @@
 export const blogPosts = [
   {
+    slug: 'marketing-automation-roi-2026',
+    title: 'Marketing Automation ROI in 2026: Real Numbers, the Right Formulas, and Where the Math Gets Lied About',
+    excerpt: 'Every vendor quotes Nucleus Research\'s $5.44 return figure — from 2014. Here are the real 2026 marketing automation ROI formulas, honest benchmarks, and a 90-day measurement framework that shows you where the math actually holds.',
+    date: 'May 2026',
+    dateIso: '2026-05-28',
+    readTime: '10 min read',
+    tags: ['Marketing Automation', 'ROI', 'B2B Growth'],
+  },
+  {
     slug: 'best-ai-automation-tools-2026',
     title: 'The Best AI Automation Tools in 2026 (Honest Comparison by Use Case)',
     excerpt: 'There is no single best AI automation tool — only the best one for your use case, volume, and team. A no-affiliate, operator comparison of Zapier, Make, n8n, Relevance AI, Gumloop, Lindy, Clay and more, grouped by job-to-be-done.',
@@ -209,9 +218,9 @@ export const blogPosts = [
   {
     slug: 'ai-sales-agents-2026-what-works',
     title: "AI Sales Agents in 2026: What Actually Works (and What's Just Demos)",
-    excerpt: "Every SaaS founder asks if they can replace SDRs with AI agents yet. Here's an honest 2026 read on what reliably works, what still breaks, and how to evaluate the new wave of 'AI SDR' products before buying.",
+    excerpt: "Every SaaS founder asks if they can replace SDRs with AI agents yet. Here's an honest 2026 read on what reliably works, what still breaks, how to evaluate the new wave of 'AI SDR' products before buying, and a full tool comparison of 11x, AiSDR, Artisan, and custom stacks.",
     date: 'May 2026',
-    dateIso: '2026-05-10',
+    dateIso: '2026-05-28',
     readTime: '10 min read',
     tags: ['AI Agents', 'Sales Automation', 'AI Systems'],
   },

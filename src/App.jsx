@@ -48,6 +48,7 @@ import BlogAiSmallBusiness from './components/BlogAiSmallBusiness';
 import BlogAiLeadQualification from './components/BlogAiLeadQualification';
 import BlogBusinessProcessAutomation from './components/BlogBusinessProcessAutomation';
 import BlogAiIntegration from './components/BlogAiIntegration';
+import BlogMarketingAutomationROI from './components/BlogMarketingAutomationROI';
 import About from './components/About';
 import ServiceAiAutomation from './components/ServiceAiAutomation';
 import ServiceColdEmail from './components/ServiceColdEmail';
@@ -1111,10 +1112,10 @@ function BlogAiSalesAgentsPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-10",
-          "dateModified": "2026-05-10",
+          "dateModified": "2026-05-28",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
-          "keywords": "AI sales agents, AI SDR, AI sales automation, autonomous sales agents, 11x AI, AiSDR",
+          "keywords": "AI sales agents, AI SDR, AI sales automation, autonomous sales agents, 11x AI, AiSDR, AI SDR comparison, AI sales agent tools",
           "articleSection": "AI Systems"
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -2459,6 +2460,64 @@ function BlogAiIntegrationPage() {
   );
 }
 
+function BlogMarketingAutomationROIPage() {
+  const slug = 'marketing-automation-roi-2026';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'Marketing Automation ROI in 2026: Real Numbers, the Right Formulas, and Where the Math Gets Lied About';
+  const ogImg = ogImage({ title: 'Marketing Automation ROI', tag: 'ROI', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="Every vendor quotes the same 2014 stat. Here are the real 2026 marketing automation ROI formulas, honest benchmarks (CAC reduction 15–30%, 5–10 hrs/week saved), and a 90-day measurement framework." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Real 2026 marketing automation ROI: three formulas, honest B2B benchmarks, and a 90-day measurement framework — not vendor math." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-05-28T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Marketing Automation" />
+        <meta property="article:tag" content="Marketing Automation" />
+        <meta property="article:tag" content="ROI" />
+        <meta property="article:tag" content="B2B Growth" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": title,
+          "description": "The real 2026 marketing automation ROI: three formulas (time, revenue, payback), honest B2B benchmarks, where vendor math overstates returns, and a 90-day measurement framework.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-05-28",
+          "dateModified": "2026-05-28",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+          "inLanguage": "en-US",
+          "keywords": "marketing automation roi, marketing automation return on investment, how to calculate marketing automation roi, marketing automation benchmarks 2026, marketing automation payback period",
+          "articleSection": "Marketing Automation"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "What is a realistic marketing automation ROI for B2B companies?", "acceptedAnswer": { "@type": "Answer", "text": "In year one, well-scoped marketing automation typically saves 5–10 hours per marketer per week, reduces CAC by 15–30% after 6 months, and lifts lead-to-MQL conversion rates by 10–25%. Payback periods for mid-market B2B range from 2–5 months when automation targets high-volume, repetitive tasks. Vendor claims of 5x+ ROI in the first quarter are almost always cherry-picked from exceptional implementations." } },
+            { "@type": "Question", "name": "How do I calculate marketing automation ROI?", "acceptedAnswer": { "@type": "Answer", "text": "Run three equations before you buy: (1) Time ROI = (hours saved/week × loaded hourly cost × 52) − annual tool cost. (2) Revenue ROI = (additional MQLs × lead-to-close rate × ACV) − annual tool cost. (3) Payback period = annual tool cost ÷ monthly value delivered. If payback exceeds 12 months, the use case isn't high-volume enough to justify automation." } },
+            { "@type": "Question", "name": "Where is marketing automation ROI most overstated?", "acceptedAnswer": { "@type": "Answer", "text": "The four biggest ROI traps: (1) counting hours saved on already-batched tasks that were absorbed into existing workflows, (2) ignoring integration and setup costs which often equal 1–2× the annual tool cost, (3) excluding ongoing maintenance (budget 2–4 hrs/week for a mid-size automation stack), and (4) using inflated attribution models that credit marketing automation for sales that would have closed anyway." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogMarketingAutomationROI /></main>
+      <Footer />
+    </>
+  );
+}
+
 function serviceSchema({ name, url, description, serviceType }) {
   return {
     "@context": "https://schema.org",
@@ -2661,6 +2720,7 @@ function App() {
             <Route path="/blog/ai-lead-qualification" element={<BlogAiLeadQualificationPage />} />
             <Route path="/blog/ai-business-process-automation" element={<BlogBusinessProcessAutomationPage />} />
             <Route path="/blog/how-to-integrate-ai-into-your-business" element={<BlogAiIntegrationPage />} />
+            <Route path="/blog/marketing-automation-roi-2026" element={<BlogMarketingAutomationROIPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

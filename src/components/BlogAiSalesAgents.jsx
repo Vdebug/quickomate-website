@@ -241,6 +241,85 @@ export default function BlogAiSalesAgents() {
                         </div>
                     </section>
 
+                    {/* Section 9 — Tool Comparison */}
+                    <section>
+                        <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
+                            AI SDR Tool Comparison (2026): What You're Actually Buying
+                        </h2>
+                        <p className="mb-4">
+                            Every "AI SDR" product pitches differently but the underlying stacks are more similar than the marketing suggests. Here's a straight comparison of the five most-discussed options, mapped to the four-layer framework from Section 1.
+                        </p>
+                        <div className="overflow-x-auto mt-4 mb-4">
+                            <table className="w-full border-4 border-primary font-mono text-xs text-primary">
+                                <thead>
+                                    <tr className="bg-primary text-surface">
+                                        <th className="p-3 text-left uppercase tracking-widest">Product</th>
+                                        <th className="p-3 text-left uppercase tracking-widest">Layer</th>
+                                        <th className="p-3 text-left uppercase tracking-widest">Price/mo</th>
+                                        <th className="p-3 text-left uppercase tracking-widest">Human-in-Loop</th>
+                                        <th className="p-3 text-left uppercase tracking-widest">Best For</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { product: '11x (Alice)', layer: 'Research + Conversational', price: '$1,500–$3,500', hil: 'Hidden (offshore review)', best: 'Non-technical founders who want managed outbound' },
+                                        { product: 'AiSDR', layer: 'Research + Sequence + Conversational', price: '$750–$2,500', hil: 'Partial (AI flags for review)', best: 'Teams with existing HubSpot/Salesforce workflows' },
+                                        { product: 'Artisan (Ava)', layer: 'Research + Sequence', price: '$1,500–$2,500', hil: 'Low — high automation rate', best: 'High-volume, less-competitive ICPs where template quality is fine' },
+                                        { product: 'Replicant', layer: 'Full-Stack (Voice + Inbound)', price: 'Custom (enterprise)', hil: 'Supervised escalation', best: 'High-volume inbound triage where voice replaces a call center' },
+                                        { product: 'Clay + Smartlead (custom)', layer: 'Research + Sequence (composable)', price: '$300–$500', hil: 'Human reviewer on every send', best: 'Defensible ICP, quality-sensitive outreach, teams that can invest 20 hrs upfront' },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={i % 2 === 0 ? 'bg-background' : 'bg-surface'}>
+                                            <td className="p-3 font-bold border-t-2 border-primary">{row.product}</td>
+                                            <td className="p-3 border-t-2 border-primary">{row.layer}</td>
+                                            <td className="p-3 border-t-2 border-primary">{row.price}</td>
+                                            <td className="p-3 border-t-2 border-primary">{row.hil}</td>
+                                            <td className="p-3 border-t-2 border-primary">{row.best}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="mt-4">
+                            The custom Clay + Smartlead stack is consistently cheaper and more controllable than any packaged product. The trade-off is setup time (20–40 hours) and the need for a human reviewer. If you have neither the time nor the reviewer, the packaged products make sense despite the price premium. What doesn't make sense: paying $2,500/month for a packaged product and then not using it because the output quality is too low to send — which happens more often than vendors report.
+                        </p>
+                    </section>
+
+                    {/* Section 10 — 90-Day Roadmap */}
+                    <section>
+                        <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
+                            Your First 90 Days With an AI Sales System
+                        </h2>
+                        <p className="mb-4">
+                            Most AI SDR deployments fail not because the tools are bad, but because teams try to go live too fast. Here's the timeline that actually works in practice:
+                        </p>
+                        <div className="flex flex-col gap-6 mt-4">
+                            <div className="bg-surface border-4 border-primary p-6">
+                                <h3 className="font-heading font-black text-base text-primary uppercase mb-3 border-l-4 border-accent pl-3">Month 1: Data First</h3>
+                                <p className="font-mono text-xs text-primary/70 mb-2">Don't touch sending yet. Build your foundation: Clay waterfall enrichment on your ICP list (aim for 90%+ valid emails), define your 3 ICP tiers (perfect fit / acceptable / wrong-fit), set up your Smartlead or Instantly sending infrastructure (2–4 cold domains, 2 inboxes per domain, warm for 21 days before first send). Draft 3 sequence variants and get them reviewed by a human before anything goes live.</p>
+                                <div className="flex gap-4 mt-3">
+                                    <span className="font-mono text-[10px] text-accent font-bold uppercase bg-accent/10 border border-accent/30 px-2 py-0.5">Output: enriched list + warmed domains</span>
+                                </div>
+                            </div>
+                            <div className="bg-surface border-4 border-primary p-6">
+                                <h3 className="font-heading font-black text-base text-primary uppercase mb-3 border-l-4 border-accent pl-3">Month 2: Activate and Measure</h3>
+                                <p className="font-mono text-xs text-primary/70 mb-2">Send your first 200–400 emails (not 2,000). You're buying data, not scale. Track reply rate by sequence variant, positive reply rate separately (interested vs unsubscribe), and email health metrics (open rate, spam complaints, bounce rate). Identify which hook generates the most positive replies and double down. Fix the sequences that get flagged as spam before scaling.</p>
+                                <div className="flex gap-4 mt-3">
+                                    <span className="font-mono text-[10px] text-accent font-bold uppercase bg-accent/10 border border-accent/30 px-2 py-0.5">Target: 4%+ reply rate on initial batches</span>
+                                </div>
+                            </div>
+                            <div className="bg-surface border-4 border-primary p-6">
+                                <h3 className="font-heading font-black text-base text-primary uppercase mb-3 border-l-4 border-accent pl-3">Month 3: Scale What Works</h3>
+                                <p className="font-mono text-xs text-primary/70 mb-2">With a winning sequence and clean infrastructure, scale to 800–1,200 sends/week across 3–4 cold domains. Add a trigger-event layer (monitor job changes, funding announcements for your ICP) to create a high-priority send queue alongside your regular cadence. Set up a CRM routing rule so positive replies land in the right rep's queue within 5 minutes — that response speed is worth more than any copy optimization.</p>
+                                <div className="flex gap-4 mt-3">
+                                    <span className="font-mono text-[10px] text-accent font-bold uppercase bg-accent/10 border border-accent/30 px-2 py-0.5">Target: 2–5 booked meetings/week at steady state</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="mt-6">
+                            The teams that get the best ROI from AI sales systems treat month 1 as pure setup and don't measure results until month 2. The teams that fail go live in week 1, burn their domain reputation chasing volume, and attribute the failure to the tools instead of the process.
+                        </p>
+                    </section>
+
                     {/* CTA */}
                     <section className="bg-primary border-4 border-primary p-8 md:p-12 mt-8 shadow-[8px_8px_0px_0px_rgba(230,59,46,1)]">
                         <h2 className="font-heading font-black text-3xl text-textInverted uppercase tracking-tight mb-4">
