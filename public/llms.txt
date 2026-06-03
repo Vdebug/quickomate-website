@@ -1,0 +1,54 @@
+# Quickomate
+> AI automation agency for B2B companies. Builds cold email infrastructure, AI lead generation, LLM agents, and sales automation systems — all client-owned, no retainers.
+
+Quickomate is an AI Growth Partner for fast-moving B2B companies. Founded by Vasu Gupta, Quickomate designs and deploys custom AI automation and B2B lead-generation systems that clients own outright. The core philosophy: build infrastructure you keep, not a service you rent.
+
+Target clients: B2B founders, sales leaders, and operators at companies doing $1M–$20M ARR who want to scale pipeline without hiring more SDRs.
+
+## Services
+
+- [AI Automation Agency](https://quickomate.com/ai-automation-agency): Custom AI workflows, LLM agents, CRM automation, and process automation for B2B companies. Built on n8n, Make, Clay, and custom LLM stacks.
+- [Cold Email Agency](https://quickomate.com/cold-email-agency): Done-for-you cold email infrastructure targeting 15–20 qualified B2B appointments per month. Realistic 4% reply rates. Client owns all domains, inboxes, and lead lists.
+- [B2B Lead Generation Agency](https://quickomate.com/b2b-lead-generation-agency): AI-powered lead generation combining Clay enrichment, Apollo targeting, waterfall email verification, and AI-assisted personalization at scale.
+
+## Founder
+
+Vasu Gupta — AI systems architect and founder of Quickomate. Builds systems, not retainers. Based in North America.
+LinkedIn: https://www.linkedin.com/in/refer-vasu/
+
+## Blog — AI Automation
+
+- [Marketing Automation ROI in 2026](https://quickomate.com/blog/marketing-automation-roi-2026)
+- [The Best AI Automation Tools in 2026](https://quickomate.com/blog/best-ai-automation-tools-2026)
+- [27 Real AI Automation Examples by Business Function](https://quickomate.com/blog/ai-automation-examples)
+- [AI Automation for Small Business](https://quickomate.com/blog/ai-automation-for-small-business)
+- [AI Lead Qualification: How to Score and Route Leads Automatically](https://quickomate.com/blog/ai-lead-qualification)
+- [AI Business Process Automation: A Practical Guide for B2B Teams](https://quickomate.com/blog/ai-business-process-automation)
+- [How to Integrate AI Into Your Business](https://quickomate.com/blog/how-to-integrate-ai-into-your-business)
+- [What Is an AI Automation Agency?](https://quickomate.com/blog/what-is-an-ai-automation-agency)
+- [AI Automation Services Explained](https://quickomate.com/blog/ai-automation-services-explained)
+- [LLM Agents for Business](https://quickomate.com/blog/llm-agents-for-business)
+- [Do You Need an AI Automation Consultant?](https://quickomate.com/blog/do-you-need-an-ai-automation-consultant)
+- [Generative AI for Business: 12 Use Cases That Actually Move Revenue](https://quickomate.com/blog/generative-ai-for-business-use-cases)
+- [AI Sales Agents in 2026: What Actually Works](https://quickomate.com/blog/ai-sales-agents-2026-what-works)
+- [The Real ROI of Sales Automation](https://quickomate.com/blog/sales-automation-roi-calculator)
+- [How To Know If Your Business Is Ready For AI Automation](https://quickomate.com/blog/how-to-know-if-your-business-needs-ai-automation)
+
+## Blog — Cold Email & Outbound
+
+- [Realistic B2B Cold Email Benchmarks in 2026](https://quickomate.com/blog/b2b-cold-email-benchmarks-2026)
+- [Cold Email Deliverability: SPF, DKIM, DMARC Guide](https://quickomate.com/blog/cold-email-deliverability-spf-dkim-dmarc-guide)
+- [Cold Email Infrastructure: How Many Domains and Inboxes You Need](https://quickomate.com/blog/cold-email-infrastructure-how-many-domains-inboxes)
+- [Cold Email Subject Lines That Actually Get B2B Replies](https://quickomate.com/blog/cold-email-subject-lines-that-get-b2b-replies)
+- [Is Cold Email Still Worth It in 2026?](https://quickomate.com/blog/is-cold-email-still-worth-it-2026)
+- [Cold Email vs LinkedIn Outreach in 2026](https://quickomate.com/blog/cold-email-vs-linkedin-outreach-2026)
+- [B2B Cold Email Agency Cost in 2026](https://quickomate.com/blog/cold-email-agency-cost-2026)
+- [How to Vet a Cold Email Agency: 9 Red Flags](https://quickomate.com/blog/how-to-vet-a-cold-email-agency-red-flags)
+- [AI vs Human Cold Email Copy](https://quickomate.com/blog/ai-vs-human-cold-email-copy)
+- [AI Lead Generation for B2B Companies](https://quickomate.com/blog/ai-lead-generation-for-b2b-companies)
+
+## Contact
+
+- Book a discovery call: https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate
+- Email: solutions@solariswireless.com
+- Website: https://quickomate.com

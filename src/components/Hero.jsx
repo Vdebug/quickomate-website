@@ -56,7 +56,7 @@ export default function Hero() {
                         src={bg.url}
                         srcSet={bg.srcSet}
                         sizes="100vw"
-                        alt=""
+                        alt={bg.name}
                         aria-hidden="true"
                         loading={index === 0 ? 'eager' : 'lazy'}
                         fetchpriority={index === 0 ? 'high' : 'low'}

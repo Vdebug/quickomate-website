@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "name": "Quickomate",
+  "description": "AI automation agency for B2B companies — builds cold email infrastructure, AI lead generation, LLM agents, and sales automation systems that clients own outright.",
+  "url": "https://quickomate.com",
+  "capabilities": ["search", "contact", "booking"],
+  "services": [
+    {
+      "name": "AI Automation Agency",
+      "url": "https://quickomate.com/ai-automation-agency",
+      "description": "Custom AI workflows, LLM agents, CRM automation, and process automation for B2B companies"
+    },
+    {
+      "name": "Cold Email Agency",
+      "url": "https://quickomate.com/cold-email-agency",
+      "description": "Done-for-you cold email infrastructure targeting 15–20 qualified B2B appointments per month"
+    },
+    {
+      "name": "B2B Lead Generation Agency",
+      "url": "https://quickomate.com/b2b-lead-generation-agency",
+      "description": "AI-powered lead generation combining Clay enrichment, Apollo targeting, and AI-assisted personalization"
+    }
+  ],
+  "contact": "solutions@solariswireless.com",
+  "booking": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate",
+  "founder": {
+    "name": "Vasu Gupta",
+    "linkedin": "https://www.linkedin.com/in/refer-vasu/"
+  }
+}

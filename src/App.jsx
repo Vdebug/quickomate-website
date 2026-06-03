@@ -114,7 +114,7 @@ function HomePage() {
     <>
       <Helmet>
         <title>Quickomate – AI Cold Email & Lead Gen for B2B Companies</title>
-        <meta name="description" content="Get 15-20 qualified B2B appointments per month with AI-powered cold email infrastructure you actually own. Real 4% reply rates. No retainers. Built by Vasu Gupta." />
+        <meta name="description" content="Get 15-20 qualified B2B appointments per month. AI-powered cold email and lead gen you own outright. Real 4% reply rates. No retainers." />
         <link rel="canonical" href={`${SITE_URL}/`} />
         <meta property="og:title" content="Quickomate – AI Cold Email & Lead Gen for B2B Companies" />
         <meta property="og:description" content="15-20 qualified B2B appointments per month with AI-powered cold email infrastructure you own. Real 4% reply rates. No retainers." />

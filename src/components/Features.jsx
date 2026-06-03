@@ -212,7 +212,7 @@ export default function Features() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Card 1 */}
-                    <div className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
+                    <article className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
                         <div className="flex justify-between items-start mb-6">
                             <Activity className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_01</span>
@@ -224,10 +224,10 @@ export default function Features() {
                         <div className="flex-1 min-h-[220px]">
                             <ShufflerCard />
                         </div>
-                    </div>
+                    </article>
 
                     {/* Card 2 */}
-                    <div className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
+                    <article className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
                         <div className="flex justify-between items-start mb-6">
                             <Zap className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_02</span>
@@ -239,10 +239,10 @@ export default function Features() {
                         <div className="flex-1 min-h-[220px] flex items-center">
                             <TypewriterCard />
                         </div>
-                    </div>
+                    </article>
 
                     {/* Card 3 */}
-                    <div className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
+                    <article className="feature-card bg-surface border-4 border-primary p-8 hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full shadow-[8px_8px_0px_0px_rgba(17,17,17,1)]">
                         <div className="flex justify-between items-start mb-6">
                             <ShieldCheck className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_03</span>
@@ -254,7 +254,7 @@ export default function Features() {
                         <div className="flex-1 min-h-[220px] flex items-center">
                             <SchedulerCard />
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
