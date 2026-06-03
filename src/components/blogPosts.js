@@ -1,5 +1,14 @@
 export const blogPosts = [
   {
+    slug: 'b2b-sales-automation-2026',
+    title: 'B2B Sales Automation in 2026: The Stack, the ROI, and What to Build First',
+    excerpt: 'Most B2B companies automate the wrong thing first. A layer-by-layer breakdown of what to automate in what order — prospecting, enrichment, outreach, nurture, CRM admin — with the real stack configurations, realistic ROI numbers, and the four mistakes that kill most automation projects.',
+    date: 'June 2026',
+    dateIso: '2026-06-04',
+    readTime: '11 min read',
+    tags: ['B2B Sales', 'Sales Automation', 'Growth Systems'],
+  },
+  {
     slug: 'marketing-automation-roi-2026',
     title: 'Marketing Automation ROI in 2026: Real Numbers, the Right Formulas, and Where the Math Gets Lied About',
     excerpt: 'Every vendor quotes Nucleus Research\'s $5.44 return figure — from 2014. Here are the real 2026 marketing automation ROI formulas, honest benchmarks, and a 90-day measurement framework that shows you where the math actually holds.',
