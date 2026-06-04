@@ -8,7 +8,7 @@ const RotatingGearSVG = () => (
     <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow opacity-90" style={{ animationDuration: '20s' }}>
         <circle cx="50" cy="50" r="30" fill="none" stroke="#111111" strokeWidth="2" strokeDasharray="6 6" />
         <circle cx="50" cy="50" r="40" fill="none" stroke="#E63B2E" strokeWidth="1" />
-        <g transform="origin-center">
+        <g>
             {[...Array(8)].map((_, i) => (
                 <line key={i} x1="50" y1="5" x2="50" y2="15" stroke="#111111" strokeWidth="4" transform={`rotate(${i * 45} 50 50)`} />
             ))}
@@ -93,7 +93,7 @@ export default function Protocol() {
                     start: 'top top',
                     pin: true,
                     pinSpacing: false,
-                    endTrigger: '.protocol-wrapper',
+                    endTrigger: containerRef.current,
                     end: 'bottom bottom',
                 });
 

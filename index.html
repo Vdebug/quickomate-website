@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#F5F3EE" media="(prefers-color-scheme: light)" />
@@ -37,61 +36,8 @@
   <meta name="twitter:site" content="@vaaasug" />
   <meta name="twitter:creator" content="@vaaasug" />
 
-  <!-- Site-wide structured data: Organization -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Quickomate",
-      "url": "https://quickomate.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://quickomate.com/logo.png",
-        "width": 512,
-        "height": 512
-      },
-      "image": "https://quickomate.com/logo.png",
-      "description": "The definitive AI growth partner for fast-moving B2B companies. We build custom AI-powered lead generation, cold email systems, and growth infrastructure.",
-      "founder": {
-        "@type": "Person",
-        "name": "Vasu Gupta",
-        "jobTitle": "CEO & Founder",
-        "url": "https://www.linkedin.com/in/refer-vasu/",
-        "sameAs": [
-          "https://x.com/vaaasug",
-          "https://www.linkedin.com/in/refer-vasu/"
-        ]
-      },
-      "sameAs": [
-        "https://x.com/vaaasug",
-        "https://www.linkedin.com/in/refer-vasu/"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "url": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate",
-        "contactType": "sales"
-      },
-      "areaServed": "Worldwide",
-      "serviceType": ["AI Automation", "Lead Generation", "Cold Email Systems", "B2B Growth Infrastructure", "CRM Automation", "Sales Automation"]
-    }
-  </script>
-
-  <!-- Site-wide structured data: WebSite (sitelinks search) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Quickomate",
-      "alternateName": ["Quickomate AI", "Quickomate Agency", "quickomate.com"],
-      "url": "https://quickomate.com",
-      "description": "The definitive AI growth partner for fast-moving B2B companies.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://quickomate.com/blog?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
+  <!-- Organization + WebSite structured data are emitted per route via react-helmet-async
+       (graph-linked with @id #organization / #website) to avoid duplicate entities. -->
 
   <!-- Site-wide structured data: ProfessionalService -->
   <script type="application/ld+json">
