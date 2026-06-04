@@ -2,6 +2,13 @@
 
 _Resumable checkpoint file. Plan: `research/SEO-LEADMAGNET-PLAN.html`. Started 2026-06-04._
 
+## 🚀 SHIPPED TO PRODUCTION — 2026-06-04 (commit 772bb47, pushed → Vercel Ready)
+Live on quickomate.com & verified: entity schema, all 4 lead magnets + homepage toolkit,
+**Microsoft Clarity (id x1q9yo84hf) recording**, and **route code-splitting (888KB→234KB main bundle)**.
+- Speed reality: the Vercel "30 / 24s FCP" panel was a **7-visit sample artifact** (impossible 17s TTFB on CDN-served static HTML). Real fix shipped = the bundle split + modulepreload. Re-check Speed Insights in ~1 week once real data replaces the sample.
+- STILL the only blocker for lead-magnet email: **Resend + Upstash** (forms now degrade honestly — "you're on the list" — until then).
+- Follow-up cleanup: duplicate Organization/WebSite schema (one set in index.html, one in App.jsx Helmet) — harmless, de-dup later.
+
 ## Decisions (locked)
 - **Magnets to build (in order):** 1) Sales Automation ROI Calculator, 2) Cold Email Infrastructure Checklist, 3) AI Automation Readiness Quiz, 4) B2B Cold Email Swipe File.
 - **Email infra:** Resend (delivery) + Vercel Cron (nurture drip) — fully owned. Storage TBD (Upstash Redis or Neon via Vercel marketplace).
