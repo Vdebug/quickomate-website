@@ -1,5 +1,32 @@
 export const blogPosts = [
   {
+    slug: 'what-business-processes-to-automate',
+    title: 'What Business Processes Should You Automate First? A 2026 Framework',
+    excerpt: 'Most teams automate the wrong process first. A 4-question framework — volume, pain, structure, stability — for deciding exactly what to automate, a worked scoring example, and what to leave alone.',
+    date: 'June 2026',
+    dateIso: '2026-06-04',
+    readTime: '9 min read',
+    tags: ['Business Process Automation', 'AI Automation', 'Operations'],
+  },
+  {
+    slug: 'ai-sales-prospecting',
+    title: 'AI Sales Prospecting: How to Use AI to Book More Meetings in 2026',
+    excerpt: 'AI prospecting works for research, enrichment, and list-building — not for replacing the human judgment in your messaging. The honest 2026 hybrid stack that uses AI for the grunt work and keeps reply rates high.',
+    date: 'June 2026',
+    dateIso: '2026-06-04',
+    readTime: '9 min read',
+    tags: ['AI Sales', 'Prospecting', 'Sales Automation'],
+  },
+  {
+    slug: 'ai-agent-workflow-automation',
+    title: 'AI Agent Workflow Automation: How Agentic Workflows Run Your Ops in 2026',
+    excerpt: 'An AI agent workflow uses an LLM to handle the judgment steps a rules engine cannot. Where agentic workflows beat traditional automation in B2B ops, where they still break, and the practical stack to run them safely.',
+    date: 'June 2026',
+    dateIso: '2026-06-04',
+    readTime: '10 min read',
+    tags: ['AI Agents', 'Workflow Automation', 'AI Systems'],
+  },
+  {
     slug: 'b2b-sales-automation-2026',
     title: 'B2B Sales Automation in 2026: The Stack, the ROI, and What to Build First',
     excerpt: 'Most B2B companies automate the wrong thing first. A layer-by-layer breakdown of what to automate in what order — prospecting, enrichment, outreach, nurture, CRM admin — with the real stack configurations, realistic ROI numbers, and the four mistakes that kill most automation projects.',

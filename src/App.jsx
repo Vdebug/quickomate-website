@@ -10,7 +10,7 @@ import AboutUs from './components/AboutUs';
 import Protocol from './components/Protocol';
 import CTA from './components/CTA';
 import LeadMagnetSection from './components/LeadMagnetSection';
-import BlogPostLayout from './components/BlogPostLayout';
+import BlogPostFooter from './components/BlogPostFooter';
 import Footer from './components/Footer';
 // Route-level code-splitting: every page component below is loaded on demand,
 // so the homepage no longer ships all ~45 pages' JS in one bundle. The Helmet
@@ -57,6 +57,9 @@ const BlogBusinessProcessAutomation = lazy(() => import('./components/BlogBusine
 const BlogAiIntegration = lazy(() => import('./components/BlogAiIntegration'));
 const BlogMarketingAutomationROI = lazy(() => import('./components/BlogMarketingAutomationROI'));
 const BlogB2bSalesAutomation = lazy(() => import('./components/BlogB2bSalesAutomation'));
+const BlogBusinessProcessesToAutomate = lazy(() => import('./components/BlogBusinessProcessesToAutomate'));
+const BlogAiSalesProspecting = lazy(() => import('./components/BlogAiSalesProspecting'));
+const BlogAiAgentWorkflowAutomation = lazy(() => import('./components/BlogAiAgentWorkflowAutomation'));
 const About = lazy(() => import('./components/About'));
 const ServiceAiAutomation = lazy(() => import('./components/ServiceAiAutomation'));
 const ServiceColdEmail = lazy(() => import('./components/ServiceColdEmail'));
@@ -493,6 +496,7 @@ function BlogColdEmailPage() {
       <Navbar />
       <main>
         <BlogColdEmail />
+        <BlogPostFooter />
       </main>
       <Footer />
     </>
@@ -552,6 +556,7 @@ function BlogOwnInfraPage() {
       <Navbar />
       <main>
         <BlogOwnInfra />
+        <BlogPostFooter />
       </main>
       <Footer />
     </>
@@ -611,6 +616,7 @@ function BlogAiVsHumanPage() {
       <Navbar />
       <main>
         <BlogAiVsHuman />
+        <BlogPostFooter />
       </main>
       <Footer />
     </>
@@ -671,6 +677,7 @@ function BlogAiLeadGenPage() {
       <Navbar />
       <main>
         <BlogAiLeadGen />
+        <BlogPostFooter />
       </main>
       <Footer />
     </>
@@ -730,6 +737,7 @@ function BlogColdEmailVsPaidAdsPage() {
       <Navbar />
       <main>
         <BlogColdEmailVsPaidAds />
+        <BlogPostFooter />
       </main>
       <Footer />
     </>
@@ -786,7 +794,7 @@ function BlogFollowUpSystemPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogFollowUpSystem /></main>
+      <main><BlogFollowUpSystem /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -842,7 +850,7 @@ function BlogCrmAutomationPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogCrmAutomation /></main>
+      <main><BlogCrmAutomation /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -898,7 +906,7 @@ function BlogReadinessCheckPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogReadinessCheck /></main>
+      <main><BlogReadinessCheck /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -956,7 +964,7 @@ function BlogColdEmailSubjectLinesPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogColdEmailSubjectLines /></main>
+      <main><BlogColdEmailSubjectLines /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1014,7 +1022,7 @@ function BlogFindEmailsPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogFindEmails /></main>
+      <main><BlogFindEmails /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1076,7 +1084,7 @@ function BlogDeliverabilityPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogDeliverability /></main>
+      <main><BlogDeliverability /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1136,7 +1144,7 @@ function BlogQualificationPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogQualification /></main>
+      <main><BlogQualification /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1194,7 +1202,7 @@ function BlogAiSalesAgentsPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiSalesAgents /></main>
+      <main><BlogAiSalesAgents /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1251,7 +1259,7 @@ function BlogAgencyCostPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAgencyCost /></main>
+      <main><BlogAgencyCost /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1308,7 +1316,7 @@ function BlogVetAgencyPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogVetAgency /></main>
+      <main><BlogVetAgency /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1365,7 +1373,7 @@ function BlogInfraSetupPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogInfraSetup /></main>
+      <main><BlogInfraSetup /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1422,7 +1430,7 @@ function BlogPromotionsTabPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogPromotionsTab /></main>
+      <main><BlogPromotionsTab /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1479,7 +1487,7 @@ function BlogColdEmailVsLinkedInPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogColdEmailVsLinkedIn /></main>
+      <main><BlogColdEmailVsLinkedIn /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1536,7 +1544,7 @@ function BlogAutomationToolsComparedPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAutomationToolsCompared /></main>
+      <main><BlogAutomationToolsCompared /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1593,7 +1601,7 @@ function BlogIsColdEmailWorthItPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogIsColdEmailWorthIt /></main>
+      <main><BlogIsColdEmailWorthIt /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1650,7 +1658,7 @@ function BlogAutomationROIPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAutomationROI /></main>
+      <main><BlogAutomationROI /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1707,7 +1715,7 @@ function BlogColdEmailBenchmarksPage() {
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
       </Helmet>
       <Navbar />
-      <main><BlogColdEmailBenchmarks /></main>
+      <main><BlogColdEmailBenchmarks /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1764,7 +1772,7 @@ function BlogPersonalizationAtScalePage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogPersonalizationAtScale /></main>
+      <main><BlogPersonalizationAtScale /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1821,7 +1829,7 @@ function BlogBuildVsHirePage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogBuildVsHire /></main>
+      <main><BlogBuildVsHire /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1878,7 +1886,7 @@ function BlogColdEmailRecruitingPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogColdEmailRecruiting /></main>
+      <main><BlogColdEmailRecruiting /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1937,7 +1945,7 @@ function BlogAiAutomationAgencyPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiAutomationAgency /></main>
+      <main><BlogAiAutomationAgency /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -1995,7 +2003,7 @@ function BlogAiAutomationServicesPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiAutomationServices /></main>
+      <main><BlogAiAutomationServices /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2054,7 +2062,7 @@ function BlogLlmAgentsPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogLlmAgents /></main>
+      <main><BlogLlmAgents /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2112,7 +2120,7 @@ function BlogAiAutomationConsultantPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiAutomationConsultant /></main>
+      <main><BlogAiAutomationConsultant /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2170,7 +2178,7 @@ function BlogGenerativeAiBusinessPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogGenerativeAiBusiness /></main>
+      <main><BlogGenerativeAiBusiness /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2228,7 +2236,7 @@ function BlogBestAiToolsPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogBestAiTools /></main>
+      <main><BlogBestAiTools /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2286,7 +2294,7 @@ function BlogAiAutomationExamplesPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiAutomationExamples /></main>
+      <main><BlogAiAutomationExamples /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2344,7 +2352,7 @@ function BlogAiSmallBusinessPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiSmallBusiness /></main>
+      <main><BlogAiSmallBusiness /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2402,7 +2410,7 @@ function BlogAiLeadQualificationPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiLeadQualification /></main>
+      <main><BlogAiLeadQualification /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2460,7 +2468,7 @@ function BlogBusinessProcessAutomationPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogBusinessProcessAutomation /></main>
+      <main><BlogBusinessProcessAutomation /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2518,7 +2526,7 @@ function BlogAiIntegrationPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogAiIntegration /></main>
+      <main><BlogAiIntegration /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2576,7 +2584,7 @@ function BlogB2bSalesAutomationPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogB2bSalesAutomation /></main>
+      <main><BlogB2bSalesAutomation /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2634,7 +2642,7 @@ function BlogMarketingAutomationROIPage() {
         })}</script>
       </Helmet>
       <Navbar />
-      <main><BlogMarketingAutomationROI /></main>
+      <main><BlogMarketingAutomationROI /><BlogPostFooter /></main>
       <Footer />
     </>
   );
@@ -2792,6 +2800,153 @@ function NotFoundPage() {
   );
 }
 
+function BlogBusinessProcessesToAutomatePage() {
+  const slug = 'what-business-processes-to-automate';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'What Business Processes Should You Automate First? A 2026 Framework';
+  const ogImg = ogImage({ title: 'What to Automate First', tag: 'PROCESS AUTOMATION', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="How to decide which business process to automate first: a 4-question framework (volume, pain, structure, stability), a worked scoring example, where AI adds judgment vs plain rules, and what not to automate yet." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="A practical 2026 framework for deciding what business processes to automate first — score by volume, pain, structure and stability." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-06-04T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="Operations" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "BlogPosting", "headline": title,
+          "description": "A 2026 framework for deciding which business processes to automate first, with a worked scoring example and what to leave alone.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-06-04", "dateModified": "2026-06-04",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url }, "inLanguage": "en-US",
+          "keywords": "how to define business processes to automate, what business processes to automate, what automates business processes, business process automation",
+          "articleSection": "Operations"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            { "@type": "Question", "name": "How do you decide which business processes to automate?", "acceptedAnswer": { "@type": "Answer", "text": "Score each candidate process on four factors: volume (how often it runs), pain (time and errors it costs today), structure (how rule-based vs judgment-heavy it is), and stability (how likely it is to stay the same). Automate the process with the highest combined score first. High-volume, high-pain, rule-heavy, and stable processes pay back fastest; rarely-run or constantly-changing ones rarely do." } },
+            { "@type": "Question", "name": "What business processes should you automate first?", "acceptedAnswer": { "@type": "Answer", "text": "For most B2B teams the fastest wins are lead capture into the CRM, lead routing and scoring, follow-up sequences, data enrichment, recurring reporting, and client onboarding steps. These are high-volume, rule-heavy, and stable — the exact profile that automates cleanly and frees the most hours." } },
+            { "@type": "Question", "name": "What business processes should you NOT automate?", "acceptedAnswer": { "@type": "Answer", "text": "Don't automate a broken process (you'll just scale the mess), one-off tasks (no volume to pay back the build), anything that needs high-trust human judgment, or a process about to change. Fix and stabilize first, then automate." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogBusinessProcessesToAutomate /><BlogPostFooter /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAiSalesProspectingPage() {
+  const slug = 'ai-sales-prospecting';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'AI Sales Prospecting: How to Use AI to Book More Meetings in 2026';
+  const ogImg = ogImage({ title: 'AI Sales Prospecting', tag: 'AI SALES', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="How to use AI for sales prospecting in 2026: where AI wins (list-building, enrichment, research, first-draft personalization), where it loses you meetings, the hybrid stack, and realistic reply-rate numbers." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="The honest 2026 guide to AI sales prospecting — use AI for the grunt work, keep humans where they lift reply rates." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-06-04T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="AI Sales" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "BlogPosting", "headline": title,
+          "description": "How to use AI for sales prospecting in 2026 without tanking reply rates — the hybrid stack and honest benchmarks.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-06-04", "dateModified": "2026-06-04",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url }, "inLanguage": "en-US",
+          "keywords": "how to use ai for sales prospecting, ai sales prospecting, how to automate your sales process, automated sales funnel",
+          "articleSection": "AI Sales"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            { "@type": "Question", "name": "How do you use AI for sales prospecting?", "acceptedAnswer": { "@type": "Answer", "text": "Use AI for the high-volume research layer: building and filtering target lists to your ICP, enriching contact and company data, surfacing intent signals, summarizing research on each account, and drafting a first personalized line. Keep a human on the actual angle and final messaging — that's what protects reply rates. AI does the 80% grunt work so reps spend time only where it moves the number." } },
+            { "@type": "Question", "name": "Can AI replace SDRs for prospecting?", "acceptedAnswer": { "@type": "Answer", "text": "Not fully in 2026. Fully AI-written outreach reads generic and prospects can tell, which kills reply rates, and bad input data produces bad outreach at scale. AI replaces the manual research and list-building hours, not the human judgment in messaging and qualification. The teams that win run a hybrid: AI for grunt work, humans for the angle." } },
+            { "@type": "Question", "name": "What is a realistic reply rate with AI-assisted prospecting?", "acceptedAnswer": { "@type": "Answer", "text": "Around 4% overall reply rate on cold B2B email, with 1–2% positive — the same realistic ceiling as well-run human outreach. AI's gain isn't a higher reply rate; it's getting there with far fewer hours and the ability to run more targeted, well-researched campaigns. Anyone promising 8–10%+ on cold traffic is cherry-picking or burning domains." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAiSalesProspecting /><BlogPostFooter /></main>
+      <Footer />
+    </>
+  );
+}
+
+function BlogAiAgentWorkflowAutomationPage() {
+  const slug = 'ai-agent-workflow-automation';
+  const url = `${SITE_URL}/blog/${slug}`;
+  const title = 'AI Agent Workflow Automation: How Agentic Workflows Run Your Ops in 2026';
+  const ogImg = ogImage({ title: 'AI Agent Workflow Automation', tag: 'AI AGENTS', kind: 'article' });
+  return (
+    <>
+      <Helmet>
+        <title>{`${title} – Quickomate`}</title>
+        <meta name="description" content="What AI agent workflow automation is, how an agentic workflow actually runs (reason-act-observe with tools and guardrails), where it beats traditional automation in B2B ops, where it still breaks, and the practical stack." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="How agentic AI workflows automate the judgment steps a rules engine can't — and where they still break." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImg} />
+        <meta property="article:published_time" content="2026-06-04T00:00:00Z" />
+        <meta property="article:author" content="Vasu Gupta" />
+        <meta property="article:section" content="AI Systems" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "BlogPosting", "headline": title,
+          "description": "How AI agent workflow automation works in 2026 — agentic workflows vs traditional automation, where they win in B2B ops, and how to contain their failure modes.",
+          "image": ogImg,
+          "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
+          "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
+          "datePublished": "2026-06-04", "dateModified": "2026-06-04",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": url }, "inLanguage": "en-US",
+          "keywords": "ai agent workflow automation, ai workflow automation, what is ai agent workflow automation, agentic workflow",
+          "articleSection": "AI Systems"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            { "@type": "Question", "name": "What is AI agent workflow automation?", "acceptedAnswer": { "@type": "Answer", "text": "AI agent workflow automation is a workflow where an LLM agent — running a reason-act-observe loop with access to tools — handles the judgment steps, while deterministic automation handles the predictable ones. Instead of a fixed if-this-then-that path, the agent decides what to do next based on the situation. It shines for variable, decision-heavy operations and is overkill for simple linear tasks, where plain rules-based automation is cheaper and more reliable." } },
+            { "@type": "Question", "name": "How is an AI agent workflow different from traditional workflow automation?", "acceptedAnswer": { "@type": "Answer", "text": "Traditional automation (n8n, Make, Zapier) follows fixed rules and triggers — fast, cheap, and predictable, but it can't handle ambiguity. An agentic workflow lets an LLM decide the path, classify inputs, extract data, and draft outputs, so it handles variable cases a rules engine can't. The best systems combine both: rules for the deterministic steps, an agent only for the steps that genuinely need judgment." } },
+            { "@type": "Question", "name": "Where do AI agent workflows still break?", "acceptedAnswer": { "@type": "Answer", "text": "They break on hallucination, compounding errors across long chains, and cost/latency at scale. Contain it by keeping each agent's scope narrow, adding validation steps and human-in-the-loop checkpoints, and falling back to deterministic rules or a person when confidence is low. Treat the agent as one component in a guarded workflow, not the whole system." } }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><BlogAiAgentWorkflowAutomation /><BlogPostFooter /></main>
+      <Footer />
+    </>
+  );
+}
+
 function App() {
   return (
     <HelmetProvider>
@@ -2807,7 +2962,6 @@ function App() {
             <Route path="/cold-email-agency" element={<ServiceColdEmailPage />} />
             <Route path="/b2b-lead-generation-agency" element={<ServiceLeadGenPage />} />
             <Route path="/blog" element={<BlogPage />} />
-            <Route element={<BlogPostLayout />}>
             <Route path="/blog/cold-email-system-20-appointments-month" element={<BlogColdEmailPage />} />
             <Route path="/blog/why-you-should-own-your-cold-email-infrastructure" element={<BlogOwnInfraPage />} />
             <Route path="/blog/ai-vs-human-cold-email-copy" element={<BlogAiVsHumanPage />} />
@@ -2846,7 +3000,9 @@ function App() {
             <Route path="/blog/how-to-integrate-ai-into-your-business" element={<BlogAiIntegrationPage />} />
             <Route path="/blog/b2b-sales-automation-2026" element={<BlogB2bSalesAutomationPage />} />
             <Route path="/blog/marketing-automation-roi-2026" element={<BlogMarketingAutomationROIPage />} />
-            </Route>
+            <Route path="/blog/what-business-processes-to-automate" element={<BlogBusinessProcessesToAutomatePage />} />
+            <Route path="/blog/ai-sales-prospecting" element={<BlogAiSalesProspectingPage />} />
+            <Route path="/blog/ai-agent-workflow-automation" element={<BlogAiAgentWorkflowAutomationPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           </Suspense>
