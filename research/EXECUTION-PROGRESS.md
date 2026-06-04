@@ -30,12 +30,15 @@ _Resumable checkpoint file. Plan: `research/SEO-LEADMAGNET-PLAN.html`. Started 2
 - [ ] Homepage capture section
 - [ ] Push (needs user approval)
 
-## PHASE 2 — Magnets 02–04
-- [ ] Cold Email Infrastructure Checklist (asset + landing page)
-- [ ] AI Automation Readiness Quiz (component + landing page)
-- [ ] B2B Cold Email Swipe File (asset + landing page)
-- [ ] Blog post contextual CTA boxes
-- [ ] Exit-intent / scroll popup
+## PHASE 2 — Magnets 02–04 + homepage  (commit 6e6726e)
+- [x] Cold Email Infrastructure Checklist (interactive) — embedded in /blog/cold-email-infrastructure-how-many-domains-inboxes
+- [x] AI Automation Readiness Quiz (7-Q, scored, routes to service) — embedded in /blog/how-to-know-if-your-business-needs-ai-automation, verified interactive
+- [x] B2B Cold Email Swipe File (teaser + gated pack) — embedded in /blog/cold-email-subject-lines-that-get-b2b-replies
+- [x] Homepage "free toolkit" section (LeadMagnetSection) — 4 cards + swipe-file capture, before CTA
+- [x] Build verified (45/45 prerender); calculator + quiz tested live in browser
+- [ ] Other blog posts → contextual CTA boxes linking the relevant magnet (not yet)
+- [ ] Exit-intent / scroll popup (not yet)
+- [ ] Polished downloadable assets (PDF checklist, swipe-file doc, ROI report) — delivery email currently sends templated HTML, not a PDF
 
 ## PHASE 3 — Nurture sequences
 - [ ] `/api/cron/nurture` Vercel Cron drip
