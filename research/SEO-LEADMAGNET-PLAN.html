@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quickomate — SEO/AEO + Lead Magnet Plan</title>
+<style>
+  :root{
+    --bg:#f8fafc; --card:#ffffff; --ink:#1e293b; --muted:#64748b; --line:#e2e8f0;
+    --accent:#ea580c; --accent-soft:#fff7ed; --green:#16a34a; --green-soft:#f0fdf4;
+    --red:#dc2626; --red-soft:#fef2f2; --amber:#d97706; --amber-soft:#fffbeb;
+    --blue:#2563eb; --blue-soft:#eff6ff; --purple:#7c3aed; --purple-soft:#f5f3ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  h1{font-size:34px;line-height:1.1;margin:0 0 6px;letter-spacing:-.5px}
+  h2{font-size:23px;margin:46px 0 14px;letter-spacing:-.3px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h3{font-size:17px;margin:22px 0 8px}
+  p{margin:8px 0}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 4px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:99px;vertical-align:middle}
+  .t-p1{background:var(--red-soft);color:var(--red)}
+  .t-p2{background:var(--amber-soft);color:var(--amber)}
+  .t-p3{background:var(--blue-soft);color:var(--blue)}
+  .t-user{background:var(--purple-soft);color:var(--purple)}
+  .t-now{background:var(--green-soft);color:var(--green)}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .kpi{display:flex;flex-direction:column;gap:2px}
+  .kpi .n{font-size:30px;font-weight:800;letter-spacing:-1px}
+  .kpi .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0}
+  .callout.good{border-color:var(--green);background:var(--green-soft)}
+  .callout.bad{border-color:var(--red);background:var(--red-soft)}
+  .callout.info{border-color:var(--blue);background:var(--blue-soft)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+  tr:last-child td{border-bottom:none}
+  .bar{height:9px;border-radius:6px;background:var(--line);overflow:hidden;min-width:60px}
+  .bar > span{display:block;height:100%;border-radius:6px}
+  .pill{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap}
+  .pos-good{background:var(--green-soft);color:var(--green)}
+  .pos-mid{background:var(--amber-soft);color:var(--amber)}
+  .pos-bad{background:var(--red-soft);color:var(--red)}
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
+  summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::after{content:"▸";color:var(--muted);transition:transform .2s}
+  details[open] summary::after{transform:rotate(90deg)}
+  details .body{padding:4px 18px 18px}
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;margin:14px 0}
+  .flow .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:center;font-weight:600}
+  .flow .arrow{color:var(--muted);font-size:18px}
+  .flow .leak{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+  .lm{border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;background:var(--card)}
+  .lm .top{padding:16px 18px;background:linear-gradient(180deg,#fff,#fafbfc);border-bottom:1px solid var(--line)}
+  .lm .top .n{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.08em}
+  .lm .top h3{margin:4px 0 0;font-size:17px}
+  .lm .body{padding:14px 18px;font-size:13.5px}
+  .lm .body div{margin:6px 0}
+  .lm b{color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;display:block}
+  .num{display:inline-flex;width:24px;height:24px;border-radius:99px;background:var(--accent);color:#fff;font-weight:800;font-size:13px;align-items:center;justify-content:center;margin-right:8px;flex:none}
+  .step{display:flex;gap:4px;align-items:flex-start;margin:12px 0}
+  .legend{font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 0}
+  code{background:#f1f5f9;padding:1px 6px;border-radius:5px;font-size:12.5px}
+  hr{border:none;border-top:1px solid var(--line);margin:30px 0}
+  .check{list-style:none;padding:0;margin:8px 0}
+  .check li{padding:5px 0 5px 26px;position:relative}
+  .check li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="sub mono">QUICKOMATE · GROWTH PLAN · 4 JUN 2026 · from live Google Search Console + Bing Webmaster data</p>
+  <h1>Get found everywhere → convert the traffic → book more calls</h1>
+  <p class="sub">A two-track plan: (A) SEO &amp; AI-search optimization grounded in your real console data, and (B) a lead-magnet system to capture the visitors you're already getting. Built on the framework from the video you shared.</p>
+
+  <!-- ===================== VERDICT ===================== -->
+  <div class="callout">
+    <strong>The one-paragraph verdict.</strong> Your indexing on Google is essentially <b>solved</b> — 41 pages indexed, sitemap healthy, even your FAQ content is starting to surface in answer-style queries. The real bottlenecks are three: <b>(1)</b> your pages rank but sit on page 4–7 (avg position 38) because the domain is new and has near-zero off-site authority; <b>(2)</b> Bing has barely indexed you (3 pages) and you have 0 AI citations; and <b>(3)</b> — biggest of all — <b>every visitor who does arrive has no way to convert except "book a call."</b> There is no email capture anywhere on the site. Lead magnets fix #3 immediately and feed #1 and #2 over time.
+  </div>
+
+  <!-- ===================== LIVE DATA ===================== -->
+  <h2>1 · What the live data actually says</h2>
+
+  <h3 style="margin-top:8px">Google Search Console — last 3 months</h3>
+  <div class="grid g3" style="margin:10px 0">
+    <div class="card kpi"><span class="n">54</span><span class="l">Total clicks</span></div>
+    <div class="card kpi"><span class="n">1,350</span><span class="l">Impressions</span></div>
+    <div class="card kpi"><span class="n">38.4</span><span class="l">Avg position</span></div>
+    <div class="card kpi"><span class="n">41</span><span class="l">Pages indexed <span style="color:var(--green)">✓</span></span></div>
+    <div class="card kpi"><span class="n">172</span><span class="l">Queries appearing</span></div>
+    <div class="card kpi"><span class="n">4%</span><span class="l">Avg CTR</span></div>
+  </div>
+
+  <div class="callout bad" style="margin-top:6px">
+    <strong>The killer insight:</strong> <b>All 54 clicks go to the homepage</b> (position 2.9, 18.9% CTR) — and almost all of it is people typing your brand ("quickmate.com" alone = 38 clicks). <b>Every single blog post has 0 clicks</b> despite hundreds of impressions, because they rank on page 4–7. You're getting <em>found</em> for your name; you're not yet getting <em>discovered</em> for what you sell.
+  </div>
+
+  <details>
+    <summary>Top pages — impressions vs. ranking position (the buried-content problem)</summary>
+    <div class="body">
+      <table>
+        <tr><th>Page</th><th>Clicks</th><th>Impr.</th><th style="width:120px">Impressions</th><th>Position</th></tr>
+        <tr><td><b>Homepage</b></td><td>54</td><td>285</td><td><div class="bar"><span style="width:100%;background:var(--green)"></span></div></td><td><span class="pill pos-good">2.9 ✓ pg 1</span></td></tr>
+        <tr><td>/blog/sales-automation-roi-calculator</td><td>0</td><td>190</td><td><div class="bar"><span style="width:67%;background:var(--accent)"></span></div></td><td><span class="pill pos-bad">66.4</span></td></tr>
+        <tr><td>/blog/marketing-automation-roi-2026</td><td>0</td><td>111</td><td><div class="bar"><span style="width:39%;background:var(--accent)"></span></div></td><td><span class="pill pos-mid">36.4 ← closest</span></td></tr>
+        <tr><td>/blog/cold-email-subject-lines…</td><td>0</td><td>90</td><td><div class="bar"><span style="width:32%;background:var(--accent)"></span></div></td><td><span class="pill pos-bad">63.4</span></td></tr>
+        <tr><td>/blog/how-to-find-verified-emails…</td><td>0</td><td>84</td><td><div class="bar"><span style="width:29%;background:var(--accent)"></span></div></td><td><span class="pill pos-bad">46.2</span></td></tr>
+        <tr><td>/blog/ai-automation-examples</td><td>0</td><td>80</td><td><div class="bar"><span style="width:28%;background:var(--accent)"></span></div></td><td><span class="pill pos-bad">51.8</span></td></tr>
+      </table>
+      <p class="sub">Position 11–20 = page 2, 21–30 = page 3, etc. Nothing commercial is on page 1 yet. <b>marketing-automation-roi-2026 (pos 36)</b> is the nearest to breaking through and gets the most focused effort in Part A.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Top queries — including the answer-engine signals already showing up</summary>
+    <div class="body">
+      <table>
+        <tr><th>Query</th><th>Clicks</th><th>Impr.</th><th>Read</th></tr>
+        <tr><td class="mono">quickmate.com</td><td>38</td><td>85</td><td>Brand-variant navigation → homepage. Most of your clicks.</td></tr>
+        <tr><td class="mono">marketing automation roi</td><td>0</td><td>76</td><td>Ranking, too low to click.</td></tr>
+        <tr><td class="mono">quickomate.com / quickmate</td><td>0</td><td>96</td><td>Brand searches.</td></tr>
+        <tr><td class="mono">b2b email subject lines</td><td>0</td><td>48</td><td>Commercial-adjacent.</td></tr>
+        <tr><td class="mono">how can i verify contact data before sales outreach…?</td><td>0</td><td>43</td><td><b style="color:var(--green)">← Real question query. Your FAQ schema surfaced this. Perfect lead-magnet seed.</b></td></tr>
+        <tr><td class="mono">ai automation examples / agency</td><td>0</td><td>75</td><td>Core service terms appearing.</td></tr>
+        <tr><td class="mono">what roi can be expected from automating sales data entry?</td><td>0</td><td>13</td><td><b style="color:var(--green)">← Another question query → ROI calculator magnet.</b></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <h3>Bing Webmaster Tools + AI search</h3>
+  <div class="grid g3" style="margin:10px 0">
+    <div class="card kpi"><span class="n" style="color:var(--red)">3</span><span class="l">Pages indexed (vs 41 on Google)</span></div>
+    <div class="card kpi"><span class="n" style="color:var(--red)">0</span><span class="l">Bing clicks / impressions</span></div>
+    <div class="card kpi"><span class="n" style="color:var(--red)">0</span><span class="l">Copilot AI citations</span></div>
+  </div>
+  <div class="callout info">
+    <strong>Bing is the clearest quick win.</strong> Your sitemap there is stale (28 URLs, last crawled 21 May vs 44 live URLs), and Bing has only indexed 3 pages. <b>IndexNow is working</b> (a fresh batch of blog URLs was auto-submitted today on your last deploy) — Bing just hasn't crawled them yet. A manual sitemap re-submit + URL-submission push (Bing allows 10k/day) should pull most of your 44 pages into Bing within ~1–2 weeks, plus open the door to Copilot citations.
+  </div>
+
+  <!-- ===================== DIAGNOSIS ===================== -->
+  <h2>2 · Root cause &amp; the conversion leak</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Why rankings are stuck</h3>
+      <p>On-page/technical SEO is already strong (prerendering, schema, sitemap, llms.txt). The thing holding positions at ~38 is <b>off-site authority</b> — backlinks, brand mentions, domain age. A new domain takes 3–6 months of content + links to climb. Code can't shortcut this; it's the slow track.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Why traffic isn't booking</h3>
+      <p>The site offers exactly one action — a high-commitment <code>cal.com</code> discovery call — and nothing in between. A cold visitor who isn't ready to book has no reason to leave their email, so they leave. <b>You're paying (in content effort) to attract people and then letting 99% walk.</b></p>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="box">Search / AI</div><span class="arrow">→</span>
+    <div class="box">Homepage / blog</div><span class="arrow">→</span>
+    <div class="box leak">"Book a call" — only option</div><span class="arrow">→</span>
+    <div class="box leak">~99% leave, no follow-up</div>
+  </div>
+  <p class="sub">Today's funnel. Lead magnets insert a low-friction step (give email → get value) so you capture and nurture the people not ready to book yet — exactly the give → nurture → offer model from the video.</p>
+
+  <!-- ===================== PART A ===================== -->
+  <h2>3 · Part A — SEO &amp; AI-search optimization</h2>
+  <p class="legend">
+    <span><span class="tag t-now">Do now</span> code/console, no input needed</span>
+    <span><span class="tag t-p1">P1</span> highest impact</span>
+    <span><span class="tag t-user">You</span> off-platform, your homework</span>
+  </p>
+
+  <div class="card" style="margin-top:12px">
+    <h3 style="margin-top:0"><span class="tag t-now">Do now</span> <span class="tag t-p1">P1</span> A1 · Fix the Bing indexing gap</h3>
+    <ul class="check">
+      <li>Re-submit the current 44-URL sitemap to Bing (replaces the stale 28-URL crawl).</li>
+      <li>Push all 44 URLs through Bing URL Submission (10k/day quota — I can do this in your browser now).</li>
+      <li>Re-run <code>npm run indexnow</code> against the live sitemap to re-ping Bing + Yandex.</li>
+      <li>Re-check in ~10 days: Bing indexed count should climb from 3 toward 40+.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <h3 style="margin-top:0"><span class="tag t-now">Do now</span> <span class="tag t-p1">P1</span> A2 · Win clicks on pages already getting impressions</h3>
+    <p>These pages are seen thousands of times but never clicked. Two levers: <b>(a)</b> rewrite title tags + meta descriptions so they earn the click even at a low position; <b>(b)</b> deepen the content + add internal links to push position up.</p>
+    <ul class="check">
+      <li><b>marketing-automation-roi-2026</b> (pos 36, 111 impr) — closest to page 1. Priority #1: tighten title to match query, expand depth, link from 3 related posts.</li>
+      <li><b>sales-automation-roi-calculator</b> (pos 66, 190 impr) — most impressions of any post but ranks worst. Investigate intent mismatch; this also becomes the <em>ROI Calculator lead magnet</em> (Part B).</li>
+      <li><b>ai-automation-examples</b>, <b>cold-email-subject-lines</b>, <b>how-to-find-verified-emails</b> — refresh titles/meta for CTR.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <h3 style="margin-top:0"><span class="tag t-now">Do now</span> <span class="tag t-p2">P2</span> A3 · Capture answer-engine (AEO) queries</h3>
+    <p>GSC shows real natural-language questions surfacing (e.g. <em>"how can i verify contact data before sales outreach campaigns?"</em>). Answer these <b>verbatim</b> in FAQ blocks + FAQPage schema — this is what gets cited in Google AI Overviews and Copilot. We have a 180-line question bank from your Semrush research to mine; many target questions sit at KD&lt;20 (winnable).</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <h3 style="margin-top:0"><span class="tag t-now">Do now</span> <span class="tag t-p2">P2</span> A4 · Entity &amp; AI signals</h3>
+      <ul class="check" style="margin:0">
+        <li>Add <code>WebSite</code> schema w/ <code>alternateName: "Quickomate"</code> for entity recognition.</li>
+        <li>Keep <code>llms.txt</code> / <code>agents.json</code> in sync with new pages (already solid).</li>
+        <li>Confirm <code>sameAs</code> (LinkedIn/X) consistent everywhere.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0"><span class="tag t-user">You</span> <span class="tag t-p1">P1</span> A5 · Off-site authority <span style="color:var(--muted);font-weight:400">(the real ceiling)</span></h3>
+      <p style="margin:0">The slow track that actually lifts positions + AI citations: directory listings (Clutch, G2, Product Hunt), HARO/founder quotes, podcast guesting, LinkedIn presence, and turning a data asset (e.g. a "2026 Cold Email Benchmark") into a linkable resource. I can't do this from code — but the lead magnets double as link bait.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PART B ===================== -->
+  <h2>4 · Part B — Lead magnets (the main build)</h2>
+  <p>The video's framework: <b>give something genuinely valuable → capture email → nurture trust → make the offer.</b> The trick is to build the magnet around <b>the exact problem your buyers are already searching for</b> — which we know precisely, from your GSC queries + Semrush question bank.</p>
+
+  <div class="callout info">
+    <strong>Who we're serving:</strong> B2B founders, sales leaders &amp; operators at $1M–$20M ARR companies who want more pipeline without hiring more SDRs. <strong>What they actually ask</strong> (verbatim from your data): <em>"how do I verify contact data before outreach?" · "what ROI can I expect from automating sales?" · "how many domains/inboxes do I need?" · "is my business ready for AI automation?" · "which tools should I use?" · "what subject lines get replies?"</em> Each one is a lead magnet.
+  </div>
+
+  <h3>The proposed lineup — build top 3 first</h3>
+  <div class="grid g3" style="margin-top:8px">
+    <div class="lm">
+      <div class="top"><span class="n">MAGNET 01 · build first</span><h3>Sales Automation ROI Calculator</h3></div>
+      <div class="body">
+        <div><b>Who</b>Sales leaders sizing up automation</div>
+        <div><b>Result</b>Plug in your numbers → projected hours &amp; $ saved, emailed as a full report</div>
+        <div><b>Format</b>Interactive web tool (quiz-grade engagement)</div>
+        <div><b>Ranks for</b>"sales automation roi", "what roi from automating sales data entry" — a post you already get 190 impr on</div>
+      </div>
+    </div>
+    <div class="lm">
+      <div class="top"><span class="n">MAGNET 02 · build first</span><h3>Cold Email Infrastructure Checklist</h3></div>
+      <div class="body">
+        <div><b>Who</b>Founders about to start cold outreach</div>
+        <div><b>Result</b>Exactly what to set up (domains, inboxes, SPF/DKIM/DMARC, warmup, data verification) so they don't burn their domain</div>
+        <div><b>Format</b>PDF / interactive checklist</div>
+        <div><b>Ranks for</b>cold email infrastructure, deliverability, "verify contact data" (43 impr query)</div>
+      </div>
+    </div>
+    <div class="lm">
+      <div class="top"><span class="n">MAGNET 03 · build first</span><h3>AI Automation Readiness Scorecard</h3></div>
+      <div class="body">
+        <div><b>Who</b>Operators unsure if they're AI-ready</div>
+        <div><b>Result</b>A score + which of your 3 services fits them → routes to the right offer</div>
+        <div><b>Format</b>Quiz (video: quizzes convert + segment leads)</div>
+        <div><b>Ranks for</b>"is my business ready for ai automation", readiness-check intent</div>
+      </div>
+    </div>
+  </div>
+  <details style="margin-top:10px">
+    <summary>Fast-follow magnets (#4–5) and why each maps to real search data</summary>
+    <div class="body">
+      <table>
+        <tr><th>#</th><th>Magnet</th><th>Format</th><th>Maps to (real query / volume)</th></tr>
+        <tr><td>04</td><td><b>B2B Cold Email Swipe File</b> — proven subject lines + templates</td><td>Template pack</td><td>"b2b email subject lines" (48 impr), cold email copy</td></tr>
+        <tr><td>05</td><td><b>"What to Automate First" worksheet</b></td><td>Worksheet / framework</td><td>"how to define business processes to automate" — 390 vol, KD 7 (very winnable)</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <h3>What it takes to build (infrastructure that doesn't exist yet)</h3>
+  <div class="grid g2">
+    <div class="card">
+      <b class="mono" style="color:var(--accent);font-size:12px">CAPTURE → STORE → DELIVER</b>
+      <ul class="check" style="margin-top:6px">
+        <li>Email-capture form component (brutalist, on-brand) + a <code>/api/subscribe</code> serverless function.</li>
+        <li>Lead storage (Resend Audiences, or a Vercel-marketplace DB).</li>
+        <li>Instant delivery of the asset via email (Resend — already a placeholder in your <code>.env</code>).</li>
+        <li>One SEO landing page per magnet — headline (benefit) + 1 supporting line + form, prerendered &amp; added to sitemap so it ranks.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <b class="mono" style="color:var(--accent);font-size:12px">NURTURE: 3-EMAIL SEQUENCE</b>
+      <div class="step"><span class="num">1</span><div><b>Deliver</b> — send the magnet immediately (link/PDF/tool access).</div></div>
+      <div class="step"><span class="num">2</span><div><b>Add value</b> — a related insight (e.g. the 3 mistakes that kill deliverability) to build trust.</div></div>
+      <div class="step"><span class="num">3</span><div><b>Offer</b> — invite to the discovery call, now that you've earned it.</div></div>
+      <p class="sub" style="margin-top:8px">Runs automatically per the video's "set it once" model. Needs a drip mechanism — see Decision 2.</p>
+    </div>
+  </div>
+
+  <h3>Promotion — put the magnets where traffic already is</h3>
+  <ul class="check">
+    <li><b>Homepage section + capture form</b> — converts the brand traffic that's already landing there (your one proven traffic source).</li>
+    <li><b>Contextual CTA boxes inside blog posts</b> — each post promotes the most relevant magnet.</li>
+    <li><b>Exit-intent / scroll popup</b> sitewide.</li>
+    <li><b>Off-site:</b> LinkedIn bio + posts (Vasu), email signature.</li>
+  </ul>
+
+  <!-- ===================== ROADMAP ===================== -->
+  <h2>5 · Sequencing</h2>
+  <table>
+    <tr><th>Phase</th><th>What</th><th>Needs</th></tr>
+    <tr><td><span class="tag t-now">Phase 0</span></td><td>Bing sitemap re-submit + URL push, CTR title/meta rewrites, FAQ/AEO additions, WebSite schema</td><td>Nothing — I can start immediately</td></tr>
+    <tr><td><span class="tag t-p1">Phase 1</span></td><td>Email infra (<code>/api/subscribe</code> + delivery) + <b>Magnet 01</b> (ROI calculator) + its landing page + homepage capture</td><td>Decisions 1 &amp; 2 below</td></tr>
+    <tr><td><span class="tag t-p2">Phase 2</span></td><td>Magnets 02 &amp; 03 + blog CTAs + exit popup</td><td>—</td></tr>
+    <tr><td><span class="tag t-p3">Phase 3</span></td><td>3-email nurture sequences wired + tested</td><td>Decision 2 confirmed</td></tr>
+    <tr><td><span class="tag t-user">Ongoing</span></td><td>Off-site authority (A5) + watch GSC/Bing climb</td><td>Your outreach</td></tr>
+  </table>
+
+  <!-- ===================== DECISIONS ===================== -->
+  <h2>6 · Decisions I need from you</h2>
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="margin-top:0">① Which magnets first?</h3>
+      <p style="margin:0">My pick: the 3 above (ROI calc, infra checklist, readiness quiz). Tell me if you'd swap one for the swipe file or worksheet.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">② Email tooling?</h3>
+      <p style="margin:0">Recommended: <b>Resend</b> for instant delivery (fits Vercel, already stubbed in <code>.env</code>) + a drip for the sequence. Owned option = Resend + Vercel Cron (on-brand "you own it"); easier option = a free ESP (MailerLite/Kit). Your call.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">③ Submit URLs to Bing now?</h3>
+      <p style="margin:0">I can push all 44 URLs through Bing URL Submission in your browser this session for a fast indexing bump. Yes/no.</p>
+    </div>
+  </div>
+
+  <hr>
+  <p class="sub">Once you confirm the three decisions, I'll start with Phase 0 (no approval needed) and move into Phase 1. Nothing gets pushed live without your OK. — Plan saved at <code>research/SEO-LEADMAGNET-PLAN.html</code></p>
+
+</div>
+</body>
+</html>
