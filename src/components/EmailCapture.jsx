@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
+import { clarityEvent } from '../analytics.js';
 
 /**
  * Reusable brutalist email-capture form for lead magnets.
@@ -55,6 +56,7 @@ export default function EmailCapture({
                 throw new Error(data.error || 'Something went wrong. Try again.');
             }
             setStatus('success');
+            clarityEvent('lead_magnet_submit');
             if (typeof onSuccess === 'function') onSuccess(data);
         } catch (err) {
             setError(err.message || 'Something went wrong. Try again.');
