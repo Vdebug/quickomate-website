@@ -16,20 +16,19 @@ _Resumable checkpoint file. Plan: `research/SEO-LEADMAGNET-PLAN.html`. Started 2
 
 ## PHASE 0 — SEO/AEO quick wins (code, no external deps)
 - [x] Bing: submit 45 URLs + resubmit sitemap (browser) — DONE 15:27
-- [ ] WebSite schema + alternateName "Quickomate" (entity signal)
-- [ ] CTR title/meta rewrites: marketing-automation-roi-2026, sales-automation-roi-calculator, ai-automation-examples, cold-email-subject-lines, how-to-find-verified-emails
+- [x] WebSite + Organization schema, graph-linked to founder (commit bfa04f1) — verified in dist
+- [ ] CTR title/meta rewrites — DEPRIORITIZED (low value at pos 36-66; revisit once authority lifts positions)
 - [ ] FAQ/AEO: answer surfaced question queries ("how can i verify contact data before sales outreach", "what roi from automating sales data entry")
-- [ ] Build + verify + commit
+- [x] Build + verify + commit
 
 ## PHASE 1 — Email infra + Magnet 01 (ROI Calculator)
-- [ ] `/api/subscribe` serverless fn (capture → store → Resend deliver)
-- [ ] Lead storage (DB provisioning — needs user)
-- [ ] Resend integration (needs RESEND_API_KEY + domain DNS — user)
-- [ ] EmailCapture form component (brutalist, on-brand)
-- [ ] ROI Calculator interactive component
-- [ ] Landing page `/sales-automation-roi-calculator` (lead magnet) + prerender + sitemap
+- [x] `/api/subscribe` Node fn (capture → Resend deliver → Upstash store/enqueue, graceful no-op w/o keys) — commit 31f4d73
+- [x] EmailCapture form component (brutalist, on-brand)
+- [x] ROI Calculator interactive component — embedded in ranking post, math verified in browser (811 hrs, $36,504, 103% ROI)
+- [x] Reused the existing ranking URL /blog/sales-automation-roi-calculator (no new page — keeps 190 impr)
+- [ ] **BLOCKED:** Resend (RESEND_API_KEY + verify domain DNS) + Upstash (Vercel marketplace) — needs user
 - [ ] Homepage capture section
-- [ ] Build + verify + commit
+- [ ] Push (needs user approval)
 
 ## PHASE 2 — Magnets 02–04
 - [ ] Cold Email Infrastructure Checklist (asset + landing page)
