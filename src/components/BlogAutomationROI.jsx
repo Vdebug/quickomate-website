@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react';
+import SalesAutomationCalculator from './SalesAutomationCalculator';
 
 export default function BlogAutomationROI() {
     return (
@@ -42,6 +43,9 @@ export default function BlogAutomationROI() {
                             Most automation "ROI" you'll read is vendor math — a single inflated multiple designed to close you. The truth is you can calculate your own number on the back of a napkin before you spend a dollar, and you should. This is the operator's version: the three equations that actually matter, realistic 2026 figures, a worked example, and an honest look at where automation ROI gets overstated.
                         </p>
                     </div>
+
+                    {/* Interactive ROI Calculator (lead magnet) */}
+                    <SalesAutomationCalculator />
 
                     {/* Section 1 — Why a number first */}
                     <section>
