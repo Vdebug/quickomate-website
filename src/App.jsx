@@ -77,6 +77,7 @@ const PERSON_SCHEMA = {
   "description": "Vasu Gupta is the founder of Quickomate, where he builds custom AI automation and B2B lead-generation systems — cold email infrastructure, CRM and sales automation, LLM agents, and growth infrastructure that clients own outright.",
   "worksFor": {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     "name": "Quickomate",
     "url": SITE_URL
   },
@@ -97,6 +98,58 @@ const PERSON_SCHEMA = {
     "https://x.com/vaaasug",
     "https://www.linkedin.com/in/refer-vasu/"
   ]
+};
+
+const ORG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  "name": "Quickomate",
+  "alternateName": "Quickomate AI Automation Agency",
+  "url": SITE_URL,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${SITE_URL}/logo.png`,
+    "width": 512,
+    "height": 512
+  },
+  "image": `${SITE_URL}/logo.png`,
+  "description": "Quickomate is an AI automation agency and AI Growth Partner for B2B companies. We build custom AI automation, B2B lead generation, cold email infrastructure, LLM agents, and sales automation systems that clients own outright — no retainers.",
+  "founder": { "@id": `${SITE_URL}/#vasu-gupta` },
+  "knowsAbout": [
+    "AI Automation",
+    "AI Automation Agency",
+    "Business Process Automation",
+    "LLM Agents",
+    "Generative AI for Business",
+    "AI Lead Generation",
+    "B2B Lead Generation",
+    "Cold Email Infrastructure",
+    "Sales Automation",
+    "CRM Automation"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "solutions@solariswireless.com",
+    "url": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate"
+  },
+  "sameAs": [
+    "https://x.com/vaaasug",
+    "https://www.linkedin.com/in/refer-vasu/"
+  ]
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  "url": SITE_URL,
+  "name": "Quickomate",
+  "alternateName": "Quickomate AI Automation Agency",
+  "description": "AI automation and B2B lead-generation systems you own outright — cold email infrastructure, LLM agents, and sales automation for fast-moving B2B companies.",
+  "publisher": { "@id": `${SITE_URL}/#organization` },
+  "inLanguage": "en-US"
 };
 
 const breadcrumbSchema = (postTitle, postSlug) => ({
@@ -125,6 +178,8 @@ function HomePage() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={homeOg} />
+        <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
+        <script type="application/ld+json">{JSON.stringify(WEBSITE_SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify(PERSON_SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
