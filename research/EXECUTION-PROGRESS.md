@@ -9,6 +9,12 @@ Live on quickomate.com & verified: entity schema, all 4 lead magnets + homepage 
 - STILL the only blocker for lead-magnet email: **Resend + Upstash** (forms now degrade honestly — "you're on the list" — until then).
 - Follow-up cleanup: duplicate Organization/WebSite schema (one set in index.html, one in App.jsx Helmet) — harmless, de-dup later.
 
+## 🔎 SEO / AI-SEO PROGRAM (user opted into all 4, 2026-06-04)
+- [x] **#2 Book-a-call CTA on every blog post** — shipped (commit 16adfb1) via shared `BlogPostLayout` (Outlet + BookCallCTA). All ~40 posts now have a booking path; /blog index excluded. (4 magnet posts have 2 CTAs — mid + bottom — acceptable.)
+- [ ] **#1 FAQ schema + AEO blitz** — add visible FAQ Q&A + FAQPage JSON-LD to posts missing it. Prioritize GSC-impression posts (marketing-automation-roi-2026, sales-automation-roi-calculator, ai-automation-examples, cold-email-subject-lines, how-to-find-verified-emails) + the ~14 flagged in MASTER-ACTION-PLAN. Answer real GSC questions verbatim. Schema goes in App.jsx Page wrapper Helmet; visible Q&A in the leaf. NEXT.
+- [ ] **#3 New low-KD posts** — from Semrush research: "how to define business processes to automate" (KD7), "ai sales prospecting", "ai agent workflow automation". Wire blogPosts.js + App.jsx route/meta/schema + leaf component.
+- [ ] **#4 Answer-first + internal linking** — fold into #1 pass.
+
 ## Decisions (locked)
 - **Magnets to build (in order):** 1) Sales Automation ROI Calculator, 2) Cold Email Infrastructure Checklist, 3) AI Automation Readiness Quiz, 4) B2B Cold Email Swipe File.
 - **Email infra:** Resend (delivery) + Vercel Cron (nurture drip) — fully owned. Storage TBD (Upstash Redis or Neon via Vercel marketplace).
