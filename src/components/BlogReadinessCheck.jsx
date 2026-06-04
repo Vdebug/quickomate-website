@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react';
+import AiReadinessQuiz from './AiReadinessQuiz';
 
 export default function BlogReadinessCheck() {
     return (
@@ -37,6 +38,9 @@ export default function BlogReadinessCheck() {
                             Every founder gets pitched AI automation in 2026. Most don't need it yet — and the ones who do often need a different system than the one they were sold. The actual question isn't "should I use AI?" It's "is there a process in my business that, if automated, would either make me more money, save me money, or save my team's time?" If yes, build it. If no, you're not ready, and no software will fix that.
                         </p>
                     </div>
+
+                    {/* AI Automation Readiness Quiz (lead magnet) */}
+                    <AiReadinessQuiz />
 
                     <section>
                         <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">

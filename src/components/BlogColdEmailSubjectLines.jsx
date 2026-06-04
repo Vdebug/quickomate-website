@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react';
+import SwipeFilePreview from './SwipeFilePreview';
 
 export default function BlogColdEmailSubjectLines() {
     return (
@@ -42,6 +43,9 @@ export default function BlogColdEmailSubjectLines() {
                             Most cold emails die at the subject line. Industry-average B2B open rates sit at 30-45%, which is another way of saying that more than half of your prospects never even see the email you spent hours writing. The campaigns we run hit 60-70%+ open rates consistently — and the subject line is doing 90% of that work. Here are the cold email subject lines B2B that actually get replies in 2026, the patterns that kill your reply rate, and how to test them without fooling yourself.
                         </p>
                     </div>
+
+                    {/* B2B Cold Email Swipe File (lead magnet) */}
+                    <SwipeFilePreview />
 
                     {/* Section 1 */}
                     <section>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react';
+import ColdEmailInfraChecklist from './ColdEmailInfraChecklist';
 
 export default function BlogInfraSetup() {
     return (
@@ -42,6 +43,9 @@ export default function BlogInfraSetup() {
                             Everyone tells you to "warm up your domains" and "don't send too much." Nobody gives you the actual numbers. So here it is — the real math for 2026. How many domains, how many inboxes, how many sends, and exactly how to size all of it for a target volume. Get the ratios wrong and you'll burn domains faster than you can buy them. Get them right and you've got a stable machine that prints meetings.
                         </p>
                     </div>
+
+                    {/* Cold Email Infrastructure Checklist (lead magnet) */}
+                    <ColdEmailInfraChecklist />
 
                     {/* Section 1 */}
                     <section>

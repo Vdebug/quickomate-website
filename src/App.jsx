@@ -9,6 +9,7 @@ import CaseStudies from './components/CaseStudies';
 import AboutUs from './components/AboutUs';
 import Protocol from './components/Protocol';
 import CTA from './components/CTA';
+import LeadMagnetSection from './components/LeadMagnetSection';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import BlogIndex from './components/BlogIndex';
@@ -235,6 +236,7 @@ function HomePage() {
         <CaseStudies />
         <AboutUs />
         <Protocol />
+        <LeadMagnetSection />
         <CTA />
       </main>
       <Footer />
