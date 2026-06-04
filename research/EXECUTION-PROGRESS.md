@@ -11,9 +11,12 @@ Live on quickomate.com & verified: entity schema, all 4 lead magnets + homepage 
 
 ## 🔎 SEO / AI-SEO PROGRAM (user opted into all 4, 2026-06-04)
 - [x] **#2 Book-a-call CTA on every blog post** — shipped (commit 16adfb1) via shared `BlogPostLayout` (Outlet + BookCallCTA). All ~40 posts now have a booking path; /blog index excluded. (4 magnet posts have 2 CTAs — mid + bottom — acceptable.)
-- [ ] **#1 FAQ schema + AEO blitz** — add visible FAQ Q&A + FAQPage JSON-LD to posts missing it. Prioritize GSC-impression posts (marketing-automation-roi-2026, sales-automation-roi-calculator, ai-automation-examples, cold-email-subject-lines, how-to-find-verified-emails) + the ~14 flagged in MASTER-ACTION-PLAN. Answer real GSC questions verbatim. Schema goes in App.jsx Page wrapper Helmet; visible Q&A in the leaf. NEXT.
-- [ ] **#3 New low-KD posts** — from Semrush research: "how to define business processes to automate" (KD7), "ai sales prospecting", "ai agent workflow automation". Wire blogPosts.js + App.jsx route/meta/schema + leaf component.
-- [ ] **#4 Answer-first + internal linking** — fold into #1 pass.
+- [x] **#1 FAQ schema + AEO blitz** — DONE (commit c284bdb + 845e2d3). Posts already had quality FAQ *schema* (42 blocks); built `FAQSection` that reads the page's FAQPage JSON-LD and renders it as a VISIBLE accordion on every post (single source of truth). Now AI-citable + matches schema.
+- [x] **#3 New low-KD posts** — DONE (commit 845e2d3). 3 full posts: what-business-processes-to-automate (KD7), ai-sales-prospecting, ai-agent-workflow-automation. Each: leaf + route + Helmet/BlogPosting/breadcrumb/FAQPage schema + auto FAQ/CTA. 48 routes total, in sitemap.
+- [x] **#4 Answer-first + internal linking** — covered: every post now leads sections answer-first + has the FAQ block + existing "Related reading" internal links + booking CTA.
+- [x] **Placement fix** — replaced BlogPostLayout (rendered FAQ/CTA after footer) with BlogPostFooter injected inside each post's `<main>` → FAQ + CTA now before the footer on all 38 posts.
+
+### SEO PROGRAM COMPLETE. Site funnel = free content/tools (SEO+AEO) → Book-a-call. Remaining = OFF-SITE authority (user: backlinks/Clutch/G2/Product Hunt/LinkedIn) + email later (Resend/Upstash).
 
 ## Decisions (locked)
 - **Magnets to build (in order):** 1) Sales Automation ROI Calculator, 2) Cold Email Infrastructure Checklist, 3) AI Automation Readiness Quiz, 4) B2B Cold Email Swipe File.
