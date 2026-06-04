@@ -10,6 +10,7 @@ import AboutUs from './components/AboutUs';
 import Protocol from './components/Protocol';
 import CTA from './components/CTA';
 import LeadMagnetSection from './components/LeadMagnetSection';
+import BlogPostLayout from './components/BlogPostLayout';
 import Footer from './components/Footer';
 // Route-level code-splitting: every page component below is loaded on demand,
 // so the homepage no longer ships all ~45 pages' JS in one bundle. The Helmet
@@ -2806,6 +2807,7 @@ function App() {
             <Route path="/cold-email-agency" element={<ServiceColdEmailPage />} />
             <Route path="/b2b-lead-generation-agency" element={<ServiceLeadGenPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route element={<BlogPostLayout />}>
             <Route path="/blog/cold-email-system-20-appointments-month" element={<BlogColdEmailPage />} />
             <Route path="/blog/why-you-should-own-your-cold-email-infrastructure" element={<BlogOwnInfraPage />} />
             <Route path="/blog/ai-vs-human-cold-email-copy" element={<BlogAiVsHumanPage />} />
@@ -2844,6 +2846,7 @@ function App() {
             <Route path="/blog/how-to-integrate-ai-into-your-business" element={<BlogAiIntegrationPage />} />
             <Route path="/blog/b2b-sales-automation-2026" element={<BlogB2bSalesAutomationPage />} />
             <Route path="/blog/marketing-automation-roi-2026" element={<BlogMarketingAutomationROIPage />} />
+            </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           </Suspense>
