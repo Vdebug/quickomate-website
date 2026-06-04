@@ -18,7 +18,7 @@ const TOOLS = [
 
 export default function LeadMagnetSection() {
     return (
-        <section className="py-24 px-6 sm:px-12 md:px-24 bg-background border-t-4 border-primary">
+        <section className="relative z-10 py-24 px-6 sm:px-12 md:px-24 bg-background border-t-4 border-primary">
             <div className="max-w-6xl mx-auto">
                 <div className="inline-block bg-primary px-4 py-2 mb-6 font-mono text-xs text-textInverted font-bold tracking-widest uppercase">
                     FREE_TOOLKIT
