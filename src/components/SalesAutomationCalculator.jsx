@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, Clock, DollarSign, TrendingUp, Users } from 'lucide-react';
-import EmailCapture from './EmailCapture';
+import BookCallCTA from './BookCallCTA';
 
 /**
  * Interactive Sales Automation ROI Calculator — the flagship lead magnet.
  * Lives inside /blog/sales-automation-roi-calculator (preserves the ranking URL).
- * Computes time / dollar / net ROI on-page; gates the full emailed report behind EmailCapture.
+ * Computes time / dollar / net ROI on-page (free); the conversion is a Book-a-call CTA.
  */
 
 const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -162,32 +162,10 @@ export default function SalesAutomationCalculator() {
                 <p className="font-sans text-sm font-bold leading-snug">{r.verdict}</p>
             </div>
 
-            <div className="bg-primary border-4 border-primary p-6 sm:p-8">
-                <h3 className="font-heading font-black text-xl sm:text-2xl text-textInverted uppercase tracking-tight leading-none mb-2">
-                    Get this as a full report
-                </h3>
-                <p className="font-sans text-sm text-textInverted/70 mb-5 max-w-2xl">
-                    We'll email your numbers plus the 1-page automation roadmap — exactly which task to automate first, the realistic stack, and the four mistakes that sink most projects.
-                </p>
-                <EmailCapture
-                    magnet="sales-automation-roi-calculator"
-                    buttonLabel="Email me the report"
-                    variant="bare"
-                    successTitle="On its way."
-                    successBody="Your ROI report + automation roadmap is landing in your inbox. Check Promotions/spam if you don't see it in a couple minutes."
-                    getMeta={() => ({
-                        inputs: { reps, hoursPerWeek, hourlyCost, automatablePct, monthlyCost },
-                        results: {
-                            annualHours: Math.round(r.annualHours),
-                            annualValue: Math.round(r.annualValue),
-                            annualCost: r.annualCost,
-                            net: Math.round(r.net),
-                            roiPct: r.roi != null ? Math.round(r.roi) : null,
-                            paybackMonths: r.paybackMonths != null ? Number(r.paybackMonths.toFixed(1)) : null,
-                        },
-                    })}
-                />
-            </div>
+            <BookCallCTA
+                title="Want us to build this for you?"
+                subtext="That's your projected return. If you'd like a second set of eyes on the numbers — and a straight read on exactly what to automate first — grab a free 20-minute call."
+            />
         </section>
     );
 }

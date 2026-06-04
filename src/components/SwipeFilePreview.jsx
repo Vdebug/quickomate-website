@@ -1,6 +1,6 @@
 import React from 'react';
-import { Mail, Lock } from 'lucide-react';
-import EmailCapture from './EmailCapture';
+import { Mail } from 'lucide-react';
+import BookCallCTA from './BookCallCTA';
 
 /**
  * B2B Cold Email Swipe File — lead magnet 04.
@@ -42,26 +42,14 @@ export default function SwipeFilePreview() {
                     </div>
                 ))}
                 <div className="flex items-center gap-3 bg-background/60 border-4 border-dashed border-primary/40 px-4 py-3">
-                    <Lock size={14} className="text-primary/40 flex-none" />
-                    <span className="font-mono text-sm text-primary/40">+ 25 more subject lines &amp; 5 full sequences…</span>
+                    <span className="font-mono text-sm text-primary/40">+ 25 more in the full playbook — we walk clients through the rest on a call.</span>
                 </div>
             </div>
 
-            <div className="bg-primary border-4 border-primary p-6 sm:p-8">
-                <h3 className="font-heading font-black text-xl sm:text-2xl text-textInverted uppercase tracking-tight leading-none mb-2">
-                    Get the full swipe file
-                </h3>
-                <p className="font-sans text-sm text-textInverted/70 mb-5 max-w-2xl">
-                    30+ subject lines, 5 complete cold-email sequences, and the personalization formula — copy-paste ready, free.
-                </p>
-                <EmailCapture
-                    magnet="b2b-cold-email-swipe-file"
-                    buttonLabel="Send me the swipe file"
-                    variant="bare"
-                    successTitle="On its way."
-                    successBody="The full swipe file is heading to your inbox. Check Promotions/spam if it’s not there in a minute or two."
-                />
-            </div>
+            <BookCallCTA
+                title="Want the whole outbound system, not just the lines?"
+                subtext="These open the door — the replies come from the full system behind them. Book a free 20-minute call and we'll show you how it'd work in your market."
+            />
         </section>
     );
 }

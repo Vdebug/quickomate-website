@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ArrowRight, ArrowLeft, RotateCcw } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import EmailCapture from './EmailCapture';
+import BookCallCTA from './BookCallCTA';
 
 /**
  * AI Automation Readiness Quiz — lead magnet 03.
@@ -142,18 +142,10 @@ export default function AiReadinessQuiz() {
                     </Link>
                 </div>
 
-                <div className="bg-primary border-4 border-primary p-6 sm:p-8">
-                    <h3 className="font-heading font-black text-xl text-textInverted uppercase tracking-tight leading-none mb-2">Get your full scorecard</h3>
-                    <p className="font-sans text-sm text-textInverted/70 mb-5">We’ll email your score, a breakdown by area, and a personalized 90-day automation roadmap.</p>
-                    <EmailCapture
-                        magnet="ai-automation-readiness-scorecard"
-                        buttonLabel="Email my scorecard"
-                        variant="bare"
-                        successTitle="On its way."
-                        successBody="Your readiness scorecard + 90-day roadmap is heading to your inbox. Check Promotions/spam if it’s not there in a couple minutes."
-                        getMeta={() => ({ score: pct, tier: tier.label, recommended: service.name, answers })}
-                    />
-                </div>
+                <BookCallCTA
+                    title="Want a hand getting started?"
+                    subtext={`Based on your score, ${service.name.toLowerCase()} is where you’d see the fastest return. Book a free 20-minute call and we’ll map out your first move — no pitch, just a plan.`}
+                />
 
                 <button onClick={reset} className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] font-bold text-primary/60 uppercase tracking-wider hover:text-accent transition-colors">
                     <RotateCcw size={13} /> Retake the quiz

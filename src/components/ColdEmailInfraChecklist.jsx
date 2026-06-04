@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ListChecks, Check } from 'lucide-react';
-import EmailCapture from './EmailCapture';
+import BookCallCTA from './BookCallCTA';
 
 /**
  * Cold Email Infrastructure Checklist — lead magnet 02.
@@ -120,22 +120,10 @@ export default function ColdEmailInfraChecklist() {
                 <p className="font-sans text-sm font-bold text-primary">{verdict}</p>
             </div>
 
-            <div className="bg-primary border-4 border-primary p-6 sm:p-8">
-                <h3 className="font-heading font-black text-xl sm:text-2xl text-textInverted uppercase tracking-tight leading-none mb-2">
-                    Get the printable version
-                </h3>
-                <p className="font-sans text-sm text-textInverted/70 mb-5 max-w-2xl">
-                    We’ll email the full checklist as a printable one-pager — plus the exact SPF/DKIM/DMARC records to copy and the warm-up schedule.
-                </p>
-                <EmailCapture
-                    magnet="cold-email-infrastructure-checklist"
-                    buttonLabel="Email me the checklist"
-                    variant="bare"
-                    successTitle="On its way."
-                    successBody="The printable checklist + DNS records are heading to your inbox. Check Promotions/spam if it’s not there shortly."
-                    getMeta={() => ({ completed: checked.size, total: ALL.length, readinessPct: pct })}
-                />
-            </div>
+            <BookCallCTA
+                title="Want this set up for you — without burning a domain?"
+                subtext="We build and warm the whole sending infrastructure so it’s right the first time. Book a free 20-minute call and we’ll pressure-test your current setup."
+            />
         </section>
     );
 }

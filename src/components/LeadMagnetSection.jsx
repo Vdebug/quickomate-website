@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calculator, ListChecks, ClipboardCheck, Mail, ArrowUpRight } from 'lucide-react';
-import EmailCapture from './EmailCapture';
+import BookCallCTA from './BookCallCTA';
 
 /**
  * Homepage "free tools" band — converts brand/top-of-funnel traffic into the
@@ -53,25 +53,10 @@ export default function LeadMagnetSection() {
                     ))}
                 </div>
 
-                <div className="bg-primary border-4 border-primary p-6 sm:p-10 shadow-[8px_8px_0px_0px_rgba(230,59,46,1)]">
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 className="font-heading font-black text-2xl sm:text-3xl text-textInverted uppercase tracking-tight leading-none mb-3">
-                                Not sure where to start?
-                            </h3>
-                            <p className="font-sans text-sm text-textInverted/70">
-                                Grab the free B2B cold email swipe file — 30+ subject lines and 5 complete sequences. We’ll send it straight to your inbox.
-                            </p>
-                        </div>
-                        <EmailCapture
-                            magnet="b2b-cold-email-swipe-file"
-                            buttonLabel="Send it over"
-                            variant="bare"
-                            successTitle="On its way."
-                            successBody="The swipe file is heading to your inbox. Check Promotions/spam if it’s not there in a minute or two."
-                        />
-                    </div>
-                </div>
+                <BookCallCTA
+                    title="Not sure where to start?"
+                    subtext="Book a free 20-minute call. We'll look at your pipeline, tell you the single highest-leverage thing to fix first, and whether we're even the right fit — no pitch."
+                />
             </div>
         </section>
     );
