@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import ScrollToTop from './components/ScrollToTop';
@@ -11,51 +11,56 @@ import Protocol from './components/Protocol';
 import CTA from './components/CTA';
 import LeadMagnetSection from './components/LeadMagnetSection';
 import Footer from './components/Footer';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import BlogIndex from './components/BlogIndex';
-import BlogColdEmail from './components/BlogColdEmail';
-import BlogOwnInfra from './components/BlogOwnInfra';
-import BlogAiVsHuman from './components/BlogAiVsHuman';
-import BlogAiLeadGen from './components/BlogAiLeadGen';
-import BlogColdEmailVsPaidAds from './components/BlogColdEmailVsPaidAds';
-import BlogFollowUpSystem from './components/BlogFollowUpSystem';
-import BlogCrmAutomation from './components/BlogCrmAutomation';
-import BlogReadinessCheck from './components/BlogReadinessCheck';
-import BlogColdEmailSubjectLines from './components/BlogColdEmailSubjectLines';
-import BlogFindEmails from './components/BlogFindEmails';
-import BlogDeliverability from './components/BlogDeliverability';
-import BlogQualification from './components/BlogQualification';
-import BlogAiSalesAgents from './components/BlogAiSalesAgents';
-import BlogAgencyCost from './components/BlogAgencyCost';
-import BlogVetAgency from './components/BlogVetAgency';
-import BlogInfraSetup from './components/BlogInfraSetup';
-import BlogPromotionsTab from './components/BlogPromotionsTab';
-import BlogColdEmailVsLinkedIn from './components/BlogColdEmailVsLinkedIn';
-import BlogAutomationToolsCompared from './components/BlogAutomationToolsCompared';
-import BlogIsColdEmailWorthIt from './components/BlogIsColdEmailWorthIt';
-import BlogAutomationROI from './components/BlogAutomationROI';
-import BlogColdEmailBenchmarks from './components/BlogColdEmailBenchmarks';
-import BlogPersonalizationAtScale from './components/BlogPersonalizationAtScale';
-import BlogBuildVsHire from './components/BlogBuildVsHire';
-import BlogColdEmailRecruiting from './components/BlogColdEmailRecruiting';
-import BlogAiAutomationAgency from './components/BlogAiAutomationAgency';
-import BlogAiAutomationServices from './components/BlogAiAutomationServices';
-import BlogLlmAgents from './components/BlogLlmAgents';
-import BlogAiAutomationConsultant from './components/BlogAiAutomationConsultant';
-import BlogGenerativeAiBusiness from './components/BlogGenerativeAiBusiness';
-import BlogBestAiTools from './components/BlogBestAiTools';
-import BlogAiAutomationExamples from './components/BlogAiAutomationExamples';
-import BlogAiSmallBusiness from './components/BlogAiSmallBusiness';
-import BlogAiLeadQualification from './components/BlogAiLeadQualification';
-import BlogBusinessProcessAutomation from './components/BlogBusinessProcessAutomation';
-import BlogAiIntegration from './components/BlogAiIntegration';
-import BlogMarketingAutomationROI from './components/BlogMarketingAutomationROI';
-import BlogB2bSalesAutomation from './components/BlogB2bSalesAutomation';
-import About from './components/About';
-import ServiceAiAutomation from './components/ServiceAiAutomation';
-import ServiceColdEmail from './components/ServiceColdEmail';
-import ServiceLeadGen from './components/ServiceLeadGen';
-import NotFound from './components/NotFound';
+// Route-level code-splitting: every page component below is loaded on demand,
+// so the homepage no longer ships all ~45 pages' JS in one bundle. The Helmet
+// meta/schema for each route lives in the eager Page wrappers (further down), so
+// SEO tags still render immediately; only the article body is lazy. The
+// prerenderer waits for real content before snapshotting (see scripts/prerender.js).
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const BlogIndex = lazy(() => import('./components/BlogIndex'));
+const BlogColdEmail = lazy(() => import('./components/BlogColdEmail'));
+const BlogOwnInfra = lazy(() => import('./components/BlogOwnInfra'));
+const BlogAiVsHuman = lazy(() => import('./components/BlogAiVsHuman'));
+const BlogAiLeadGen = lazy(() => import('./components/BlogAiLeadGen'));
+const BlogColdEmailVsPaidAds = lazy(() => import('./components/BlogColdEmailVsPaidAds'));
+const BlogFollowUpSystem = lazy(() => import('./components/BlogFollowUpSystem'));
+const BlogCrmAutomation = lazy(() => import('./components/BlogCrmAutomation'));
+const BlogReadinessCheck = lazy(() => import('./components/BlogReadinessCheck'));
+const BlogColdEmailSubjectLines = lazy(() => import('./components/BlogColdEmailSubjectLines'));
+const BlogFindEmails = lazy(() => import('./components/BlogFindEmails'));
+const BlogDeliverability = lazy(() => import('./components/BlogDeliverability'));
+const BlogQualification = lazy(() => import('./components/BlogQualification'));
+const BlogAiSalesAgents = lazy(() => import('./components/BlogAiSalesAgents'));
+const BlogAgencyCost = lazy(() => import('./components/BlogAgencyCost'));
+const BlogVetAgency = lazy(() => import('./components/BlogVetAgency'));
+const BlogInfraSetup = lazy(() => import('./components/BlogInfraSetup'));
+const BlogPromotionsTab = lazy(() => import('./components/BlogPromotionsTab'));
+const BlogColdEmailVsLinkedIn = lazy(() => import('./components/BlogColdEmailVsLinkedIn'));
+const BlogAutomationToolsCompared = lazy(() => import('./components/BlogAutomationToolsCompared'));
+const BlogIsColdEmailWorthIt = lazy(() => import('./components/BlogIsColdEmailWorthIt'));
+const BlogAutomationROI = lazy(() => import('./components/BlogAutomationROI'));
+const BlogColdEmailBenchmarks = lazy(() => import('./components/BlogColdEmailBenchmarks'));
+const BlogPersonalizationAtScale = lazy(() => import('./components/BlogPersonalizationAtScale'));
+const BlogBuildVsHire = lazy(() => import('./components/BlogBuildVsHire'));
+const BlogColdEmailRecruiting = lazy(() => import('./components/BlogColdEmailRecruiting'));
+const BlogAiAutomationAgency = lazy(() => import('./components/BlogAiAutomationAgency'));
+const BlogAiAutomationServices = lazy(() => import('./components/BlogAiAutomationServices'));
+const BlogLlmAgents = lazy(() => import('./components/BlogLlmAgents'));
+const BlogAiAutomationConsultant = lazy(() => import('./components/BlogAiAutomationConsultant'));
+const BlogGenerativeAiBusiness = lazy(() => import('./components/BlogGenerativeAiBusiness'));
+const BlogBestAiTools = lazy(() => import('./components/BlogBestAiTools'));
+const BlogAiAutomationExamples = lazy(() => import('./components/BlogAiAutomationExamples'));
+const BlogAiSmallBusiness = lazy(() => import('./components/BlogAiSmallBusiness'));
+const BlogAiLeadQualification = lazy(() => import('./components/BlogAiLeadQualification'));
+const BlogBusinessProcessAutomation = lazy(() => import('./components/BlogBusinessProcessAutomation'));
+const BlogAiIntegration = lazy(() => import('./components/BlogAiIntegration'));
+const BlogMarketingAutomationROI = lazy(() => import('./components/BlogMarketingAutomationROI'));
+const BlogB2bSalesAutomation = lazy(() => import('./components/BlogB2bSalesAutomation'));
+const About = lazy(() => import('./components/About'));
+const ServiceAiAutomation = lazy(() => import('./components/ServiceAiAutomation'));
+const ServiceColdEmail = lazy(() => import('./components/ServiceColdEmail'));
+const ServiceLeadGen = lazy(() => import('./components/ServiceLeadGen'));
+const NotFound = lazy(() => import('./components/NotFound'));
 
 const SITE_URL = 'https://quickomate.com';
 
@@ -2792,6 +2797,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <div className="w-full min-h-screen bg-background text-textMain antialiased selection:bg-accent selection:text-background">
+          <Suspense fallback={<div className="min-h-screen bg-background" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
@@ -2840,6 +2846,7 @@ function App() {
             <Route path="/blog/marketing-automation-roi-2026" element={<BlogMarketingAutomationROIPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          </Suspense>
         </div>
       </BrowserRouter>
     </HelmetProvider>

@@ -11,13 +11,15 @@
 //   VITE_CLARITY_ID=<your 10-char project id>
 // in the Vercel project env (Production) and redeploy.
 
-const CLARITY_ID = import.meta.env.VITE_CLARITY_ID;
+// Public Clarity project id (safe to commit — it ships in client JS regardless).
+// Overridable via VITE_CLARITY_ID if you ever rotate projects.
+const CLARITY_ID = import.meta.env.VITE_CLARITY_ID || 'x1q9yo84hf';
 
 export function initClarity() {
     if (!CLARITY_ID) return;                 // dormant until the project id is set
     if (import.meta.env.DEV) return;         // never run on the dev server
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
-    if (document.getElementById('clarity-tag')) return; // idempotent (incl. prerender-baked tag)
+    if (document.getElementById('clarity-tag')) return; // idempotent
 
     // Queue stub so events fired before the tag finishes loading aren't lost.
     window.clarity = window.clarity || function () {

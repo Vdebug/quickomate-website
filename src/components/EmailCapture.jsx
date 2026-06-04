@@ -32,6 +32,7 @@ export default function EmailCapture({
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // idle | submitting | success | error
     const [error, setError] = useState('');
+    const [delivered, setDelivered] = useState(true);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -56,6 +57,7 @@ export default function EmailCapture({
                 throw new Error(data.error || 'Something went wrong. Try again.');
             }
             setStatus('success');
+            setDelivered(data.delivered !== false);
             clarityEvent('lead_magnet_submit');
             if (typeof onSuccess === 'function') onSuccess(data);
         } catch (err) {
@@ -65,6 +67,8 @@ export default function EmailCapture({
     }
 
     if (status === 'success') {
+        const title = delivered ? successTitle : "You're on the list.";
+        const body = delivered ? successBody : "Thanks — you're confirmed. We'll send this straight over shortly.";
         return (
             <div
                 className={
@@ -81,9 +85,9 @@ export default function EmailCapture({
                     </span>
                     <div>
                         <p className="font-heading font-black text-xl text-textInverted uppercase tracking-tight leading-tight mb-1">
-                            {successTitle}
+                            {title}
                         </p>
-                        <p className="font-mono text-xs text-textInverted/70 leading-relaxed">{successBody}</p>
+                        <p className="font-mono text-xs text-textInverted/70 leading-relaxed">{body}</p>
                     </div>
                 </div>
             </div>

@@ -135,7 +135,8 @@ export default async function handler(req, res) {
   try {
     // 1) Deliver the magnet immediately (step 0).
     const cfg = MAGNETS[magnet];
-    await resendSend({ to: email, subject: cfg.subject, html: deliveryHtml(magnet, meta) });
+    const sendResult = await resendSend({ to: email, subject: cfg.subject, html: deliveryHtml(magnet, meta) });
+    const delivered = !(sendResult && sendResult.skipped); // false until Resend is configured
 
     // 2) Optional owner notification.
     if (process.env.LEAD_NOTIFY_EMAIL && process.env.RESEND_API_KEY) {
@@ -157,11 +158,11 @@ export default async function handler(req, res) {
     if (!process.env.RESEND_API_KEY || !process.env.UPSTASH_REDIS_REST_URL) {
       console.warn('[subscribe] captured but services not fully configured', { email, magnet });
     }
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, delivered });
   } catch (err) {
     console.error('[subscribe] error', err);
     // Still acknowledge so a transient provider error doesn't lose the lead UX;
     // the address is logged above for manual recovery.
-    return res.status(200).json({ ok: true, warning: 'queued' });
+    return res.status(200).json({ ok: true, delivered: false, warning: 'queued' });
   }
 }

@@ -115,21 +115,49 @@ async function main() {
         waitUntil: 'domcontentloaded',
         timeout: 30000,
       });
-      // Ensure React has painted real content (not the empty shell).
+      // Wait for REAL rendered content — not the empty shell and not a lazy
+      // Suspense fallback (routes are code-split via React.lazy). The lazy chunk
+      // for this route loads from the local server and renders before we snapshot;
+      // an empty fallback has ~0 innerText, real pages have hundreds of chars.
       await page.waitForFunction(
-        () => document.querySelector('#root') && document.querySelector('#root').children.length > 0,
-        { timeout: 15000 }
+        () => {
+          const root = document.querySelector('#root');
+          return root && root.innerText && root.innerText.trim().length > 200;
+        },
+        { timeout: 20000 }
       );
-      // Confirm the route actually rendered (Helmet title differs from the
-      // default shell title) and give Helmet a tick to flush head tags.
+      // Confirm Helmet set the per-route title and give it a tick to flush head tags.
       await page.waitForFunction(
         () => document.title && document.title.length > 0,
         { timeout: 5000 }
       );
-      await new Promise((r) => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 500));
+
+      // Collect the JS chunks this route actually loaded (including its lazy
+      // route chunk). We modulepreload them so the client re-render doesn't flash
+      // the Suspense fallback while the route chunk is still fetching.
+      const routeChunks = await page.evaluate(() =>
+        [...performance.getEntriesByType('resource')]
+          .map((e) => e.name)
+          .filter((n) => /\/assets\/[^?]+\.js(\?|$)/.test(n))
+          .map((n) => new URL(n).pathname)
+      );
 
       let html = await page.content();
       html = `<!doctype html>\n${html.replace(/^<!doctype html>/i, '').trim()}`;
+
+      // Inject modulepreload for loaded chunks not already referenced in <head>.
+      const preloads = [...new Set(routeChunks)]
+        .filter((p) => !html.includes(`"${p}"`))
+        .map((p) => `<link rel="modulepreload" href="${p}">`)
+        .join('\n    ');
+      if (preloads) html = html.replace('</head>', `    ${preloads}\n  </head>`);
+
+      // Strip any analytics tag the app injected during this render (e.g. Microsoft
+      // Clarity). It must load fresh at runtime with its init stub set first; a
+      // baked-in tag would load stub-less and throw. The client re-adds it on load.
+      html = html.replace(/<script[^>]*clarity\.ms[^>]*><\/script>/gi, '');
+
       rendered.push({ route, html });
       ok += 1;
       console.log(`[prerender]   ✓ ${route}`);
