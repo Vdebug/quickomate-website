@@ -47,11 +47,17 @@ Live on quickomate.com & verified: entity schema, all 4 lead magnets + homepage 
 - [ ] Exit-intent / scroll popup (not yet)
 - [ ] Polished downloadable assets (PDF checklist, swipe-file doc, ROI report) — delivery email currently sends templated HTML, not a PDF
 
-## PHASE 3 — Nurture sequences
-- [ ] `/api/cron/nurture` Vercel Cron drip
-- [ ] 3-email sequence per magnet (deliver → value → offer)
-- [ ] vercel.json crons config
-- [ ] Test end-to-end
+## PHASE 3 — Nurture sequences  (commit 789db02, deployed)
+- [x] `/api/cron/nurture` Vercel Cron drip — built, no-ops until Resend+Upstash
+- [x] 3-email sequence (step 0 deliver = subscribe.js; steps 1 value + 2 offer = cron)
+- [x] vercel.json crons config (daily 14:00 UTC) — registered on Vercel
+- [ ] End-to-end test — pending Resend + Upstash connection
+
+## STRATEGY NOTE (2026-06-04): gate vs free content
+Keep the email capture — it's the only way to collect *contactable* leads (Clarity = anonymous behavior only).
+Already a hybrid: tools/content free on-page (SEO/trust/AI-cited), email gates only the bonus (90/10 rule).
+Upstash = data collection (worth connecting now, free), Resend = delivery (later). Both env-gated.
+Optional next: richer deliverable content (emails or on-site pages) + exit-intent popup + a real case-study page (needs client data).
 
 ## BLOCKERS / NEEDS FROM USER
 - Resend account + `RESEND_API_KEY` (+ verify quickomate.com sending domain via DNS)
