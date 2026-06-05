@@ -934,6 +934,7 @@ function BlogColdEmailSubjectLinesPage() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-30T00:00:00Z" />
+        <meta property="article:modified_time" content="2026-06-05T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Cold Email" />
         <meta property="article:tag" content="Cold Email" />
@@ -948,7 +949,7 @@ function BlogColdEmailSubjectLinesPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-30",
-          "dateModified": "2026-04-30",
+          "dateModified": "2026-06-05",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "cold email subject lines, B2B subject lines, cold email open rate, cold email A/B testing",
@@ -992,6 +993,7 @@ function BlogFindEmailsPage() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-04-30T00:00:00Z" />
+        <meta property="article:modified_time" content="2026-06-05T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Lead Generation" />
         <meta property="article:tag" content="Lead Gen" />
@@ -1006,7 +1008,7 @@ function BlogFindEmailsPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-04-30",
-          "dateModified": "2026-04-30",
+          "dateModified": "2026-06-05",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "find emails for cold outreach, B2B email finder, email verification, prospect emails, catch-all domains",
@@ -1629,6 +1631,7 @@ function BlogAutomationROIPage() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-05-19T00:00:00Z" />
+        <meta property="article:modified_time" content="2026-06-05T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Growth Systems" />
         <meta property="article:tag" content="ROI" />
@@ -1642,7 +1645,7 @@ function BlogAutomationROIPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-19",
-          "dateModified": "2026-05-19",
+          "dateModified": "2026-06-05",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "sales automation roi, automation roi calculator, hours saved automation, automation payback period",
@@ -2264,6 +2267,7 @@ function BlogAiAutomationExamplesPage() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-05-22T00:00:00Z" />
+        <meta property="article:modified_time" content="2026-06-05T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="AI Automation" />
         <meta property="article:tag" content="AI Automation Examples" />
@@ -2278,7 +2282,7 @@ function BlogAiAutomationExamplesPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-22",
-          "dateModified": "2026-05-22",
+          "dateModified": "2026-06-05",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "ai automation examples, ai business automation, ai automation for business, automation use cases, Quickomate",
@@ -2612,6 +2616,7 @@ function BlogMarketingAutomationROIPage() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content={ogImg} />
         <meta property="article:published_time" content="2026-05-28T00:00:00Z" />
+        <meta property="article:modified_time" content="2026-06-05T00:00:00Z" />
         <meta property="article:author" content="Vasu Gupta" />
         <meta property="article:section" content="Marketing Automation" />
         <meta property="article:tag" content="Marketing Automation" />
@@ -2626,7 +2631,7 @@ function BlogMarketingAutomationROIPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-28",
-          "dateModified": "2026-05-28",
+          "dateModified": "2026-06-05",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "marketing automation roi, marketing automation return on investment, how to calculate marketing automation roi, marketing automation benchmarks 2026, marketing automation payback period",

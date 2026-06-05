@@ -52,6 +52,16 @@ async function submitToIndexNow(endpoint, urls) {
   return res.status;
 }
 
+async function submitSingleUrl(url) {
+  const params = new URLSearchParams({
+    url,
+    key: KEY,
+    keyLocation: KEY_LOCATION,
+  });
+  const res = await fetch(`https://www.bing.com/indexnow?${params.toString()}`);
+  return res.status;
+}
+
 const sitemapPath = join(ROOT, 'public/sitemap.xml');
 const xml = readFileSync(sitemapPath, 'utf8');
 const sitemapUrls = parseUrlsFromSitemap(xml);
@@ -86,4 +96,10 @@ for (const endpoint of ENDPOINTS) {
   } catch (err) {
     console.error(`[indexnow] Error hitting ${endpoint}: ${err.message}`);
   }
+}
+
+if (urls.length && process.argv.includes('--single-fallback')) {
+  const url = urls[0];
+  const status = await submitSingleUrl(url);
+  console.log(`[indexnow] single URL fallback ${url} → HTTP ${status}`);
 }
