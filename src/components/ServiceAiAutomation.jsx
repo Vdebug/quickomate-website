@@ -29,20 +29,46 @@ export default function ServiceAiAutomation() {
                 </header>
 
                 <div className="flex flex-col gap-12 font-sans text-base text-primary/80 leading-relaxed">
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            Quickomate is best for B2B teams that already know manual work is slowing revenue: lead research, CRM admin, qualification, follow-up, reporting, onboarding, or support triage. We map the bottleneck, build the smallest automation that pays back, and hand over the system with docs.
+                        </p>
+                    </section>
+
                     <section>
                         <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
                             What We Automate
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             {[
-                                { num: 'INFRA_01', label: 'Lead Generation', desc: 'Autonomous engines that prospect, enrich, hyper-personalize, and convert cold traffic into booked meetings.' },
-                                { num: 'INFRA_02', label: 'Project & Ops', desc: 'Zero-touch fulfillment and onboarding pipelines driven by intelligent agents integrated into your stack.' },
-                                { num: 'INFRA_03', label: 'Sales & CRM', desc: 'Automated intake, lead scoring, routing, and algorithmic CRM nurture for elite conversion.' },
+                                { num: 'INFRA_01', label: 'AI Lead Generation', desc: 'Prospecting, enrichment, verification, and personalization systems that turn cold traffic into qualified meetings.' },
+                                { num: 'INFRA_02', label: 'LLM Agents', desc: 'Narrow agents that classify, summarize, draft, and route work with guardrails and human approval where risk is high.' },
+                                { num: 'INFRA_03', label: 'Sales & CRM Automation', desc: 'Automated intake, lead scoring, routing, nurture, and CRM cleanup so reps spend time selling.' },
                             ].map((item) => (
                                 <div key={item.num} className="bg-primary p-5 border-4 border-primary">
                                     <div className="font-mono text-xs text-accent font-bold mb-2">{item.num}</div>
                                     <div className="font-heading font-black text-lg text-surface uppercase mb-2">{item.label}</div>
                                     <div className="font-sans text-xs text-surface/70 font-bold">{item.desc}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
+                            AI Automation Services We Prioritize
+                        </h2>
+                        <div className="bg-surface border-4 border-primary overflow-hidden">
+                            {[
+                                { service: 'Lead qualification', signal: 'Inbound leads are slow to score or route', outcome: 'Hot leads reach the right rep in minutes' },
+                                { service: 'Sales ops automation', signal: 'CRM hygiene and follow-up depend on reps', outcome: 'Cleaner pipeline and fewer dropped deals' },
+                                { service: 'LLM agent workflows', signal: 'Work needs reading, classifying, or drafting', outcome: 'AI handles judgment-heavy steps with guardrails' },
+                                { service: 'Back-office workflow automation', signal: 'Forms, docs, invoices, or handoffs repeat weekly', outcome: 'Manual admin shrinks without adding headcount' },
+                            ].map((row) => (
+                                <div key={row.service} className="grid grid-cols-1 md:grid-cols-3 border-b-2 border-primary last:border-b-0">
+                                    <div className="bg-primary p-4 font-heading font-black text-surface uppercase">{row.service}</div>
+                                    <div className="p-4 font-mono text-xs font-bold text-primary/70 uppercase">{row.signal}</div>
+                                    <div className="p-4 font-mono text-xs font-bold text-primary uppercase">{row.outcome}</div>
                                 </div>
                             ))}
                         </div>
@@ -112,7 +138,7 @@ export default function ServiceAiAutomation() {
                             Learn More
                         </h2>
                         <p>
-                            New to the category? Start with <Link to="/blog/what-is-an-ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">what an AI automation agency actually does</Link>, the <Link to="/blog/ai-automation-services-explained" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">services explained</Link>, or <Link to="/blog/ai-automation-examples" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">27 real automation examples</Link>.
+                            New to the category? Start with <Link to="/blog/what-is-an-ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">what an AI automation agency actually does</Link>, the <Link to="/blog/ai-automation-services-explained" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">services explained</Link>, <Link to="/blog/llm-agents-for-business" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">LLM agents for business</Link>, or <Link to="/blog/ai-automation-examples" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">27 real automation examples</Link>.
                         </p>
                     </section>
 

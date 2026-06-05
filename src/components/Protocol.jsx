@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap + ScrollTrigger are dynamically imported inside the effect (below) so the
+// ~113KB bundle stays OFF the homepage critical path — it loads after mount for this
+// below-the-fold section instead of blocking first paint / LCP on mobile.
 
 const RotatingGearSVG = () => (
     <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow opacity-90" style={{ animationDuration: '20s' }}>
@@ -81,37 +81,46 @@ export default function Protocol() {
     };
 
     useEffect(() => {
-        let ctx = gsap.context(() => {
-            // Create stacking logic for cards
-            const cards = gsap.utils.toArray('.protocol-card');
+        let ctx;
+        let cancelled = false;
+        (async () => {
+            const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+                import('gsap'),
+                import('gsap/ScrollTrigger'),
+            ]);
+            if (cancelled) return;
+            gsap.registerPlugin(ScrollTrigger);
+            ctx = gsap.context(() => {
+                // Create stacking logic for cards
+                const cards = gsap.utils.toArray('.protocol-card');
 
-            cards.forEach((card, i) => {
-                if (i === cards.length - 1) return; // Last card doesn't get covered
+                cards.forEach((card, i) => {
+                    if (i === cards.length - 1) return; // Last card doesn't get covered
 
-                ScrollTrigger.create({
-                    trigger: card,
-                    start: 'top top',
-                    pin: true,
-                    pinSpacing: false,
-                    endTrigger: containerRef.current,
-                    end: 'bottom bottom',
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: 'top top',
+                        pin: true,
+                        pinSpacing: false,
+                        endTrigger: containerRef.current,
+                        end: 'bottom bottom',
+                    });
+
+                    gsap.to(card, {
+                        scale: 0.95,
+                        opacity: 0.5,
+                        filter: 'grayscale(100%) blur(4px)',
+                        scrollTrigger: {
+                            trigger: cards[i + 1],
+                            start: 'top bottom',
+                            end: 'top top',
+                            scrub: true,
+                        }
+                    });
                 });
-
-                gsap.to(card, {
-                    scale: 0.95,
-                    opacity: 0.5,
-                    filter: 'grayscale(100%) blur(4px)',
-                    scrollTrigger: {
-                        trigger: cards[i + 1],
-                        start: 'top bottom',
-                        end: 'top top',
-                        scrub: true,
-                    }
-                });
-            });
-
-        }, containerRef);
-        return () => ctx.revert();
+            }, containerRef);
+        })();
+        return () => { cancelled = true; if (ctx) ctx.revert(); };
     }, []);
 
     const steps = [

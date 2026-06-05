@@ -67,6 +67,12 @@ const ServiceLeadGen = lazy(() => import('./components/ServiceLeadGen'));
 const NotFound = lazy(() => import('./components/NotFound'));
 
 const SITE_URL = 'https://quickomate.com';
+const CAL_URL = 'https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate';
+const CONTACT_EMAIL = 'solutions@solariswireless.com';
+const SAME_AS = [
+  'https://x.com/vaaasug',
+  'https://www.linkedin.com/in/refer-vasu/'
+];
 
 function ogImage({ title, tag, kind = 'article' } = {}) {
   const params = new URLSearchParams();
@@ -105,8 +111,7 @@ const PERSON_SCHEMA = {
     "Growth Infrastructure"
   ],
   "sameAs": [
-    "https://x.com/vaaasug",
-    "https://www.linkedin.com/in/refer-vasu/"
+    ...SAME_AS
   ]
 };
 
@@ -141,13 +146,10 @@ const ORG_SCHEMA = {
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Sales",
-    "email": "solutions@solariswireless.com",
-    "url": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate"
+    "email": CONTACT_EMAIL,
+    "url": CAL_URL
   },
-  "sameAs": [
-    "https://x.com/vaaasug",
-    "https://www.linkedin.com/in/refer-vasu/"
-  ]
+  "sameAs": SAME_AS
 };
 
 const WEBSITE_SCHEMA = {
@@ -173,15 +175,15 @@ const breadcrumbSchema = (postTitle, postSlug) => ({
 });
 
 function HomePage() {
-  const homeOg = ogImage({ title: 'AI Cold Email & Lead Gen for B2B Companies', tag: 'AI GROWTH PARTNER', kind: 'site' });
+  const homeOg = ogImage({ title: 'AI Automation Agency for B2B Companies', tag: 'AI GROWTH PARTNER', kind: 'site' });
   return (
     <>
       <Helmet>
-        <title>Quickomate – AI Cold Email & Lead Gen for B2B Companies</title>
-        <meta name="description" content="Get 15-20 qualified B2B appointments per month. AI-powered cold email and lead gen you own outright. Real 4% reply rates. No retainers." />
+        <title>Quickomate – AI Automation Agency for B2B Companies</title>
+        <meta name="description" content="Quickomate builds AI automation, LLM agents, cold email infrastructure, and B2B lead generation systems that US/global B2B teams own outright. No black box, no lock-in." />
         <link rel="canonical" href={`${SITE_URL}/`} />
-        <meta property="og:title" content="Quickomate – AI Cold Email & Lead Gen for B2B Companies" />
-        <meta property="og:description" content="15-20 qualified B2B appointments per month with AI-powered cold email infrastructure you own. Real 4% reply rates. No retainers." />
+        <meta property="og:title" content="Quickomate – AI Automation Agency for B2B Companies" />
+        <meta property="og:description" content="Custom AI automation, LLM agents, cold email infrastructure, and B2B lead generation systems built on infrastructure you own." />
         <meta property="og:url" content={`${SITE_URL}/`} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={homeOg} />
@@ -2658,7 +2660,7 @@ function serviceSchema({ name, url, description, serviceType }) {
     "description": description,
     "provider": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
     "areaServed": { "@type": "Place", "name": "Worldwide" },
-    "offers": { "@type": "Offer", "url": "https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate", "priceCurrency": "USD" }
+    "offers": { "@type": "Offer", "url": CAL_URL, "priceCurrency": "USD" }
   };
 }
 

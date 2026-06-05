@@ -217,7 +217,7 @@ export default function Features() {
                             <Activity className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_01</span>
                         </div>
-                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">Lead Gen</h3>
+                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">AI Lead Gen</h3>
                         <p className="font-sans text-sm text-primary/70 font-bold border-l-2 border-primary/20 pl-3">
                             Autonomous engines that prospect, hyper-personalize, and convert cold traffic.
                         </p>
@@ -232,7 +232,7 @@ export default function Features() {
                             <Zap className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_02</span>
                         </div>
-                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">Project Mgmt</h3>
+                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">LLM Agents</h3>
                         <p className="font-sans text-sm text-primary/70 font-bold border-l-2 border-primary/20 pl-3">
                             Zero-touch fulfillment and onboarding pipelines driven by intelligent agents.
                         </p>
@@ -247,7 +247,7 @@ export default function Features() {
                             <ShieldCheck className="text-accent" size={32} />
                             <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2 py-1">INFRA_03</span>
                         </div>
-                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">Sales Admin</h3>
+                        <h3 className="font-heading font-black text-2xl text-primary mb-2 uppercase tracking-tight">Sales Automation</h3>
                         <p className="font-sans text-sm text-primary/70 font-bold border-l-2 border-primary/20 pl-3">
                             Automated intake, scoring, and algorithmic CRM nurture for elite conversion.
                         </p>

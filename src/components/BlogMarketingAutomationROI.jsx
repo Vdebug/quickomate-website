@@ -39,6 +39,15 @@ export default function BlogMarketingAutomationROI() {
                         </p>
                     </div>
 
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            Short answer: marketing automation ROI comes from faster lead response, better nurture, cleaner segmentation, and fewer manual campaign/reporting hours. AI helps when the workflow needs classification, summarization, personalization, or routing; plain rules win when the logic is fixed.
+                        </p>
+                        <p className="mt-4 text-sm font-bold">
+                            For B2B teams, the highest-ROI build usually connects marketing automation to <Link to="/blog/ai-lead-qualification" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead qualification</Link>, <Link to="/blog/ai-sales-prospecting" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI sales prospecting</Link>, and owned <Link to="/ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI automation infrastructure</Link>.
+                        </p>
+                    </section>
+
                     <section>
                         <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
                             What "Marketing Automation ROI" Actually Measures
@@ -277,7 +286,7 @@ export default function BlogMarketingAutomationROI() {
                             {[
                                 { slug: 'sales-automation-roi-calculator', title: 'The Real ROI of Sales Automation: How to Calculate Hours and Dollars Before You Spend' },
                                 { slug: 'ai-automation-services-explained', title: "AI Automation Services Explained: What's Real, What's Hype, and What to Buy in 2026" },
-                                { slug: 'ai-business-process-automation', title: 'AI Business Process Automation: A Practical Guide for B2B Teams (2026)' },
+                                { slug: 'ai-sales-prospecting', title: 'AI Sales Prospecting: How to Book More Meetings in 2026' },
                             ].map((p) => (
                                 <Link
                                     key={p.slug}

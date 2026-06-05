@@ -29,6 +29,12 @@ export default function ServiceLeadGen() {
                 </header>
 
                 <div className="flex flex-col gap-12 font-sans text-base text-primary/80 leading-relaxed">
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            The lead generation system is part of the larger AI automation stack: sourcing, enrichment, verification, qualification, outreach, CRM routing, and follow-up all connect so your pipeline becomes an owned operating system instead of a rented agency spreadsheet.
+                        </p>
+                    </section>
+
                     <section>
                         <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
                             The Lead Engine We Build
@@ -80,7 +86,7 @@ export default function ServiceLeadGen() {
                             Go Deeper
                         </h2>
                         <p>
-                            Read the full <Link to="/blog/ai-lead-generation-for-b2b-companies" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead generation playbook</Link>, how <Link to="/blog/ai-lead-qualification" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead qualification</Link> focuses your reps, and the math on <Link to="/blog/cold-email-vs-paid-ads-b2b" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">cold email vs paid ads</Link>.
+                            Read the full <Link to="/blog/ai-lead-generation-for-b2b-companies" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead generation playbook</Link>, how <Link to="/blog/ai-lead-qualification" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead qualification</Link> focuses your reps, the <Link to="/blog/ai-sales-prospecting" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI sales prospecting workflow</Link>, and the math on <Link to="/blog/cold-email-vs-paid-ads-b2b" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">cold email vs paid ads</Link>.
                         </p>
                     </section>
 

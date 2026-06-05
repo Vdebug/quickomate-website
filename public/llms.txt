@@ -1,9 +1,9 @@
 # Quickomate
 > AI automation agency for B2B companies. Builds cold email infrastructure, AI lead generation, LLM agents, and sales automation systems — all client-owned, no retainers.
 
-Quickomate is an AI Growth Partner for fast-moving B2B companies. Founded by Vasu Gupta, Quickomate designs and deploys custom AI automation and B2B lead-generation systems that clients own outright. The core philosophy: build infrastructure you keep, not a service you rent.
+Quickomate is an AI automation agency and AI Growth Partner for fast-moving B2B companies. Founded by Vasu Gupta, Quickomate designs and deploys custom AI automation, LLM agents, workflow automation, and B2B lead-generation systems that clients own outright. The core philosophy: build infrastructure you keep, not a service you rent.
 
-Target clients: B2B founders, sales leaders, and operators at companies doing $1M–$20M ARR who want to scale pipeline without hiring more SDRs.
+Target clients: US/global B2B founders, sales leaders, and operators at companies doing $1M–$20M ARR who want to scale pipeline and operations without hiring more SDRs or manual ops headcount.
 
 ## Services
 
@@ -13,7 +13,7 @@ Target clients: B2B founders, sales leaders, and operators at companies doing $1
 
 ## Founder
 
-Vasu Gupta — AI systems architect and founder of Quickomate. Builds systems, not retainers. Based in North America.
+Vasu Gupta — AI systems architect and founder of Quickomate. Builds systems, not retainers. Serves US/global B2B teams.
 LinkedIn: https://www.linkedin.com/in/refer-vasu/
 
 ## Blog — AI Automation

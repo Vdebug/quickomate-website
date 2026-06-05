@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
 
 export default function Hero() {
     const sectionRef = useRef(null);
 
-    const buildUrl = (id, w) => `https://images.unsplash.com/${id}?q=70&w=${w}&auto=format&fit=crop`;
+    // Lower quality is invisible here (grayscale + inverted + behind a dark gradient)
+    // but cuts mobile bandwidth meaningfully.
+    const buildUrl = (id, w) => `https://images.unsplash.com/${id}?q=55&w=${w}&auto=format&fit=crop`;
     const backgrounds = [
         { id: 1, name: 'Concrete Matrix', photo: 'photo-1498084393753-b411b2d26b34' },
         { id: 2, name: 'Server Rack Grid', photo: 'photo-1558494949-ef010cbdcc31' },
@@ -25,24 +26,10 @@ export default function Hero() {
         return () => clearInterval(interval);
     }, []);
 
-    useEffect(() => {
-        let ctx = gsap.context(() => {
-            gsap.fromTo(
-                '.hero-el',
-                { y: 60, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.4,
-                    stagger: 0.1,
-                    ease: 'power3.out',
-                    delay: 0.2,
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
+    // NOTE: the hero entrance is now a CSS-only animation (.hero-el in index.css).
+    // GSAP used to fade the heading in from opacity:0, which made it "not contentful"
+    // until the 113KB GSAP bundle loaded over the network — pushing mobile LCP to 4-5s.
+    // The CSS version is transform-only, so the heading is visible from first paint.
 
     return (
         <section
@@ -84,12 +71,16 @@ export default function Hero() {
                         The definitive
                     </span>
                     <span className="hero-el font-drama italic text-[2.75rem] sm:text-7xl md:text-[6.5rem] leading-[0.85] text-accent lowercase -ml-1 tracking-normal py-2 underline decoration-4 underline-offset-[10px] sm:underline-offset-[16px]">
-                        <span className="uppercase">AI</span> growth partner
+                        <span className="uppercase">AI</span> automation agency
                     </span>
                     <span className="hero-el font-heading font-black text-[2rem] sm:text-5xl md:text-[4.5rem] leading-[0.9] text-textInverted uppercase">
                         for fast-moving B2B companies.
                     </span>
                 </h1>
+
+                <p className="hero-el max-w-3xl font-sans text-sm sm:text-base md:text-lg text-textInverted/75 font-bold leading-relaxed border-l-4 border-accent pl-5">
+                    We build LLM agents, AI workflow automation, cold email infrastructure, and B2B lead generation systems on your accounts, your CRM, and your data.
+                </p>
 
                 <div className="hero-el mt-8">
                     <a

@@ -147,8 +147,11 @@ async function main() {
       html = `<!doctype html>\n${html.replace(/^<!doctype html>/i, '').trim()}`;
 
       // Inject modulepreload for loaded chunks not already referenced in <head>.
+      // Exclude gsap: it's a below-the-fold animation lib loaded via dynamic import on
+      // purpose (off the critical path) — preloading it would undo that and slow LCP.
       const preloads = [...new Set(routeChunks)]
         .filter((p) => !html.includes(`"${p}"`))
+        .filter((p) => !/gsap/i.test(p))
         .map((p) => `<link rel="modulepreload" href="${p}">`)
         .join('\n    ');
       if (preloads) html = html.replace('</head>', `    ${preloads}\n  </head>`);
@@ -157,6 +160,11 @@ async function main() {
       // Clarity). It must load fresh at runtime with its init stub set first; a
       // baked-in tag would load stub-less and throw. The client re-adds it on load.
       html = html.replace(/<script[^>]*clarity\.ms[^>]*><\/script>/gi, '');
+
+      // gsap is dynamically imported only for the below-the-fold Protocol section.
+      // Vite's runtime preloader injects a modulepreload for it during the crawl; strip
+      // it so the ~113KB stays off the critical path (it loads when Protocol mounts).
+      html = html.replace(/<link[^>]*rel="modulepreload"[^>]*gsap[^>]*>\s*/gi, '');
 
       rendered.push({ route, html });
       ok += 1;

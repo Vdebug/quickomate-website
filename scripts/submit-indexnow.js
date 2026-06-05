@@ -1,5 +1,7 @@
-// Submit all site URLs to Bing IndexNow so pages get indexed fast.
-// Run manually after deploy: node scripts/submit-indexnow.js
+// Submit site URLs to Bing IndexNow so pages get indexed fast.
+// Run manually after deploy:
+//   npm run indexnow           -> all canonical URLs from sitemap.xml
+//   npm run indexnow:priority  -> homepage, service pages, and pages already earning impressions
 // Reads sitemap.xml to avoid any drift between sitemap and this script.
 
 import { readFileSync } from 'node:fs';
@@ -11,6 +13,22 @@ const ROOT = join(__dirname, '..');
 const HOST = 'quickomate.com';
 const KEY = '9d4c2f8a1b5e7c3d6f0a2b8e4d9c1f7b';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
+const PRIORITY_PATHS = [
+  '/',
+  '/blog',
+  '/ai-automation-agency',
+  '/cold-email-agency',
+  '/b2b-lead-generation-agency',
+  '/blog/sales-automation-roi-calculator',
+  '/blog/marketing-automation-roi-2026',
+  '/blog/ai-automation-examples',
+  '/blog/cold-email-subject-lines-that-get-b2b-replies',
+  '/blog/how-to-find-verified-emails-b2b-cold-outreach',
+  '/blog/ai-automation-services-explained',
+  '/blog/what-is-an-ai-automation-agency',
+  '/blog/llm-agents-for-business',
+  '/blog/ai-agent-workflow-automation',
+];
 
 function parseUrlsFromSitemap(xml) {
   const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
@@ -36,8 +54,14 @@ async function submitToIndexNow(endpoint, urls) {
 
 const sitemapPath = join(ROOT, 'public/sitemap.xml');
 const xml = readFileSync(sitemapPath, 'utf8');
-const urls = parseUrlsFromSitemap(xml);
+const sitemapUrls = parseUrlsFromSitemap(xml);
+const priorityUrls = PRIORITY_PATHS.map((path) => `https://${HOST}${path === '/' ? '/' : path}`);
+const priorityMode = process.argv.includes('--priority');
+const urls = priorityMode
+  ? priorityUrls.filter((u) => sitemapUrls.includes(u))
+  : sitemapUrls;
 
+console.log(`[indexnow] Mode: ${priorityMode ? 'priority' : 'all'}`);
 console.log(`[indexnow] Submitting ${urls.length} URLs...`);
 urls.forEach((u) => console.log(`  ${u}`));
 

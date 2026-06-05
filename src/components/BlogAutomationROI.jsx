@@ -44,6 +44,15 @@ export default function BlogAutomationROI() {
                         </p>
                     </div>
 
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            Short answer: sales automation is worth it when a repeated workflow saves 8+ hours per week, improves response speed, or prevents qualified leads from slipping through the CRM. For most B2B teams, the first automation should be lead qualification, CRM routing, follow-up, or enrichment — not a giant all-in-one platform.
+                        </p>
+                        <p className="mt-4 text-sm font-bold">
+                            If the calculator shows a conservative 2x+ return, the next step is mapping the workflow. See our <Link to="/ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI automation agency service</Link> or the <Link to="/blog/ai-automation-services-explained" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI automation services breakdown</Link>.
+                        </p>
+                    </section>
+
                     {/* Interactive ROI Calculator (lead magnet) */}
                     <SalesAutomationCalculator />
 
@@ -279,8 +288,8 @@ export default function BlogAutomationROI() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {[
                                 { slug: 'how-to-know-if-your-business-needs-ai-automation', title: 'How To Know If Your Business Is Ready For AI Automation' },
-                                { slug: 'crm-automation-systems-for-b2b', title: 'CRM Automation: Stage-Based Triggers' },
-                                { slug: 'n8n-vs-make-vs-zapier-sales-automation', title: 'n8n vs Make vs Zapier for Sales Automation' },
+                                { slug: 'ai-automation-services-explained', title: "AI Automation Services: What's Included and What to Pay" },
+                                { slug: 'ai-sales-prospecting', title: 'AI Sales Prospecting: How to Book More Meetings' },
                             ].map((p) => (
                                 <Link
                                     key={p.slug}

@@ -68,6 +68,20 @@ html {
   transform: translateY(-1px);
 }
 
+/* Hero entrance — CSS-only so it never gates LCP. Transform-only (no opacity) keeps
+   the heading visible from the first paint; with font-display:swap that makes the
+   LCP element paint at FCP instead of waiting on JS. */
+@keyframes heroRise {
+  from { transform: translateY(34px); }
+  to { transform: translateY(0); }
+}
+.hero-el {
+  animation: heroRise 0.9s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-el { animation: none; }
+}
+
 /* Hide scrollbar for cleanly designed look */
 ::-webkit-scrollbar {
   width: 8px;

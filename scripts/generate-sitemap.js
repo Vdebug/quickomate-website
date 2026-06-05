@@ -1,6 +1,6 @@
 // Generate public/sitemap.xml from the canonical post list in blogPosts.js so
-// it never drifts out of sync. Each post's lastmod is its own publish date
-// (real per-URL dates — uniform timestamps make Google distrust the sitemap).
+// it never drifts out of sync. Each post's lastmod is the latest meaningful
+// content update date when available, otherwise its publish date.
 // Runs at the start of the build (see scripts/build.js).
 
 import { fileURLToPath } from 'node:url';
@@ -18,7 +18,7 @@ function url(loc, lastmod, changefreq, priority) {
 
 // Newest post date drives the "freshness" of the home + blog index.
 const newest = blogPosts
-  .map((p) => p.dateIso)
+  .map((p) => p.updatedIso || p.dateIso)
   .sort()
   .reverse()[0];
 
@@ -30,7 +30,7 @@ const entries = [
   url(`${SITE_URL}/about`, newest, 'monthly', '0.7'),
   url(`${SITE_URL}/blog`, newest, 'weekly', '0.8'),
   ...blogPosts.map((p) =>
-    url(`${SITE_URL}/blog/${p.slug}`, p.dateIso, 'monthly', '0.9')
+    url(`${SITE_URL}/blog/${p.slug}`, p.updatedIso || p.dateIso, 'monthly', '0.9')
   ),
   url(`${SITE_URL}/privacy`, '2026-04-29', 'yearly', '0.3'),
 ];

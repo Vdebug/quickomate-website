@@ -44,6 +44,15 @@ export default function BlogColdEmailSubjectLines() {
                         </p>
                     </div>
 
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            Short answer: the best B2B cold email subject lines are short, specific, human, and low-pressure. AI can research the observation, but a human should approve the angle. A subject line that sounds automated usually hurts reply rate even if it lifts open rate.
+                        </p>
+                        <p className="mt-4 text-sm font-bold">
+                            Subject lines work best as part of an owned outbound system: clean data, warmed inboxes, verified leads, AI-assisted research, and CRM routing. See the <Link to="/cold-email-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">cold email agency service</Link> or the <Link to="/blog/ai-sales-prospecting" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI sales prospecting workflow</Link>.
+                        </p>
+                    </section>
+
                     {/* B2B Cold Email Swipe File (lead magnet) */}
                     <SwipeFilePreview />
 
@@ -262,7 +271,7 @@ export default function BlogColdEmailSubjectLines() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {[
                                 { slug: 'cold-email-system-20-appointments-month', title: 'How We Get 15-20 Qualified Appointments Per Month With Cold Email' },
-                                { slug: 'ai-vs-human-cold-email-copy', title: 'AI vs Human Cold Email Copy: Why Full Automation Kills Your Reply Rate' },
+                                { slug: 'ai-sales-prospecting', title: 'AI Sales Prospecting: How to Book More Meetings' },
                                 { slug: 'why-you-should-own-your-cold-email-infrastructure', title: 'Why You Should Own Your Cold Email Infrastructure' },
                             ].map((p) => (
                                 <Link

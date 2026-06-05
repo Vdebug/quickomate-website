@@ -43,6 +43,15 @@ export default function BlogFindEmails() {
                         </p>
                     </div>
 
+                    <section className="bg-accent/10 border-4 border-accent p-6">
+                        <p className="font-mono text-sm font-bold uppercase border-l-4 border-accent pl-4 text-primary">
+                            Short answer: verify contact data before sales outreach by sourcing fresh ICP-matched accounts, enriching emails through multiple providers, validating with at least one verifier, and suppressing risky or catch-all addresses before send. AI is useful for account research and fit scoring, but verification still needs deterministic checks.
+                        </p>
+                        <p className="mt-4 text-sm font-bold">
+                            This is the data layer behind our <Link to="/b2b-lead-generation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">B2B lead generation system</Link> and <Link to="/blog/ai-lead-qualification" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI lead qualification workflow</Link>.
+                        </p>
+                    </section>
+
                     {/* Section 1 */}
                     <section>
                         <h2 className="font-heading font-black text-2xl text-primary uppercase tracking-tight mb-4 border-l-4 border-accent pl-4">
@@ -223,7 +232,7 @@ export default function BlogFindEmails() {
                             {[
                                 { slug: 'cold-email-system-20-appointments-month', title: 'How We Get 15-20 Qualified Appointments Per Month With Cold Email' },
                                 { slug: 'ai-lead-generation-for-b2b-companies', title: 'AI Lead Generation for B2B Companies: A 2026 Playbook' },
-                                { slug: 'cold-email-subject-lines-that-get-b2b-replies', title: 'Cold Email Subject Lines That Get B2B Replies' },
+                                { slug: 'ai-lead-qualification', title: 'AI Lead Qualification: How to Score and Route Leads' },
                             ].map((p) => (
                                 <Link
                                     key={p.slug}
