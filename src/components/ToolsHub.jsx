@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Calculator, ClipboardCheck, Mail, BarChart3, FileText } from 'lucide-react';
+import { ArrowUpRight, Calculator, ClipboardCheck, Mail, BarChart3, FileText, Code2 } from 'lucide-react';
 
 const TOOLS = [
     {
@@ -85,6 +85,23 @@ export default function ToolsHub() {
                         );
                     })}
                 </div>
+
+                {/* Embed snippet — turns the ROI calculator into a passive backlink magnet */}
+                <section className="bg-surface border-4 border-primary p-6 sm:p-8 mt-10">
+                    <div className="flex items-center gap-3 mb-2">
+                        <Code2 className="text-accent" size={24} />
+                        <span className="font-mono text-xs font-black text-accent uppercase tracking-widest">Embed the ROI calculator</span>
+                    </div>
+                    <h2 className="font-heading font-black text-xl sm:text-2xl text-primary uppercase tracking-tight mb-2">
+                        Put it on your site, free
+                    </h2>
+                    <p className="font-sans text-sm text-primary/70 mb-4 max-w-2xl">
+                        Run a blog, newsletter, or resource page for B2B teams? Drop the live Sales Automation ROI calculator straight into any page. Copy the snippet, paste it into your HTML. Keep the credit line and it stays free.
+                    </p>
+                    <pre className="bg-primary text-surface text-[11px] sm:text-xs p-4 border-2 border-primary overflow-x-auto whitespace-pre-wrap break-words"><code>{`<iframe src="https://quickomate.com/embed/roi-calculator" width="100%" height="900" style="border:0;max-width:720px" title="Sales Automation ROI Calculator by Quickomate" loading="lazy"></iframe>
+<p>Free <a href="https://quickomate.com/blog/sales-automation-roi-calculator">Sales Automation ROI Calculator</a> by Quickomate</p>`}</code></pre>
+                    <p className="font-mono text-[10px] text-primary/50 uppercase tracking-widest mt-3">Free to embed with the credit link.</p>
+                </section>
 
                 {/* CTA */}
                 <section className="bg-primary border-4 border-primary p-8 md:p-12 mt-12 shadow-[8px_8px_0px_0px_rgba(230,59,46,1)]">

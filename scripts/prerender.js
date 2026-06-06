@@ -32,7 +32,8 @@ function getRoutes() {
   const slugs = [...blogPostsSrc.matchAll(/slug:\s*'([^']+)'/g)].map((m) => m[1]);
   const blogRoutes = slugs.map((s) => `/blog/${s}`);
   const serviceRoutes = ['/ai-automation-agency', '/cold-email-agency', '/b2b-lead-generation-agency'];
-  return ['/', '/blog', '/about', '/tools', '/privacy', ...serviceRoutes, ...blogRoutes];
+  // /embed/roi-calculator is a frameable widget (noindex, kept out of the sitemap).
+  return ['/', '/blog', '/about', '/tools', '/embed/roi-calculator', '/privacy', ...serviceRoutes, ...blogRoutes];
 }
 
 // --- 2. Find a Chrome/Chromium executable across environments ---

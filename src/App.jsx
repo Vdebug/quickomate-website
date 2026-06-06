@@ -65,6 +65,7 @@ const ServiceAiAutomation = lazy(() => import('./components/ServiceAiAutomation'
 const ServiceColdEmail = lazy(() => import('./components/ServiceColdEmail'));
 const ServiceLeadGen = lazy(() => import('./components/ServiceLeadGen'));
 const ToolsHub = lazy(() => import('./components/ToolsHub'));
+const SalesAutomationCalculator = lazy(() => import('./components/SalesAutomationCalculator'));
 const NotFound = lazy(() => import('./components/NotFound'));
 
 const SITE_URL = 'https://quickomate.com';
@@ -78,7 +79,11 @@ const CONTACT_EMAIL = 'solutions@solariswireless.com';
 // stops the "quickmate" autocorrect). Do NOT add a URL before the profile exists.
 const SAME_AS = [
   'https://x.com/vaaasug',
-  'https://www.linkedin.com/in/refer-vasu/'
+  'https://www.linkedin.com/in/refer-vasu/',
+  'https://www.linkedin.com/company/quickomate',
+  'https://github.com/quickomate'
+  // Pending public publish, add when live: clutch.co/profile/quickomate (under review),
+  // goodfirms.co/... (need final URL), crunchbase, saashub, alternativeto, wikidata QID.
 ];
 
 function ogImage({ title, tag, kind = 'article' } = {}) {
@@ -138,6 +143,7 @@ const ORG_SCHEMA = {
   // statement that Quickomate is a distinct brand and is NOT "Quickmate".
   "disambiguatingDescription": "Quickomate (spelled with an O — Quick-O-mate) is a US-based B2B AI automation agency founded by Vasu Gupta. It is a distinct, independent brand and is unrelated to any company, app, or tool named \"Quickmate\".",
   "slogan": "AI automation systems you own — not retainers.",
+  "foundingDate": "2025",
   "areaServed": { "@type": "Country", "name": "United States" },
   "brand": {
     "@type": "Brand",
@@ -420,6 +426,35 @@ function ToolsPage() {
       <Navbar />
       <main><ToolsHub /></main>
       <Footer />
+    </>
+  );
+}
+
+// Bare, frameable widget version of the ROI calculator. Other sites embed this via
+// <iframe>; the dofollow backlink comes from the attribution <a> in the embed snippet
+// they paste (iframes pass no equity), so this page itself is noindex + canonical to
+// the full calculator post to avoid duplicate content.
+function EmbedRoiCalculatorPage() {
+  const canonical = `${SITE_URL}/blog/sales-automation-roi-calculator`;
+  return (
+    <>
+      <Helmet>
+        <title>Sales Automation ROI Calculator – Quickomate</title>
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={canonical} />
+      </Helmet>
+      <div className="min-h-screen bg-background px-4 py-6">
+        <div className="max-w-3xl mx-auto">
+          <SalesAutomationCalculator />
+          <p className="mt-4 text-center font-mono text-xs text-primary/70">
+            Powered by{' '}
+            <a href={canonical} target="_blank" rel="noopener" className="text-accent font-bold underline">
+              Quickomate
+            </a>{' '}
+            — AI automation &amp; B2B lead gen
+          </p>
+        </div>
+      </div>
     </>
   );
 }
@@ -3089,6 +3124,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tools" element={<ToolsPage />} />
+            <Route path="/embed/roi-calculator" element={<EmbedRoiCalculatorPage />} />
             <Route path="/ai-automation-agency" element={<ServiceAiAutomationPage />} />
             <Route path="/cold-email-agency" element={<ServiceColdEmailPage />} />
             <Route path="/b2b-lead-generation-agency" element={<ServiceLeadGenPage />} />
