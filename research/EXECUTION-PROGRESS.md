@@ -72,3 +72,27 @@ Optional next: richer deliverable content (emails or on-site pages) + exit-inten
 - Resend account + `RESEND_API_KEY` (+ verify quickomate.com sending domain via DNS)
 - DB provisioning choice (Upstash Redis recommended) via Vercel marketplace
 - Push approval (commits are autonomous; pushes need OK)
+
+---
+
+## PHASE 4 — Brand-SERP domination + authority (2026-06-06)
+Trigger: brand "quickomate" autocorrects to "quickmate" on Google; money keywords stuck pp.4-9.
+Research: 6-agent web-grounded workflow + adversarial verify → research/RANKING-AUTHORITY-PLAN.html (+ ranking-research-raw.json).
+
+### Shipped on-site (commit 7bd0c15, deployed)
+- [x] Org schema: brand node, alternateName variants, areaServed US, slogan, disambiguatingDescription ("not Quickmate"); SAME_AS append-only.
+- [x] Homepage FAQPage: "Is Quickomate the same as Quickmate?" Q&A.
+- [x] AboutUs: visible crawlable "Quickomate (with an O), not Quickmate" line.
+- [x] Features/Services: crawlable internal links → /ai-automation-agency, /cold-email-agency, /b2b-lead-generation-agency (was footer-only).
+
+### Search-engine actions (browser, Vasu profile)
+- [x] Bing: resubmitted sitemap.xml (was stale @28 URLs, last crawl 6/4) → Processing; bulk-submitted all 48 URLs (quota 100/day).
+- [x] Google GSC: requested indexing — homepage (recrawl for new schema) + the 3 service money pages.
+- [!] CRITICAL FINDING: all 3 money pages (/ai-automation-agency, /cold-email-agency, /b2b-lead-generation-agency) were "Discovered – currently not indexed", Last crawl N/A — Google had NEVER crawled them. Now in priority crawl queue + now have inbound internal links.
+
+### Remaining
+- [ ] #8 on-site: /tools (or /resources) hub + WebApplication schema on ROI calculator + quiz + "embed this" attribution snippet (passive link magnet). CLAUDE can do.
+- [ ] #11 on-site: AI-Overview answer-capsule formatting on ~10 impression-earning posts (partly done via answer-first). CLAUDE can do.
+- [ ] #7: /resources/cold-email-benchmarks-2026 original-data page — BLOCKED on Vasu's real reply/deliverability numbers (do not fabricate).
+- [ ] OFF-SITE (Vasu): LinkedIn Company Page → send URL for SAME_AS; journalist stack (Source of Sources/Featured/Help-a-B2B-Writer) 3-5/wk; free citations (Crunchbase/SaaSHub/AlternativeTo/GitHub org/Indie Hackers); founder Reddit; "search Quickomate on Google" CTAs.
+- SKIP (verified): GBP/Bing Places/Apple (ineligible), paid AI dirs, llms.txt tuning, paid retargeting, Crunchbase-as-link.
