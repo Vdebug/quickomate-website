@@ -88,6 +88,9 @@ export default function AboutUs() {
                             <p className="font-sans text-sm text-textInverted/80 font-bold border-l-2 border-textInverted/20 pl-4 leading-relaxed">
                                 Vasu has helped generate significant revenue across SMB and enterprise clients using custom AI systems. His hands-on approach to content strategy, lead generation infrastructure, and sales automation means every system he builds is battle-tested in production, not just a demo.
                             </p>
+                            <p className="font-mono text-xs text-textInverted/55 border-l-2 border-accent/40 pl-4 leading-relaxed">
+                                Note: <span className="text-accent font-bold">Quickomate</span> is spelled with an&nbsp;O — Quick‑<span className="text-accent">O</span>‑mate. We're a US-based B2B AI automation agency and a distinct, independent brand — not affiliated with any company, app, or tool named &ldquo;Quickmate&rdquo;.
+                            </p>
                         </div>
 
                         <div className="flex gap-4 mt-4">

@@ -1,0 +1,1480 @@
+{
+  "research": [
+    {
+      "dimension": "Fix Google autocorrect \"quickomate\" → \"quickmate\" and establish Quickomate as a distinct brand entity",
+      "summary": "Google autocorrects \"quickomate\" to \"quickmate\" because its index has near-zero signal that \"quickomate\" is a real, intentional word that real people deliberately search for, while it has strong signal for the common-ish word \"quickmate\" and several live companies named Quickmate. The fix is two-pronged and mutually reinforcing: (1) build a Knowledge-Graph ENTITY so Google treats Quickomate as a named thing (Wikidata item + exact-match brand profiles on high-authority platforms + a consistent sameAs/Organization schema graph), and (2) manufacture genuine branded-search DEMAND — real humans typing \"quickomate\" and clicking quickomate.com — which is the single strongest signal that forces Google to stop the autocorrect. The on-site schema is already 80% there but is missing the brand-disambiguation pieces (Wikidata/Crunchbase sameAs targets, a `brand` node, `disambiguatingDescription`, and a distinct-from-Quickmate signal). Order below is impact-desc, effort-asc; the highest-leverage move is generating branded clicks, the easiest on-site move is expanding the sameAs/entity schema.",
+      "findings": [
+        {
+          "tactic": "Expand Organization/Person schema into a full brand-disambiguation entity graph",
+          "what": "The current ORG_SCHEMA in src/App.jsx (lines 118-153) only lists X + LinkedIn in sameAs and has no Wikidata, Crunchbase, brand node, or any signal that distinguishes Quickomate from the Quickmate companies. Rebuild it so every authoritative profile you claim (below) is a sameAs target, add a `brand` Brand node, `legalName`, `foundingDate`, `areaServed: United States`, `slogan`, and a `disambiguatingDescription` that explicitly states what Quickomate is (an AI automation agency). Add `alternateName` variants people actually type (e.g. \"Quickomate AI\", \"Quickomate Agency\") — NOT \"Quickmate\".",
+          "whyItWorks": "sameAs is the single most powerful entity-SEO directive: it tells Google/LLMs 'the entity on this page == this Wikidata/LinkedIn/Crunchbase URL', collapsing scattered references into one high-confidence entity. A dense, consistent sameAs chain is a primary input to Knowledge-Graph recognition, and a recognized entity stops being treated as a misspelling. disambiguatingDescription + a unique knowsAbout/areaServed fingerprint helps Google separate you from same-named Quickmate apps.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "In src/App.jsx, extend the SAME_AS array to include every profile URL claimed in the findings below (Wikidata, Crunchbase, LinkedIn company page, Clutch, Trustpilot, GitHub/About.me, YouTube) as they go live — keep it append-only so it always reflects reality.",
+            "Add to ORG_SCHEMA: \"legalName\", \"foundingDate\", \"areaServed\": {\"@type\":\"Country\",\"name\":\"United States\"}, \"slogan\", and \"disambiguatingDescription\": \"Quickomate is a US-based B2B AI automation agency founded by Vasu Gupta; it is unrelated to Quickmate.\"",
+            "Add a brand node: \"brand\": {\"@type\":\"Brand\",\"name\":\"Quickomate\",\"url\":SITE_URL}.",
+            "Add \"sameAs\" to PERSON_SCHEMA pointing at Vasu's Wikidata item (once created) + LinkedIn + X so the founder entity is graph-linked to the org (founder linkage already exists via @id — keep it).",
+            "Once a Wikidata QID exists, also add it via \"identifier\": {\"@type\":\"PropertyValue\",\"propertyID\":\"Wikidata\",\"value\":\"Qxxxxx\"} on the Organization.",
+            "Re-validate with Google Rich Results Test + Schema.org validator; confirm the graph still parses as one connected entity (no orphan @ids)."
+          ],
+          "sources": [
+            "https://www.digitalapplied.com/blog/entity-seo-knowledge-graph-optimization-guide-2026",
+            "https://www.growthvibe.com/ai-seo/entity-seo/",
+            "https://aubreyyung.com/organization-schema/"
+          ]
+        },
+        {
+          "tactic": "Manufacture genuine branded-search demand for \"quickomate\" (the decisive autocorrect-killer)",
+          "what": "The ONLY thing that durably defeats a spell-correction is volume: when enough real people search the exact string \"quickomate\" and click quickomate.com, Google's confidence flips from 'misspelling' to 'intentional word'. So make every off-site touchpoint drive a name-search instead of a link click: in LinkedIn posts/bio, podcast intros, lead-magnet footers, and email signatures, use a verbal CTA like \"search Quickomate on Google\" rather than just a hyperlink. Seed it from the founder's existing LinkedIn audience first.",
+          "whyItWorks": "Google's spell-correction is probabilistic: it auto-corrects only when the index shows essentially no demand for the typed string and heavy demand for the alternative. Ex-Googler guidance is explicit — 'if enough people search on something it gets corrected pretty quickly' (i.e. the correction goes away). Branded search is also now a top-tier ranking AND AI-recall signal in 2026 (~45% of searches are branded), so the same effort lifts both the SERP-ownership and overall authority problems. Clicks to quickomate.com after a 'quickomate' query are the cleanest possible disambiguation event.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Add a literal 'Search \"Quickomate\" on Google' line to LinkedIn bio, post CTAs, email signature, lead-magnet PDFs, and any podcast/newsletter blurb — wording that prompts a NAME search, not a click.",
+            "In LinkedIn content, repeat the exact token 'Quickomate' in plain text (not just as a logo/link) so re-shares carry the correctly-spelled string into Google's discovery surfaces.",
+            "Run a tiny LinkedIn/Meta retargeting layer (even $5-10/day) at people who already visited quickomate.com so they later name-search you — retargeting is a known branded-search driver.",
+            "Track progress weekly in Google Search Console: filter Queries for 'quickomate' and watch impressions/clicks climb and the position-1 result stabilize; also watch whether the 'Search instead for quickomate' banner disappears in an incognito SERP.",
+            "Use the new (March 2026) GSC Branded-queries filter to confirm the lift is branded demand, not generic discovery."
+          ],
+          "sources": [
+            "https://news.ycombinator.com/item?id=43380184",
+            "https://www.energise.co.nz/blog/google-thinks-brand-misspelled/",
+            "https://blog.mean.ceo/startup-news-master-google-search-console-branded-queries-2026/",
+            "https://searchengineland.com/social-content-drives-branded-search-467551"
+          ]
+        },
+        {
+          "tactic": "Create a Wikidata item for Quickomate (and one for Vasu Gupta)",
+          "what": "A free, self-serve structured-data record that is a PRIMARY input to Google's Knowledge Graph. You do NOT need a Wikipedia article. Wikidata accepts an item if it is a 'clearly identifiable entity described by at least one serious, publicly available reference' — for a tiny company that means citing your Crunchbase profile, business registration, and any independent press/podcast/directory listing. Create one item for the company and one for the founder, and link them (founder ↔ employer).",
+          "whyItWorks": "Google explicitly uses Wikidata as a Knowledge-Graph source; a clean Wikidata item with external references is the strongest single 'this is a real named entity' signal an unknown brand can plant for free, and it directly seeds eventual knowledge-panel eligibility. Because the item name is the exact string 'Quickomate' backed by structured statements, it gives Google a concrete reason to treat the token as a real, intentional entity rather than a typo of 'quickmate'.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium",
+          "steps": [
+            "FIRST create the external references the notability bar needs (do the Crunchbase + LinkedIn company page + one directory/press item BEFORE creating the Wikidata item, or it may be flagged for deletion as unverifiable).",
+            "At wikidata.org create item 'Quickomate' with: P31 (instance of) = business/enterprise; official website (P856) = https://quickomate.com; P571 founding date; P159 headquarters location; P452 industry; P112 founded-by = Vasu Gupta item; and add reference URLs (Crunchbase, registry) to the statements.",
+            "Create a second item for 'Vasu Gupta' (occupation: entrepreneur; employer/owner-of = Quickomate item; official LinkedIn/X via P2002/P6634) and cross-link the two.",
+            "Add the Quickomate domain and social profiles as identifier statements so the item's sameAs surface matches your on-site schema exactly.",
+            "Keep it neutral and factual (no marketing copy) to survive Wikidata's no-promotion review; add detail incrementally over weeks rather than all at once.",
+            "After it's live, add the QID to the on-site Organization schema (see finding 1) so the loop is closed both directions."
+          ],
+          "sources": [
+            "https://www.wikidata.org/wiki/Wikidata:Notability",
+            "https://www.mlforseo.com/knowledge-graph-strategy/wikidata-for-brands-notability-criteria-and-a-realistic-path/",
+            "https://wikiconsult.com/en/wikidata-effective-strategies-for-companies-institutions-and-communicators"
+          ]
+        },
+        {
+          "tactic": "Claim exact-match \"Quickomate\" profiles on high-authority platforms (NAP/name consistency)",
+          "what": "Establish a consistent citation footprint where the brand name is spelled EXACTLY 'Quickomate' (never 'Quickmate', never 'Quickomate AI Automation Agency LLC' on one and 'Quickomate' on another) across the platforms that feed entity confidence. For a US service business with no storefront the realistic, free, white-hat set is: LinkedIn Company Page, Crunchbase, Clutch, Trustpilot, Bing Places, Apple Business, Google Business Profile (service-area), GitHub org, Product directory listings (free tiers only), and a Reddit/Medium/About.me presence. Each must carry the identical name, URL, description, and logo.",
+          "whyItWorks": "AI knowledge graphs treat name variants as DIFFERENT entities — fragmentation lowers entity confidence and citation likelihood. A tight, identical 'Quickomate' citation set across DA-high profiles (Crunchbase, Clutch DA72, LinkedIn) does the opposite: it floods Google's index with consistent evidence that 'quickomate' is a real organization's exact name. The more independent authoritative surfaces spell it 'Quickomate', the weaker Google's case that you meant 'quickmate'.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Write ONE canonical NAP block (exact name 'Quickomate', URL https://quickomate.com, one-line description, US, contact) and copy-paste it identically into every profile.",
+            "Priority order (impact/effort): LinkedIn Company Page (you already have a personal presence — add the COMPANY page) → Crunchbase free org profile (Explore > Contribute Data > Organization) → Clutch agency profile → Trustpilot business profile → Bing Places (select 'No' to showing a full address for online/SAB) → Apple Business (formerly Apple Business Connect, merged April 2026) → GitHub organization 'quickomate' → About.me / Medium publication.",
+            "Use the SAME 512x512 logo file everywhere (matches the logo.png already referenced in schema) so image-matching reinforces one entity.",
+            "As each goes live, add its URL to the on-site sameAs array (finding 1) AND as a reference on the Wikidata item (finding 3).",
+            "Avoid paid G2/Product Hunt per constraints; Crunchbase/Clutch/Trustpilot/LinkedIn free tiers are sufficient for the entity signal."
+          ],
+          "sources": [
+            "https://www.digitalapplied.com/blog/entity-seo-knowledge-graph-optimization-guide-2026",
+            "https://support.crunchbase.com/hc/en-us/articles/115011823988-How-do-I-create-a-Crunchbase-profile",
+            "https://www.bingplaces.com/",
+            "https://businessconnect.apple.com/"
+          ]
+        },
+        {
+          "tactic": "Set up Google Business Profile as a service-area business (hidden address)",
+          "what": "Quickomate is a US service business with no public storefront — it is eligible for GBP as a Service-Area Business (SAB). You register a real physical address (Vasu's home/office) for verification, then HIDE it and define service areas by city/region (up to 20). This is the single most direct way to earn a Google-owned brand surface that shows the exact name 'Quickomate'.",
+          "whyItWorks": "A claimed, verified GBP is a Google-internal, Google-trusted record asserting that an organization named exactly 'Quickomate' exists. It's one of the strongest brand-entity signals you can give Google directly and a stepping stone toward a knowledge panel; it also gives the brand name a Google-property citation that competes against the Quickmate apps for the brand SERP. 2026 caveat: video verification is now default and Google reviews evidence of real operation, so it must be a genuine business.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium",
+          "steps": [
+            "Create the profile at business.google.com with name EXACTLY 'Quickomate' and category like 'Software company' / 'Marketing agency' / 'Business management consultant'.",
+            "Enter a real physical address for verification but mark it as not customer-facing so Google HIDES it (no PO boxes / virtual offices — those get rejected).",
+            "Define service areas (e.g. United States or target metros) — up to 20 areas.",
+            "Complete video verification (now the default in 2026): be ready to show evidence the business operates (workspace, branded materials, etc.).",
+            "Fill the profile fully (description, services, website, hours-by-appointment, logo) — completeness improves trust and ranking.",
+            "Add the GBP URL to the on-site sameAs array and as a Wikidata reference once verified."
+          ],
+          "sources": [
+            "https://support.google.com/business/answer/13763036?hl=en",
+            "https://support.google.com/business/answer/9157481?hl=en",
+            "https://www.envisiondesignsolutions.com/google-business-profile-verification-in-2026-why-its-a-headache-and-how-service-businesses-without-a-storefront-can-still-get-verified/"
+          ]
+        },
+        {
+          "tactic": "Earn independent editorial mentions that spell \"Quickomate\" in body text (digital PR via the HARO successors)",
+          "what": "HARO is gone (Connectively shut down Dec 2024); the live 2026 successors are Featured.com (relaunched HARO, free), Qwoted, Help a B2B Writer, and Peter Shankman's SOS (free, honor-system, high quality, low spam). Use them so journalists quote 'Vasu Gupta, founder of Quickomate' — putting the correctly-spelled brand token into editorial pages with descriptive/branded anchors.",
+          "whyItWorks": "Independent press mentions do double duty: (a) they satisfy Wikidata/entity notability ('serious, publicly available references'), and (b) the brand token 'Quickomate' appears in trusted third-party body text, which both teaches Google the entity and gets baked into LLM training snapshots — boosting AI citations. 2026 guidance shows descriptive/branded anchors from PR outperform exact-match link campaigns for AI visibility, and the brand-to-topic association ('Quickomate' ↔ 'AI automation') gets encoded across multiple sources.",
+          "effort": "High",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Create free expert-source accounts on Featured.com, Qwoted, Help a B2B Writer, and SOS (sourceofsources / Shankman's free service).",
+            "Answer queries in your lane (AI automation, B2B lead gen, cold email, sales automation) with a concise expert quote and require attribution as 'Vasu Gupta, founder of Quickomate'.",
+            "When the piece publishes, confirm the spelling is 'Quickomate' (correct any 'Quickmate' typos with the journalist) and log the URL.",
+            "Feed each published URL into the Wikidata references (finding 3) and, where it's a profile-style mention, the sameAs array (finding 1).",
+            "Repeat weekly; a handful of clean editorial mentions over a quarter is enough to cross the entity-notability threshold."
+          ],
+          "sources": [
+            "https://www.reporteroutreach.com/blog/haro-alternatives",
+            "https://mentionagent.ai/blog/haro-alternatives/",
+            "https://www.cision.com/connectively-has-been-discontinued/",
+            "https://seoengico.com/blog/anchor-text-2026-google-vs-ai-engines"
+          ]
+        },
+        {
+          "tactic": "Add an on-site 'Quickomate, not Quickmate' brand-clarification surface",
+          "what": "Add a short, crawlable block on the homepage and/or About page that explicitly disambiguates: a sentence like 'Quickomate (one word, with an O — not Quickmate) is a US B2B AI automation agency founded by Vasu Gupta.' plus an FAQ entry 'Is Quickomate the same as Quickmate?' answered 'No — Quickomate is an AI automation agency; it is unrelated to the apps/companies named Quickmate.' Mirror this in the FAQPage schema already present in App.jsx.",
+          "whyItWorks": "Google's spell-correction looks for in-index evidence that the typed string is a deliberate, distinct word. Explicit on-page text that pairs 'Quickomate' with 'not Quickmate' and a clear definition gives crawlers and LLMs an unambiguous disambiguation statement, reinforces the disambiguatingDescription in schema, and directly answers the autocorrect-driven user question. It costs nothing and compounds with every other signal.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "Add a one-line brand-definition sentence near the top of the homepage hero subcopy and the About page that spells out 'Quickomate (with an O) — a US B2B AI automation agency, not Quickmate'.",
+            "Add an FAQ Q&A 'Is Quickomate the same as Quickmate?' to the existing FAQPage schema in src/App.jsx and render the visible Q&A on-page so the text and structured data match.",
+            "Ensure the prerendered/static HTML contains this text (since it's a prerendered SPA) so crawlers see it without JS.",
+            "Keep the brand token 'Quickomate' in plain text in the <title>, H1, and first paragraph of key pages so the correctly-spelled string is dense in the index."
+          ],
+          "sources": [
+            "https://www.energise.co.nz/blog/google-thinks-brand-misspelled/",
+            "https://support.google.com/webmasters/thread/322859615/google-mistakes-my-brand-name-for-a-typo",
+            "https://blog.google/products/search/abcs-spelling-google-search/"
+          ]
+        }
+      ]
+    },
+    {
+      "dimension": "Legit backlink + domain-authority building for a small US B2B AI-automation agency in 2026 (excluding paid G2/Product Hunt)",
+      "summary": "Quickomate is at a true cold start: Authority Score 2, ~17 referring domains, and the few links it has are spam (n8nworkflows.xyz, byteshort.xyz). The realistic 12-month goal is not to match competitors (AS 43-47, 3,500-7,000 refdomains) but to land 30-60 genuine, topically-relevant referring domains — which at this size moves AS materially and, more importantly in 2026, builds the brand-entity signal that fixes the \"quickomate -> quickmate\" autocorrect problem (mentions now correlate more strongly with AI-search visibility than raw links). The highest-leverage plays are founder-executable and free: journalist-source platforms that replaced HARO (SOS, Featured, Qwoted, MentionMatch — SOS has the highest do-follow rate at 36%), one original \"2026 Cold Email Benchmark\" data-study page (Claude can build it from Vasu's existing real numbers; original-research pages attract ~200% more links), and converting the free tools Quickomate already hosts into embeddable link magnets. Order below is impact desc, effort asc — start with the data-study page and SOS/Featured because they compound.",
+      "findings": [
+        {
+          "tactic": "Journalist-source platforms that replaced HARO (SOS + Featured + Qwoted + MentionMatch)",
+          "what": "HARO/Connectively shut down Dec 9 2024. The replacements where a founder answers reporter queries to earn editorial links + named-author E-E-A-T: Source of Sources (SOS) by HARO's original founder Peter Shankman — 100% free, email-only, ~40k members, HIGHEST do-follow rate of any platform (36.26%); Featured.com (revived HARO brand, free tier = 3 submissions/mo, publishers like Fortune/Fast Company/Yahoo); Qwoted (free tier = 2 pitches/mo with a 2-hour delay); MentionMatch (formerly Help a B2B Writer, now owned by Superpath, free, curated to B2B topics only — the single best topical fit for Quickomate). Plus #JournoRequest on X (fastest response window, free). Quickomate's angles: AI in sales/cold-email deliverability, 'realistic 4% reply rate' contrarian data, AI-automation for SMBs.",
+          "whyItWorks": "Earns genuine editorial links on real publications (often do-follow) AND, crucially for the autocorrect problem, repeated 'Vasu Gupta, founder of Quickomate' attributions across news sites build the Quickomate entity in Google's knowledge graph + train AI engines to cite the brand — the mention is worth as much as the link in 2026.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free (SOS, MentionMatch, #JournoRequest fully free; Featured/Qwoted free tiers sufficient to start)",
+          "owner": "Both",
+          "risk": "Low — white-hat, editorially earned. Only risk is wasted time on off-topic pitches; SOS bans off-topic pitching, so stay relevant.",
+          "steps": [
+            "Vasu: subscribe to SOS at sourceofsources.com (no login, just the email digest, up to 3x/day) and create free expert profiles at featured.com/expert, qwoted.com, and mentionmatch (Superpath).",
+            "Set the company name + quickomate.com URL accurately in every profile (this is what becomes the link/citation).",
+            "Follow #JournoRequest on X and set a saved search for 'AI automation', 'cold email', 'AI sales', 'B2B lead gen'.",
+            "Block 20 min/day: pitch 1-3 queries with a tight, specific, data-backed quote (100-150 words, lead with the insight not the bio). Aim for consistency over 3 months — Featured explicitly rewards weekly submitters.",
+            "Claude can prep: a reusable 'expert bio + 3 signature data points' snippet file (the 4% reply-rate stat, 15-20% benchmarks, system-build numbers) so Vasu pastes a credible, consistent quote fast."
+          ],
+          "sources": [
+            "https://www.sourceofsources.com/",
+            "https://www.buzzstream.com/blog/journalist-request-platform-study/",
+            "https://www.visibilitystack.ai/academy/content-engineering/best-journalist-query-platforms",
+            "https://featured.com/expert",
+            "https://hey.press/best-journalist-request-platforms"
+          ]
+        },
+        {
+          "tactic": "Original-data 'link magnet' page — 2026 Cold Email / AI-Automation Benchmark Report",
+          "what": "A single, citable statistics page built from Quickomate's REAL numbers (the ~4% reply rate, 15-20% benchmarks, deliverability/open data already used across the 27 cold-email posts) plus any anonymized client outcomes. Published as a standalone /resources/cold-email-benchmarks-2026 page with one headline stat per section, a clear methodology note, downloadable chart images, and an 'embed this chart' snippet. This is the highest-ROI asset Claude can build on-site right now.",
+          "whyItWorks": "Original research/stats pages attract ~200% more links on average and are the #1 passive link magnet — writers and journalists cite a number and link the source. HubSpot's ROI calculator earned 300+ referring domains this way. It also feeds AI engines a quotable Quickomate-attributed statistic, reinforcing the brand entity. Each future journalist pitch (tactic 1) can point back to this page.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free (Claude builds it from existing data)",
+          "owner": "Both",
+          "risk": "Low — must use only real/honest numbers (never fabricate; do-not-fabricate rule from the E-E-A-T audit). Risk is purely reputational if stats aren't defensible, so cite sample size + methodology.",
+          "steps": [
+            "Claude (on-site): build a new prerendered route /resources/cold-email-benchmarks-2026 with Dataset + Article JSON-LD, answer-first stat callouts, pure-CSS/SVG charts (no CDN, matching the existing stack), a 'Methodology' section, and an 'Embed this stat' copy box with a do-follow attribution link back.",
+            "Claude: add it to blogPosts.js source-of-truth path, App.jsx route, prerender getRoutes(), sitemap, and internal-link it from the cold-email hub + the 3 service pages.",
+            "Vasu: supply the real underlying numbers + sample size so the methodology is credible.",
+            "Vasu (off-site): once live, pitch it via SOS/Featured/Qwoted, to beehiiv B2B-sales newsletters, and in r/Emailmarketing / r/sales as a 'we ran the numbers' post.",
+            "Refresh the headline stats every ~6-12 months (matches the freshness work already in the repo) and update dateModified honestly."
+          ],
+          "sources": [
+            "https://presswhizz.com/blog/link-building-statistics/",
+            "https://www.leadmagnetexamples.com/",
+            "https://linkbuildingjournal.co.uk/link-building-statistics-2026/",
+            "https://www.simpletiger.com/guide/seo-roi"
+          ]
+        },
+        {
+          "tactic": "Turn the existing free tools (ROI calculator, readiness quiz) into embeddable link magnets",
+          "what": "Quickomate already hosts a ROI calculator + readiness quiz — but free tools only earn links if they're (a) discoverable, (b) embeddable, and (c) promoted. Add an 'Embed this calculator on your site' iframe/snippet that carries a do-follow 'Powered by Quickomate' link, list each tool on Lead Magnet Examples (leadmagnetexamples.com) and free-tool aggregators, and add internal linkable-asset hub.",
+          "whyItWorks": "Free interactive tools are the proven passive link source: SurferSEO's free Keyword Surfer got 2,200+ referring domains with zero paid promotion; Icons8's Lunacy got 1,400+; the embed-link mechanism is exactly how they scale — every site that embeds the tool gives a do-follow link. Quickomate already paid the build cost; this is harvesting links from an asset that exists.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — keep the embed badge tasteful and the link non-spammy (one contextual do-follow per embed) to stay white-hat.",
+          "steps": [
+            "Claude (on-site): add an 'Embed' button to the ROI calculator + quiz that outputs a copy-paste iframe/script snippet including a single do-follow attribution link (rel without nofollow) back to the tool page.",
+            "Claude: give each tool its own clean canonical URL + SoftwareApplication/WebApplication JSON-LD and a short 'how it works' answer-first intro so it ranks for '[topic] calculator' queries.",
+            "Claude: build a /tools or /resources hub page linking all free tools + the benchmark page (a 'linkable assets' index crawlers and curators can find).",
+            "Vasu (off-site): submit each tool to leadmagnetexamples.com and relevant free-tool roundups; mention them in communities when genuinely useful.",
+            "Vasu: pitch the calculator to resource pages (see tactic 7) as 'a free tool worth adding'."
+          ],
+          "sources": [
+            "https://www.leadmagnetexamples.com/",
+            "https://backlinko.com/best-free-seo-tools",
+            "https://collaborator.pro/blog/free-backlinks"
+          ]
+        },
+        {
+          "tactic": "Testimonials-for-backlinks on the SaaS tools Quickomate actually uses",
+          "what": "Quickomate uses a known stack (n8n, Make, Clay/Apify for data, Smartlead/Instantly for cold email, cal.com for booking, a CRM). Offer each vendor a genuine written/video testimonial; most display testimonials on their homepage or /customers page WITH a do-follow link to the reviewer's site. ~10 minutes per vendor, costs nothing.",
+          "whyItWorks": "Testimonial links sit on the vendor's homepage or customers page — usually the highest-authority page on a high-DR domain — and are rarely nofollowed. It's also topically perfect (an AI-automation agency endorsing automation tools), which is exactly the relevance signal Google + AI engines reward. Pure white-hat: you're giving real value (social proof) in exchange.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — must be a real testimonial for a tool actually used (authenticity); no risk otherwise.",
+          "steps": [
+            "List every paid SaaS Quickomate genuinely uses (n8n, Make, Clay, Apify, Smartlead/Instantly, cal.com, CRM, etc.).",
+            "For each, find their testimonials/customer-stories page or email their marketing team offering a short quote or 60-sec video as 'Vasu Gupta, founder, Quickomate (quickomate.com)'.",
+            "Provide a clean headshot + one-line title + the URL so they publish it with attribution.",
+            "After it goes live, verify the link is do-follow (view source / free checker); if nofollow, still keep it — it's a brand mention/entity signal.",
+            "Prioritize the highest-DR vendors first (cal.com, n8n, Make)."
+          ],
+          "sources": [
+            "https://saynine.ai/blog/saas-link-building/",
+            "https://microsaashq.com/insights/top-50-backlinks-for-saas-founders-the-complete-link-building-playbook-2026",
+            "https://seoprofy.com/blog/saas-link-building/"
+          ]
+        },
+        {
+          "tactic": "Integration / creator directory pages (n8n creators, Make, Apify Store, Clay)",
+          "what": "Publish a genuinely useful public workflow/template under Quickomate's name on the automation platforms' creator hubs. n8n has a Creators program with a public profile page (n8n.io/creators/[username]) that links your site; n8n.io is the single highest-authority realistic target in this niche (AS ~65) and competitor relevanceai.com already earns links there. Same pattern on Make's template gallery and the Apify Store (an Apify actor gets its own indexed store page + creator profile). These double as lead-gen.",
+          "whyItWorks": "Creator/template pages give a profile/attribution link from a very high-authority, perfectly on-topic domain, and the template itself ranks for '[task] n8n template' queries — durable, do-follow-leaning, and topically ideal for an AI-automation agency. It's also entity-reinforcing: Quickomate appears as a builder, not just a marketer.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — must publish a real, working template (low effort given Quickomate builds these daily).",
+          "steps": [
+            "Vasu: register as an n8n creator (n8n.io/creators), publish 1-3 real workflow templates (e.g. 'cold-email enrichment + send via Clay/Smartlead', 'lead-scoring agent') with the Quickomate URL in the profile + template description.",
+            "Vasu: publish the same/adapted templates to Make's template gallery and ship one small free Apify actor (e.g. a niche scraper Quickomate already uses) to get an indexed store page + creator profile link.",
+            "Claude can prep: a clean README/description block + a one-paragraph 'built by Quickomate' bio with the right anchor, reused across all platforms.",
+            "Internal-link the published templates from a 'See our public automations' section on the site to pass relevance back.",
+            "Track which profiles render a do-follow link vs nofollow and prioritize accordingly."
+          ],
+          "sources": [
+            "https://n8n.io/creators/",
+            "https://docs.n8n.io/workflows/templates/",
+            "https://apifyforge.com/blog/apify-store-seo-get-your-actor-discovered"
+          ]
+        },
+        {
+          "tactic": "Unlinked brand-mention + link reclamation (cheap, high-conversion)",
+          "what": "Find places that already mention 'Quickomate' or 'Vasu Gupta' in text without linking, and ask them to add the link. As coverage from tactics 1/6/9 grows, this becomes a recurring harvest. Free workflow: Google Alerts for 'Quickomate' + 'Vasu Gupta', plus a monthly manual search of \"Quickomate\" -site:quickomate.com to surface external mentions.",
+          "whyItWorks": "Warm reclamation outreach converts at 15-40% vs 3-8% for cold link requests — you're asking someone to enhance content they already wrote, not create anything. And every unlinked mention converted is both a link AND a strengthened brand-entity signal (directly relevant to the autocorrect problem).",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Set Google Alerts for \"Quickomate\", \"Vasu Gupta Quickomate\", and any signature stat from the benchmark page.",
+            "Once a month run \"Quickomate\" -site:quickomate.com in Google to find unlinked mentions; do the same for podcast show-notes and roundups.",
+            "Send a short, warm email: 'Thanks for mentioning Quickomate — would you mind linking it to quickomate.com so readers can find us?'",
+            "Batch outreach weekly; track conversions in a simple sheet.",
+            "Re-run after each podcast/journalist win since those generate fresh unlinked mentions."
+          ],
+          "sources": [
+            "https://www.reporteroutreach.com/blog/unlinked-brand-mentions",
+            "https://www.buzzstream.com/blog/unlinked-mentions/",
+            "https://aboveapex.com/unlinked-mentions/"
+          ]
+        },
+        {
+          "tactic": "Resource-page + broken-link building toward the benchmark page & free tools",
+          "what": "Find curated 'resources / tools / helpful links' pages in B2B sales, cold email, and AI-automation and pitch Quickomate's free calculator or benchmark page as an addition. The broken-link variant: find dead links on those resource pages (tools that died) and offer Quickomate's asset as the replacement — a maintenance favor that converts better than a cold ask.",
+          "whyItWorks": "Resource pages exist specifically to link out, so they're naturally receptive; broken-link outreach gives the curator a reason to reply (you're fixing their page). Best suited to B2B with quality assets — which Quickomate now has once the benchmark page + embeddable tools exist. Links are typically do-follow editorial.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free (manual) — uses free search operators; no paid tool required",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — value-first outreach; only cost is time (15-20 hrs per campaign is typical).",
+          "steps": [
+            "Search operators: 'cold email tools' + (intitle:resources OR inurl:resources), 'B2B sales resources', 'AI automation tools list', 'marketing automation resources'.",
+            "Vet for relevance + that the page actually links externally and is maintained.",
+            "For broken-link angle, scan target pages for dead links (free browser link-checker) and note where Quickomate's tool/benchmark fits as a replacement.",
+            "Email the curator: lead with the broken link you found (favor), then suggest the Quickomate free calculator/benchmark as a relevant addition or replacement.",
+            "Do this AFTER tactic 2 and 3 exist so there's a genuine asset to pitch."
+          ],
+          "sources": [
+            "https://www.w3era.com/blog/seo/resource-page-link-building-guide/",
+            "https://www.vazoola.com/resources/broken-link-building",
+            "https://outreachmonks.com/broken-link-building/"
+          ]
+        },
+        {
+          "tactic": "Podcast guesting as the founder (B2B GTM / sales / automation shows)",
+          "what": "Get Vasu booked on B2B sales, GTM, and automation podcasts. Booking channels in 2026: PodMatch and MatchMaker.fm (guest-matching marketplaces), Talks.co (filters shows actively seeking guests), Listen Notes/Rephonic to find targets, plus direct LinkedIn/email pitches. Episodes almost always include a do-follow link in the show notes + a named-author citation.",
+          "whyItWorks": "Each episode yields a show-notes backlink AND audio/transcript that AI engines increasingly index, plus the strongest possible 'Experience' E-E-A-T signal (a real founder talking shop). Repeated 'Vasu Gupta, founder of Quickomate' across shows is direct fuel for the brand-entity / autocorrect fix.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free (PodMatch/MatchMaker have free tiers; direct pitching is free)",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Vasu: build a one-page guest pitch — 2-3 signature topics (e.g. 'why most cold email fails: the real 4% reply rate', 'AI agents that actually ship for SMBs'), a bio, and 2 episode-idea angles.",
+            "Create profiles on PodMatch + MatchMaker.fm; use Listen Notes/Rephonic to list 20-30 relevant B2B sales/automation shows.",
+            "Pitch 100-150 word emails focused on the audience (not the guest), one or two concrete takeaways; prioritize fit over show size.",
+            "Always confirm a do-follow show-notes link to quickomate.com + a link to the benchmark page as the 'resource I mentioned'.",
+            "Repurpose each episode into a LinkedIn post + an on-site mention to compound the entity signal; reclaim any unlinked show-note mentions (tactic 6).",
+            "Claude can prep: a media/press-kit page on-site (headshot, bio, topics, logo, stats) so hosts can grab assets — this also earns its own links."
+          ],
+          "sources": [
+            "https://rephonic.com/blog/how-to-get-interviewed-on-podcasts/",
+            "https://hollymack.com/how-to-get-booked-on-podcasts-the-playbook-for-2026/",
+            "https://talks.co/p/podcast-guesting/"
+          ]
+        },
+        {
+          "tactic": "Founder-led guest columns + contributor posts on B2B/automation publications",
+          "what": "Write practitioner guest posts for B2B SaaS / sales / marketing-automation blogs that openly accept contributors in 2026 and give author-bio + in-content links: DataDab, IdeasPlusBusiness, SeeResponse, GrowMeOrganic, Bay Leaf Digital (gives 2 in-copy links + 1 bio link), Waseem Bashir's SaaS blog, plus adjacent-tool blogs (Smartlead, Instantly, Clay community, Lemlist). Pitch the 'realistic 4% reply rate' / 'AI automation that actually ships' angle.",
+          "whyItWorks": "Editorial guest posts on topically-aligned B2B sites give contextual do-follow links + reach an overlapping ICP, and digital PR / contributor content is rated the #1 most effective link tactic by ~49% of SEOs. The author byline also extends Vasu's E-E-A-T footprint across the web.",
+          "effort": "High",
+          "impact": "Medium",
+          "cost": "Free (these publications don't pay but don't charge; avoid any 'sponsored post fee' sites — that's paid-link risk)",
+          "owner": "Both",
+          "risk": "Medium — must be genuinely original, experience-driven writing. Several sites (e.g. GrowMeOrganic) blacklist AI-written submissions, so Vasu must add real first-hand specifics; avoid low-quality 'write for us' farms that look like link schemes.",
+          "steps": [
+            "Vasu: shortlist 8-10 publications from the verified list (DataDab, IdeasPlusBusiness, SeeResponse, GrowMeOrganic, Bay Leaf Digital, Waseem Bashir, SeeResponse) + 2-3 adjacent-tool blogs.",
+            "Pitch a unique angle per site backed by Quickomate's real data (not a generic 'AI automation' rehash).",
+            "Claude can prep: outlines + first drafts seeded with Quickomate's real numbers and internal-link targets (the benchmark page, service pages) — Vasu then adds first-hand voice so it passes the 'no AI content' filters and reads as genuine experience.",
+            "Insert one contextual do-follow link to a relevant deep page (not always the homepage) + the bio link.",
+            "Reclaim/repurpose: cross-post a teaser on LinkedIn and convert any resulting unlinked mentions (tactic 6)."
+          ],
+          "sources": [
+            "https://www.datadab.com/blog/write-for-us/",
+            "https://www.bayleafdigital.com/write-for-us/",
+            "https://linkbuildingjournal.co.uk/link-building-statistics-2026/"
+          ]
+        },
+        {
+          "tactic": "Foundational, competitor-validated directories + startup listings (non-G2, non-Product-Hunt)",
+          "what": "Submit Quickomate to the high-DR, free directories that competitors already use and that feed both Google and AI 'best agency' answers — excluding the rejected paid G2/Product Hunt. Best fits: Crunchbase (DR ~91, free company profile, do-follow), Clutch + The Manifest + DesignRum (agency directories, also feed AI answer engines for 'best AI automation agency'), SaaSHub (AS 37), Indie Hackers, BetaList, F6S, AlternativeTo, plus the AI-tool directories competitors validate (topai.tools AS 39, toolify.ai AS 41, aitoolnet.com). StarterStory for a founder-story editorial link.",
+          "whyItWorks": "These are the single most repeatable get-able links in this category and several are do-follow from DR 60-91 domains. More importantly, agency directories (Clutch/Manifest) + Crunchbase are exactly the structured sources AI answer engines pull from for 'best AI automation agency', and a complete Crunchbase entity directly strengthens the Quickomate knowledge-graph entity that fixes the autocorrect issue.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free (all listed have free tiers; Clutch profile is free — only paid reviews are optional)",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — these are legitimate directories, not link farms. Avoid the spammy auto-generated directories that already polluted the profile (n8nworkflows.xyz etc.); choose authority + topical fit only.",
+          "steps": [
+            "Vasu: create complete, consistent (same NAP + description + logo) profiles on Crunchbase, Clutch, The Manifest, SaaSHub, Indie Hackers, F6S, BetaList, AlternativeTo.",
+            "Submit the productized cold-email/lead-gen offer to topai.tools, toolify.ai, aitoolnet.com as a 'service/tool' (lean agency/B2B-service framing since Quickomate isn't self-serve).",
+            "Pitch StarterStory a founder/case-study story (revenue + system build) for a durable editorial link.",
+            "Keep the description identical across all (entity consistency) and include the exact 'Quickomate' spelling prominently to train the brand term.",
+            "Claude can prep: a canonical company boilerplate (name, one-liner, description, founder bio, logo URLs, sameAs profile list pulled from the existing JSON-LD) so every submission is consistent.",
+            "Verify do-follow status post-listing; deprioritize any that are pure nofollow link farms."
+          ],
+          "sources": [
+            "https://www.foundrlist.com/blogs/complete-startup-directory-list-2026",
+            "https://www.rabrain.com/blogs/backlinks",
+            "https://microsaashq.com/insights/top-50-backlinks-for-saas-founders-the-complete-link-building-playbook-2026"
+          ]
+        },
+        {
+          "tactic": "On-site media / press kit page (the asset that makes every off-site tactic easier)",
+          "what": "A dedicated /press or /media page Claude can build: founder headshot (downloadable), short + long bio, brand boilerplate, logo pack, the signature stats from the benchmark report, 'topics Vasu speaks on', and contact. Pairs with the podcast + journalist tactics.",
+          "whyItWorks": "Journalists, podcast hosts, and roundup curators look for a press/media page before citing or linking you; having one increases conversion of every outreach tactic above and standardizes the 'Quickomate' spelling + entity facts that Google and AI engines ingest. It also earns its own links from anyone covering the brand.",
+          "effort": "Low",
+          "impact": "Low",
+          "cost": "Free (Claude builds it)",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "Claude (on-site): build a prerendered /press route with AboutPage/Person/Organization JSON-LD reusing the existing #vasu-gupta @id entity, the sameAs profile list, downloadable logo + headshot, and the signature benchmark stats.",
+            "Include a one-paragraph + one-line boilerplate with the exact 'Quickomate' brand spelling and the cal.com booking CTA.",
+            "Link it from the footer + the benchmark page + the about page; add it to sitemap + prerender getRoutes().",
+            "Vasu: reference the press-kit URL in every podcast/journalist pitch so hosts grab assets themselves."
+          ],
+          "sources": [
+            "https://www.fame.so/post/how-to-get-booked-on-podcasts-your-actionable-b2b-guide",
+            "https://www.reporteroutreach.com/blog/unlinked-brand-mentions"
+          ]
+        }
+      ]
+    },
+    {
+      "dimension": "Getting Quickomate cited/recommended by AI search (ChatGPT, Perplexity, Google AI Overviews/AI Mode, Claude, Gemini) in 2026",
+      "summary": "AI citations are won OFF your own site: across 2026 studies Reddit, YouTube, Wikipedia/Wikidata and \"best-of\" listicles dominate what LLMs synthesize from (Reddit ~40% of LLM citations in one study / 24% of Perplexity citations in Jan 2026; YouTube now appears in ~16% of LLM answers vs Reddit's 10%; listicle + how-to formats make up 40%+ of cited content). The single biggest near-term unlock for Quickomate is fixing Bing — ChatGPT Search runs on Bing's index and 87% of SearchGPT citations matched Bing's top organic results, yet Quickomate has only ~3 Bing-indexed pages and 0 AI citations. On-site, answer-first 40-60 word passages under H2/H3s plus FAQPage schema are the proven extraction pattern (pages in AI Overviews are 3.2x more likely to have FAQ schema). Be honest about llms.txt: as of Q1 2026 no major AI search crawler uses it (Google's Mueller: \"no AI system currently uses llms.txt\"; SE Ranking found zero correlation across ~300k domains) — keep the file but spend zero further effort on it. The quickomate/quickmate confusion is an entity problem LLMs share with Google; the fix is a Wikidata entry + sameAs graph + consistent \"Quickomate (not Quickmate)\" disambiguation across third-party profiles.",
+      "findings": [
+        {
+          "tactic": "Fix the Bing index (the ChatGPT pipeline) — get all 48 pages indexed in Bing Webmaster Tools",
+          "what": "Quickomate has only ~3 pages in Bing and 0 AI citations. ChatGPT Search retrieves from Bing's index, and a Seer study found 87% of SearchGPT citations matched Bing's top organic results. Every page NOT in Bing is invisible to ChatGPT. The site already has IndexNow wired and a sitemap — the gap is Bing-side: verify the property, submit sitemap.xml in Bing WMT, and bulk-submit all 48 URLs via the URL Submission tool (10,000/day quota).",
+          "whyItWorks": "ChatGPT Search + Copilot read Bing's index, not Google's. Going from 3 to 48 indexed pages multiplies Quickomate's ChatGPT/Copilot citation surface ~16x. This is the highest-leverage move because it's a one-time technical unlock that gates the entire ChatGPT channel — no content or links required, just indexation.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Sign in at bing.com/webmasters; verify quickomate.com (import from Google Search Console in one click is fastest, or use the existing IndexNow key txt file already at the domain root).",
+            "Configure My Site -> Sitemaps -> submit https://quickomate.com/sitemap.xml and confirm Bing fetched it.",
+            "Open URL Inspection on a few key pages (homepage, /ai-automation-agency, /blog/best-ai-automation-tools-2026); if 'Discovered but not indexed', click Request Indexing.",
+            "Use Bing's URL Submission tool to bulk-submit all 48 URLs from the sitemap (daily quota is up to 10,000).",
+            "Check robots.txt isn't blocking Bingbot (it isn't — current robots.txt is Allow: / for all) and that no page emits noindex.",
+            "Re-check the Index Explorer / Sitemap Coverage report after 7-14 days; resubmit any pages Bing crawled-but-skipped, and improve thin pages (Bing's E-E-A-T filter drops low-depth content even after crawling)."
+          ],
+          "sources": [
+            "https://searchengineland.com/chatgpt-search-microsoft-bing-seo-448019",
+            "https://docdigitalsem.com/bing-indexing-for-ai-search/",
+            "https://www.allaboutai.com/ai-seo/bing-deindexing/",
+            "https://jetfuel.agency/bing-webmaster-tools-setup-2026/"
+          ]
+        },
+        {
+          "tactic": "Get Quickomate added to existing 'best AI automation agency' listicles via author outreach",
+          "what": "Listicle + how-to content makes up 40%+ of all LLM-cited content, and LLMs synthesize agency recommendations directly from posts like 'The 10 Best AI Automation Agencies in 2026' (codeless.co, goodish.agency, uvik.net, nextautomation.us, ownai.net, esparkinfo.com, etc.). Quickomate is on none of them. Email the authors of already-ranking lists and ask to be added, offering ready-to-paste copy + a value exchange (newsletter/LinkedIn share, or a unique data point only you have).",
+          "whyItWorks": "LLMs don't independently 'discover' an agency — they reassemble whoever appears across the curated 'best-of' lists they were trained on or retrieve. Each list you're added to is a vote that compounds; appearing on 5-8 of these is what flips Quickomate from absent to 'commonly mentioned alongside X, Y, Z' in a ChatGPT/Perplexity answer. Adding to an existing ranking page is far easier than ranking your own.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Build a list: search 'best AI automation agency 2026', 'top AI automation agencies', 'best cold email agency 2026', 'best B2B lead gen agency' and collect the top 15-20 article URLs + author/editor contact.",
+            "For each, send a short personalized email: compliment the specific list, note Quickomate fits (US B2B, client-owned systems, no retainers — a genuinely differentiated angle), and PASTE a 2-3 sentence ready-to-insert blurb + logo URL so the edit is one copy-paste.",
+            "Lead with a value offer that doesn't risk a penalty: 'I'll share your roundup to my LinkedIn audience' or 'happy to give you a unique stat from our client data (e.g. realistic 4% cold-email reply benchmark) you can cite.'",
+            "Prioritize lists that are recently updated and that ALREADY rank (those are the ones LLMs retrieve); skip dead/2023 posts.",
+            "Track replies and re-list inclusions in a sheet; follow up once after 5-7 days.",
+            "Where a list is gated behind a paid directory you've rejected (G2/DesignRush paid), skip it — focus on editorially-controlled blog listicles where a free email gets you added."
+          ],
+          "sources": [
+            "https://www.soar.sh/blog/how-reddit-became-the-biggest-llm-citation-source",
+            "https://ahrefs.com/blog/listicle-outreach/",
+            "https://www.position.digital/blog/listicle-outreach-guide/",
+            "https://reply.io/email-templates/listicle-inclusion/"
+          ]
+        },
+        {
+          "tactic": "Create a Wikidata entity (no notability bar) + wire sameAs to fix the quickomate/quickmate LLM confusion",
+          "what": "Wikipedia requires notability Quickomate doesn't yet have, but Wikidata does NOT — any real business with a website and references can self-create an item. LLMs and Google use Wikidata/knowledge-graph anchors to disambiguate entities. A Quickomate Wikidata item (instance of: business; founder: Vasu Gupta; industry; official site; official social URLs) gives every AI a verified anchor that separates 'Quickomate, the US AI automation agency' from the unrelated 'Quickmate' apps/companies.",
+          "whyItWorks": "The quickomate->quickmate problem is entity ambiguity, and LLMs hit the same wall Google does. A Wikidata node with explicit attributes + reciprocal sameAs links (Wikidata <-> site <-> LinkedIn <-> Crunchbase) tells AI systems these properties all describe ONE entity, which both raises citation confidence and stops mis-merging Quickomate with the Quickmate cluster. sameAs pointing to authoritative external IDs is the documented disambiguation signal.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low",
+          "steps": [
+            "Vasu: create a Wikidata account; search to confirm no Quickomate item exists; create a new item: label 'Quickomate', description 'AI automation agency for B2B companies', statements: instance of = business/company, country = United States, official website = quickomate.com, founded by = (create a Vasu Gupta item too), industry = (AI / business software).",
+            "Add a reference to each claim (the site, LinkedIn, any press/podcast/Crunchbase listing) — claims with references stick.",
+            "Vasu: create a free Crunchbase company profile + claim/standardize the LinkedIn Company page; these become additional sameAs anchors and reference sources.",
+            "Claude (on-site): once those URLs exist, add them to the SAME_AS array in src/App.jsx (line 113) so the Organization/Person JSON-LD reciprocally links to Wikidata, Crunchbase, YouTube, LinkedIn — closing the sameAs loop in both directions.",
+            "Claude (on-site): add an alternateName/disambiguation note in schema and a one-line on-page clarifier ('Quickomate — not to be confused with Quickmate') so crawlers see the explicit distinction.",
+            "Vasu: keep the exact same name, founder, and one-sentence description identical across Wikidata, Crunchbase, LinkedIn, YouTube 'About', and Reddit profile — consistency is what merges them into one entity."
+          ],
+          "sources": [
+            "https://www.mlforseo.com/knowledge-graph-strategy/wikidata-for-brands-notability-criteria-and-a-realistic-path/",
+            "https://blog.reputationx.com/wikidata",
+            "https://searchatlas.com/blog/entity-resolution-fix-brand-hallucinations-llms-2026/",
+            "https://govisible.ai/blog/how-brands-can-avoid-ai-confusion-and-misrepresentation/"
+          ]
+        },
+        {
+          "tactic": "Answer real Reddit threads as the founder in niche B2B subreddits (the #1 / top-tier LLM citation source)",
+          "what": "Reddit is the most-cited LLM source in multiple 2026 studies (≈40% of LLM citations in one; 24% of all Perplexity citations in Jan 2026; ChatGPT cites Reddit in >5% of responses). The play is NOT spam: Vasu personally answers genuine questions in 50k-300k-subscriber subs (r/msp, r/Entrepreneur, r/sales, r/coldemail, r/automation, r/SaaS, r/smallbusiness) with plain, structured, genuinely useful answers — occasionally and contextually naming Quickomate's approach.",
+          "whyItWorks": "LLM retrieval rewards exactly what good Reddit answers have: recency, entity-specific language, and community validation (upvotes). When ChatGPT/Perplexity answer 'who builds client-owned cold email systems' or 'best AI automation for small B2B', they pull from these threads. Founder-run accounts win because only the actual expert can survive the 6th follow-up; agencies/ghostwriters get flagged and removed.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium",
+          "steps": [
+            "Vasu uses his real account; build karma first by answering 10-15 questions with zero self-promotion so the account isn't seen as a marketer.",
+            "Target niche subs (50k-300k subs: friendlier mods, faster citation feedback) over giant ones; set up a saved search / alerts for questions like 'AI automation agency worth it', 'cold email infrastructure how many domains', 'ROI of marketing automation'.",
+            "Answer answer-first: lead with the direct useful answer in clean structure (bullets/steps), include concrete numbers (e.g. realistic 4% reply rate, 15-20 appointments/mo), THEN — only when relevant — mention 'we build these as client-owned systems at Quickomate' without a link drop.",
+            "Never post a press-release tone, never drop a bare link and leave, never astroturf with fake accounts (penalty + ban risk).",
+            "Mention the exact brand string 'Quickomate' (entity-specific language) so the citation associates the thread with the brand.",
+            "Measure: run a fixed list of 15-20 target queries weekly in ChatGPT/Perplexity and log which threads correlate with citation spikes; double down on the subs that convert."
+          ],
+          "sources": [
+            "https://medium.com/@tentenco/reddit-geo-playbook-how-to-get-cited-by-chatgpt-and-perplexity-in-2026-75607d1d2b01",
+            "https://authoritytech.io/blog/reddit-perplexity-geo-strategy-2026",
+            "https://www.cmswire.com/digital-marketing/reddits-rise-in-ai-citations-what-marketers-must-know-about-aeo-strategy/",
+            "https://saasintelligence.substack.com/p/reddits-ai-citation-share-just-grew"
+          ]
+        },
+        {
+          "tactic": "Restructure blog/service pages with answer-first 40-60 word passages under every H2/H3 + keep FAQPage schema",
+          "what": "Across AI engines, the cited unit is a short, self-contained passage: a 40-60 word direct answer placed immediately after an H2/H3, plus bulleted lists, tables and FAQs. Pages in Google AI Overviews are 3.2x more likely to have FAQ schema, and adding FAQ schema to a page already in the top 10 raises AI-Overview probability ~40%. Quickomate already has FAQPage schema and answer-first intent — the refinement is enforcing the 40-60 word 'extractable unit' under each heading and adding comparison tables.",
+          "whyItWorks": "LLMs lift the smallest coherent answer they can quote. A 40-60 word passage directly under the question heading is the ideal extraction size (under 30 words = too thin, over 80 = not extractable as one unit). FAQPage/HowTo schema gives the engine an explicit semantic anchor so it doesn't have to guess where the answer is — measurably raising citation rate (~30% lift reported).",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "Audit each blog/service page: ensure the H1 question and every H2/H3 is immediately followed by a 40-60 word direct, complete answer (the 'quotable unit') before any elaboration.",
+            "Add or expand comparison tables and bulleted lists (e.g. 'cold email vs LinkedIn', 'AI automation agency vs in-house', pricing/benchmark tables) — tables and lists are cited disproportionately.",
+            "Keep and extend FAQPage schema on commercial pages where impressions already exist (marketing automation ROI, b2b email subject lines, ai automation examples, ai automation agency) so the striking-distance impressions can convert to AI citations.",
+            "Add stat-dense, quotable lines with sources (e.g. 'realistic B2B cold email reply rates are ~4%') — statistical facts (+22%) and direct quotes (+37%) measurably increase citation likelihood.",
+            "Use HowTo schema for the genuine step-by-step guides (deliverability SPF/DKIM/DMARC, lead-qualification setup) — HowTo maps cleanly into AI Overview step citations."
+          ],
+          "sources": [
+            "https://www.stackmatix.com/blog/optimizing-faq-schema-google-ai-overviews",
+            "https://heeya.fr/en/blog/schema-org-faq-howto-google-ai-overviews",
+            "https://aioseo.fr/en/bing-ai-performance-how-to-exploit-the-data-for-ranker-on-chatgpt-copilot-and-other-llm/",
+            "https://www.frase.io/blog/how-to-get-cited-by-ai-search-engines-the-complete-geo-playbook"
+          ]
+        },
+        {
+          "tactic": "Publish long-form YouTube videos with full transcripts, chapters and timestamps (fast-rising AI citation source)",
+          "what": "YouTube now appears in ~16% of LLM answers (vs Reddit's 10%) and drives ~38% of all social-media citations in AI answers. The citation path is TEXT: 94% of cited YouTube citations are long-form, and the strongest predictors are description length + chapter/timestamp structure (NOT views/subs). 78% of timestamped videos get cited multiple times across 2-5 chapters. Quickomate has zero YouTube presence — even a handful of well-structured videos creates new citation surface.",
+          "whyItWorks": "AI engines (especially Perplexity 38.7% and Google AI Overviews 36.6% of YouTube citations) extract from transcripts, descriptions and chapter markers, not the video pixels. A single 12-20 min video with chapters becomes 2-5 independently-citable chunks, multiplying citation surface from one asset — and views/subscriber count barely matter, so a new channel can get cited immediately.",
+          "effort": "High",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Create/standardize a Quickomate YouTube channel; 'About' name + description must match the Wikidata/site entity exactly (entity consistency).",
+            "Record long-form (10-20 min) videos on the topics Quickomate already ranks-but-doesn't-convert for: 'AI automation examples by business function', 'how to build cold email infrastructure', 'AI lead qualification setup', 'what an AI automation agency actually does'.",
+            "For each video: add 5-8 chapters with descriptive timestamp labels, paste a long keyword-rich description, and upload a corrected full transcript (don't rely on auto-captions) — these are the text the AIs cite.",
+            "Repurpose existing blog posts 1:1 into video scripts so production is fast and the on-site + YouTube entity reinforce each other.",
+            "Embed the videos back into the matching blog posts (Claude on-site) so the page gains a media object and the video gains crawl signals.",
+            "Add the channel/video URLs to the SAME_AS schema array once live."
+          ],
+          "sources": [
+            "https://otterly.ai/blog/the-youtube-citation-study-2026/",
+            "https://searchengineland.com/ai-search-engines-cite-reddit-youtube-and-linkedin-most-study-473138",
+            "https://www.webfx.com/blog/ai/youtube-ai-citations/",
+            "https://nadiamohamed.me/insights/youtube-seo-ai-citations/"
+          ]
+        },
+        {
+          "tactic": "Work a free HARO-replacement stack (Featured, Qwoted, Source of Sources, Help a B2B Writer) for cited mentions",
+          "what": "HARO/Connectively was shut down Dec 2024; the 2026 replacements are a STACK of free platforms where journalists request expert quotes: Featured (formerly Terkel), Qwoted, Source of Sources (Peter Shankman's free HARO successor), and Help a B2B Writer (tech/fintech/B2B-specific). Answering relevant queries gets Vasu quoted (often with a link) in articles and roundups — exactly the third-party editorial content LLMs trust and cite.",
+          "whyItWorks": "These earn placements on news/editorial domains and topical roundups — high-trust third-party sources that feed both backlinks (authority) AND LLM citations. Unlike on-site SEO, a quote in a published article is an independent corroboration of Quickomate as a real AI-automation expert entity, which both builds authority and strengthens the brand-entity signal that fights the quickmate confusion.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Sign up free for Featured, Qwoted, Source of Sources (SOS), and Help a B2B Writer; set topic alerts for AI automation, cold email, B2B lead gen, sales automation, SMB AI.",
+            "Answer 2-4 relevant queries/week with sharp, specific, on-topic responses (off-topic pitching gets you banned on SOS) — include a quotable stat and a one-line bio that uses the exact 'Quickomate' brand string.",
+            "When published, request the link point to a relevant deep page (e.g. /ai-automation-agency or a matching blog post), not just the homepage, to spread authority.",
+            "Log every published mention; add the article URLs as references on the Wikidata item and (if from your own profiles) the sameAs graph.",
+            "Run all four in parallel — practitioners report the stack, not any single platform, is what produces consistent placements in 2026."
+          ],
+          "sources": [
+            "https://backlinko.com/haro-alternatives",
+            "https://www.prezly.com/academy/the-best-haro-alternatives",
+            "https://www.harolinkbuilding.com/blog/free-haro-alternatives-that-actually-work",
+            "https://www.flow-agency.com/blog/haro-alternatives/"
+          ]
+        },
+        {
+          "tactic": "List Quickomate on free, AI-crawled B2B review/software directories (the non-paid alternatives to G2/Clutch)",
+          "what": "Commercial AI answers lean on review/directory trust signals, and these directories are crawled by the systems building recommendation datasets — 'an accurate listing here feeds the data ChatGPT and Perplexity use when someone asks what to use for X.' Avoiding the user-rejected paid G2/DesignRush, the free-listable options are Capterra, TrustRadius, SourceForge, PeerSpot, plus claiming/standardizing free profiles. A free, accurate listing creates another corroborating entity record.",
+          "whyItWorks": "When an LLM answers a commercial query ('best AI automation agency for B2B'), it weights review-platform and directory data as trust signals. A consistent free listing across several directories both adds citation-eligible third-party pages AND reinforces the single-entity disambiguation (same name/description everywhere), without spending on the paid accounts the user has ruled out.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low",
+          "steps": [
+            "Create/claim free listings on directories that allow free profiles: Capterra, TrustRadius, SourceForge, PeerSpot, and relevant niche agency directories that don't require a paid plan.",
+            "Use the EXACT same name, one-sentence description, logo, founder and URL on every listing (entity consistency is the point).",
+            "Where reviews are allowed, invite 2-3 genuine past clients to leave honest reviews (real, not incentivized-fake) to add the community-validation signal LLMs reward.",
+            "Skip anything that requires the paid G2/DesignRush plan the user rejected — only do the genuinely free tiers.",
+            "Add each directory profile URL to the Wikidata references and the site's sameAs array."
+          ],
+          "sources": [
+            "https://blastra.io/directories/alternatives-to-g2/",
+            "https://clutch.co/resources/chatgpt-perplexity-gemini",
+            "https://www.stackmatix.com/blog/perplexity-ai-optimization-strategy",
+            "https://www.similarweb.com/blog/marketing/geo/most-cited-domains-llms/"
+          ]
+        },
+        {
+          "tactic": "Keep llms.txt but stop investing in it — it is NOT used by any major AI search crawler in 2026 (honest status)",
+          "what": "Quickomate already ships /llms.txt. Be clear-eyed: as of Q1 2026 no major AI search/training crawler uses it. Google's John Mueller stated 'no AI system currently uses llms.txt'; OpenAI/Anthropic/Google/Meta control crawlers via robots.txt and never reference llms.txt; SE Ranking analyzed ~300,000 domains and found zero correlation between having the file and being cited. Its only real 2026 use is dev tools (Cursor, Copilot, RAG frameworks) reading it.",
+          "whyItWorks": "This is a 'don't waste effort' finding, not a growth tactic. The file is cheap to keep (costs nothing, harmless, and may matter if adoption ever materializes), but treating it as an AI-visibility lever is a trap — the citation gains come from Bing indexation, third-party mentions (Reddit/YouTube/listicles), entity/Wikidata, and answer-first schema, NOT from llms.txt. Reallocate all llms.txt time to those.",
+          "effort": "Low",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "Leave the existing /llms.txt in place and keep it auto-synced with the sitemap so it isn't stale, but invest no further effort beyond that.",
+            "Do NOT block AI crawlers in robots.txt — current robots.txt correctly Allow: / for GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, etc., which is what actually controls access (keep it).",
+            "Set expectations internally: any 'install llms.txt for AI visibility' advice you see in 2026 is overstated; the evidence shows no major AI search crawler acts on it.",
+            "Re-evaluate only if OpenAI/Anthropic/Google publicly announce production support — until then, deprioritize."
+          ],
+          "sources": [
+            "https://www.greadme.com/blog/seo/is-llms-txt-worth-it-for-ai-search",
+            "https://www.digitalapplied.com/blog/ai-crawler-access-control-2026-robots-llms-txt-decision-matrix",
+            "https://nohacks.co/blog/ai-user-agents-landscape-2026",
+            "https://higoodie.com/blog/llms-txt-robots-txt-ai-optimization/"
+          ]
+        }
+      ]
+    },
+    {
+      "dimension": "Squeeze maximum organic traffic from the existing footprint (on-page + internal-link levers given an authority-limited GSC reality)",
+      "summary": "Quickomate's GSC profile (avg pos 38.9, thin pos 11-20 inventory, almost all clicks on the brand homepage) means the realistic on-site ceiling is modest: classic \"striking-distance\" tactics only reliably move pages already at positions 4-15, and Quickomate has very few of those. The biggest unforced error is internal: the Navbar links to ZERO of the three service money pages, and the ~44-post blog cluster sends only 1-2 contextual links each to /ai-automation-agency, /cold-email-agency, /b2b-lead-generation-agency — so authority is pooling on the homepage instead of flowing to the pages that target commercial keywords. Fixing internal link sculpting (hub-and-spoke into the money pages), rewriting titles/meta on the ~10 queries already earning impressions, and converting the existing answer-first posts into AI-Overview-citable \"answer capsule + FAQ\" format are the highest-ROI, Claude-implementable moves. Programmatic use-case×industry pages are viable in 2026 ONLY with one genuinely unique data point per page (case-study numbers from Vasu) — otherwise they are a sitewide scaled-content-abuse risk and should be skipped.",
+      "findings": [
+        {
+          "tactic": "Sculpt internal links into the 3 service money pages (fix the Navbar + blog-cluster gap)",
+          "what": "Right now the Navbar links to none of /ai-automation-agency, /cold-email-agency, /b2b-lead-generation-agency (it only links to homepage anchors #services/#case-studies/#protocol + /blog). The Footer is the ONLY sitewide path to them, and across ~44 blog posts only 2 link to /ai-automation-agency, 1 to /cold-email-agency, 1 to /b2b-lead-generation-agency. So link equity pools on the homepage (which is why almost all clicks are brand/homepage). Convert each service page into a real hub: add the 3 services as top-level Navbar items, and add contextual body links (with descriptive anchors) FROM the relevant blog spokes UP to the matching money page.",
+          "whyItWorks": "Internal links pass PageRank/authority and tell Google what a page is about via anchor text. 2026 guidance: money pages should carry 15+ internal links, pillars 8-15; the goal is a graph where authority flows toward the pages you've decided matter. Concentrating equity on /ai-automation-agency (targeting 'ai automation agency', 1,900 vol, currently pos 82) is the single cheapest way to lift a page Google already indexes. LLM crawlers also use link topology as a topical-authority signal, so this doubles as AEO.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low — only risk is over-optimized exact-match anchors sitewide; vary anchors (mix 'AI automation agency', 'our AI automation services', branded) to stay natural.",
+          "steps": [
+            "Add the 3 service pages as real Navbar links (src/components/Navbar.jsx navItems) so every page links to them — currently they're only in the Footer.",
+            "In each topically-matching blog post, add 1 contextual body link UP to its money page with a descriptive anchor: AI-automation posts (ai-automation-examples, what-is-an-ai-automation-agency, ai-automation-services-explained, llm-agents-for-business, ai-business-process-automation, best-ai-automation-tools-2026, ai-automation-for-small-business, do-you-need-an-ai-automation-consultant) -> /ai-automation-agency; all cold-email posts -> /cold-email-agency; ai-lead-gen / ai-sales-prospecting / lead-qualification posts -> /b2b-lead-generation-agency.",
+            "On each service money page, add a 'hub' block linking DOWN to its 4-6 best supporting posts (the spokes) with keyword-rich anchors, completing the hub-and-spoke loop.",
+            "Add a contextual homepage link from the services section into /ai-automation-agency (the homepage has the most authority; one strong link from it is worth many).",
+            "Vary anchor text across the spokes; do not use the identical exact-match phrase every time.",
+            "After deploy, ping IndexNow + request re-index in GSC for the 3 service pages so the new link graph is recrawled."
+          ],
+          "sources": [
+            "https://blog.mean.ceo/advanced-internal-linking-strategies/",
+            "https://www.digitalapplied.com/blog/internal-linking-strategy-topical-authority-playbook-2026",
+            "https://topicalmap.ai/blog/auto/internal-linking-topic-clusters-inverted-authority-model",
+            "https://born.mt/insights/internal-linking-strategy-guide/"
+          ]
+        },
+        {
+          "tactic": "Title + meta CTR rewrites on the queries already earning impressions (year-stamp + intent match)",
+          "what": "About 10 queries earn impressions but ~0 clicks at pos 43-85 ('marketing automation roi' pos 70, 'b2b email subject lines' pos 85, 'ai automation examples' pos 43, 'ai automation agency' pos 82, 'how can i verify contact data before sales outreach campaigns' pos 51). You cannot win clicks at pos 70+, BUT Google rewrites 33-61% of titles and 60-70% of meta descriptions when they don't match the query — a tightly intent-matched title that earns clicks at whatever position you DO surface (and on the AI-Overview/PAA real estate) is free upside. Rewrite titles to front-load the exact query, add '(2026)' / '(Updated 2026)' where freshness matters, and write a 105-155 char meta with a concrete CTA/number.",
+          "whyItWorks": "CTR is a quality signal Google uses to judge whether you satisfy intent; a compelling, intent-matched title/meta lifts CTR 5-15%. Year-stamping ('2026 Data') visibly beats stale competitor snippets. For pos 40-85 queries the real prize isn't the blue link — it's getting picked up in AI Overviews/PAA where 47% of citations come from pages BELOW position 5, so an extractable title + answer matters more than rank.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low — keep titles ~50-60 chars so Google doesn't truncate/rewrite them; don't keyword-stuff or Google replaces the title with its own.",
+          "steps": [
+            "Pull GSC Performance -> Queries, last 3 months, sort by impressions; flag every query with impressions >50 and CTR <1% (these are the impression-earners with no clicks).",
+            "Map each flagged query to its landing page and rewrite that page's <title> in App.jsx to front-load the exact query phrase + a benefit + '(2026)' where the query implies freshness.",
+            "Rewrite the meta description (105-155 chars) to mirror the searcher's words and end with a concrete CTA or number ('Book a call', 'See 27 examples').",
+            "For 'how can i verify contact data before sales outreach campaigns' (pos 51) — add a 40-60 word answer capsule + that exact question as an H2/FAQ on how-to-find-verified-emails so it can win the long-tail/AI answer even if the blue link stays mid-page.",
+            "Log the baseline CTR, deploy, set a 3-week reminder, and re-check CTR in GSC before iterating again."
+          ],
+          "sources": [
+            "https://www.straightnorth.com/blog/title-tags-and-meta-descriptions-how-to-write-and-optimize-them-in-2026/",
+            "https://www.searchscaleai.com/blog/title-tags-meta-descriptions-masterclass-2026/",
+            "https://contentraptor.com/blog/ctr-google-search-console/",
+            "https://www.averi.ai/how-to/striking-distance-keywords-the-ai-era-playbook-for-positions-4-15"
+          ]
+        },
+        {
+          "tactic": "Convert existing posts to AI-Overview-citable format: answer capsules + 7-Q FAQ + data density",
+          "what": "Restructure the existing answer-first posts so each H2 opens with a self-contained 40-60 word answer capsule (no links inside it), front-load 4-5 cited stats in the first 300 words, and append a 7-question FAQPage-schema FAQ with 40-60 word answers. This is the realistic path to traffic for a low-authority site whose blue-link rank is stuck at 40-85: get cited in AI Overviews / ChatGPT / Perplexity instead of waiting on rank.",
+          "whyItWorks": "Studies cited for 2026: pages with FAQ sections earn ~27% more AI citations; content updated within 12 months earns ~3.2x more citations; 44% of AI citations come from the first 30% of the text; and 38-46% of AI Overview citations now come from OUTSIDE the top 10 — explicitly opening the door for lower-authority pages that are structurally extractable. AI engines preferentially cite content with a hard statistic + source every ~150-200 words.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — purely additive structure; only watch that added stats are genuinely sourced (fabricated stats hurt E-E-A-T and AI trust). Vasu supplies any first-party numbers.",
+          "steps": [
+            "Prioritize the ~10 posts already earning impressions (ai-automation-examples, marketing-automation-roi, ai-automation-agency, cold-email-subject-lines, find-verified-emails).",
+            "Under each H2, lead with a 40-60 word direct-answer capsule that stands alone if quoted out of context.",
+            "Front-load 4-5 cited statistics (with source links) in the opening ~300 words; add one stat/data point roughly every 150-200 words thereafter.",
+            "Add or expand a 7-question FAQ at the foot of each post, each answer 40-60 words, and ensure it's wrapped in FAQPage JSON-LD (the codebase already has FAQ schema — extend it).",
+            "Where Vasu has real numbers (client results, send-volume data, reply rates), insert at least one proprietary data point per priority post — this is the 'information that exists nowhere else' that wins citations.",
+            "Stamp dateModified on each updated post and re-ping IndexNow."
+          ],
+          "sources": [
+            "https://www.averi.ai/how-to/striking-distance-keywords-the-ai-era-playbook-for-positions-4-15",
+            "https://www.frase.io/blog/what-is-answer-engine-optimization-the-complete-guide-to-getting-cited-by-ai",
+            "https://almcorp.com/blog/answer-engine-optimization-2026/",
+            "https://ahrefs.com/blog/fresh-content/"
+          ]
+        },
+        {
+          "tactic": "Triage to true striking-distance pages only — stop spending on-page effort on pos 40+",
+          "what": "Expectation-setting + a prioritization rule. The 2026 striking-distance consensus: on-page work (capsules, FAQ, freshness, schema, internal links) reliably moves pages at positions 4-15 by 3-6 spots in 4-8 weeks, but pages at position 16+ are 'too far to move efficiently' with on-page alone — those need links (off-site, Vasu's job). Quickomate's avg position 38.9 with thin pos-11-20 inventory means MOST of the footprint is in the 'links-only' zone, so on-site effort must be ruthlessly aimed at the handful of pages already at 4-15, plus net-new long-tail (see next finding), not at dragging pos-70 pages up.",
+          "whyItWorks": "Striking-distance pages convert to page 1 at ~6x the rate of building from scratch because Google already indexed and weighted them. Spending the same hours rewriting a pos-82 page yields near-zero because the gap is authority, not on-page — correctly diagnosed, this redirects effort to where on-page actually has leverage and reframes the rest as Vasu's link-building backlog.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Claude (on-site)",
+          "risk": "Low",
+          "steps": [
+            "In GSC Performance -> Pages, filter Position 4-15, last 90 days, sort by impressions; export the top 30 — these are the ONLY pages where on-page reliably moves rank.",
+            "Tier them: Tier 1 = impressions 1,000+ over 90d, CTR <2%, pos 4-12 (highest ROI); Tier 2 = pos 8-15, commercial intent; Skip = pos 16+ or <200 impressions.",
+            "Apply the title/meta + answer-capsule + internal-link tactics ONLY to Tier 1/2 pages.",
+            "Tag every pos-16+ commercial query (e.g. 'ai automation agency' pos 82) as a LINK problem and route it to Vasu's off-site backlog rather than re-editing the page repeatedly.",
+            "Re-pull the export every 4-8 weeks; pages that drift into 4-15 become new on-page targets."
+          ],
+          "sources": [
+            "https://www.averi.ai/how-to/striking-distance-keywords-the-ai-era-playbook-for-positions-4-15",
+            "https://seotesting.com/blog/striking-distance-keywords/",
+            "https://clutch.co/resources/striking-distance-keywords",
+            "https://www.outrank.so/blog/how-to-find-low-competition-keywords"
+          ]
+        },
+        {
+          "tactic": "Target ultra-low-competition long-tail question + 'vs' + 'alternative' keywords a new domain can actually win",
+          "what": "Instead of fighting head terms, build/aim posts at hyper-specific, intent-rich phrases competitors ignore — these are the only queries a near-zero-authority domain can rank top-3 on in 8-12 weeks. Quickomate already has the perfect seeds: 'n8n vs make vs zapier sales automation' (a 'vs' post — lean into more of these), and the GSC long-tail 'how can i verify contact data before sales outreach campaigns'. Mine GSC for the full-sentence questions you already get impressions for and build/expand pages around each.",
+          "whyItWorks": "Long-tail is the fastest path to rankings for new domains because head terms are owned by high-authority sites; a DA-30 site can hit top-3 on a precise long-tail in 8-12 weeks. 'vs' and 'alternative' queries are commercial-intent AND surviving the 2026 core updates well (brand-vs-brand pages explicitly named as holding up), and they convert better because the searcher is in evaluation mode.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — keep each genuinely useful and distinct; a pile of near-duplicate 'X vs Y' stubs would trip scaled-content abuse (see programmatic finding).",
+          "steps": [
+            "Export GSC queries with 5+ words and any impressions — every full-sentence question is a ready-made H2/FAQ or micro-post target.",
+            "Expand the existing 'vs' winner: add more tool/approach comparisons relevant to your services (e.g. 'Apollo vs Instantly for cold email', 'Clay vs manual list building', 'n8n vs Zapier for AI agents') — one genuinely opinionated comparison each, with a recommendation.",
+            "Add 'alternative' angle posts where you have a real take (e.g. 'cold email alternatives for B2B that actually book meetings').",
+            "For each new long-tail page, include one proprietary data point or an opinionated recommendation so it isn't a SERP rehash.",
+            "Cross-link new long-tail posts into the relevant money-page hub (ties back to the internal-linking finding)."
+          ],
+          "sources": [
+            "https://www.tripledart.com/saas-seo/long-tail-keyword-strategy",
+            "https://www.w3era.com/blog/seo/long-tail-keyword-strategy/",
+            "https://www.digitalapplied.com/blog/programmatic-seo-after-march-2026-surviving-scaled-content-ban",
+            "https://www.outrank.so/blog/how-to-find-low-competition-keywords"
+          ]
+        },
+        {
+          "tactic": "Strategic content freshness: refresh only the pages where freshness is a ranking lever, on a real cadence",
+          "what": "Re-optimize and re-date existing posts ONLY where it's substantive — update stats to 2026 numbers, fill topical gaps, add the answer capsules/FAQ above, then update dateModified and re-ping IndexNow. Don't bulk-bump dates. Quickomate's '...2026' / benchmark / 'best tools' / pricing posts are exactly the QDF-sensitive type that benefits; the evergreen explainers need only an annual review.",
+          "whyItWorks": "Freshness is a CONDITIONAL ranking factor — Google's QDF activates it for queries where users expect current info (best tools, benchmarks, pricing, trends, '2026' queries). Substantive updates trigger a positive freshness signal and AI engines cite recently-updated pages ~3.2x more; but a bare date-change with no real edit is ignored (and risks looking manipulative).",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — only risk is gaming dates without real changes, which doesn't work and wastes crawl budget. Vasu confirms any updated stats/claims.",
+          "steps": [
+            "Classify posts: QDF-sensitive (benchmarks, 'best tools 2026', agency-cost, pricing, 'is cold email still worth it') = refresh quarterly; evergreen explainers = annual review.",
+            "On each quarterly refresh: replace any stat older than ~12 months with a 2026 figure, add one new section answering a gap, refresh the answer capsules/FAQ, THEN bump dateModified.",
+            "Keep datePublished intact; only move dateModified (codebase already supports dateModified on newer posts — extend it to all refreshed posts).",
+            "Re-ping IndexNow + request re-index in GSC after each refresh batch.",
+            "Maintain a simple refresh log (research/progress.md) so the cadence doesn't slip."
+          ],
+          "sources": [
+            "https://ahrefs.com/blog/fresh-content/",
+            "https://searchengineland.com/guide/query-deserves-freshness-qdf",
+            "https://www.clickrank.ai/re-optimize-old-blog-posts-for-content-freshness/",
+            "https://www.clickrank.ai/published-date-vs-last-updated/"
+          ]
+        },
+        {
+          "tactic": "Programmatic use-case × industry pages — VIABLE only with one unique data point per page (gated on Vasu's case data)",
+          "what": "A services-site version of programmatic SEO: e.g. 'AI automation for [recruiting agencies / SaaS / law firms / e-commerce]' or 'cold email for [industry]'. This can rank in 2026 — but the March/May 2026 core updates specifically demoted templated pages with thin variation 50-90% sitewide. The hard rule: every page must contain at least one piece of information that exists nowhere else (your own case numbers, a methodology, a per-industry result), and clear the ~30-40% uniqueness threshold. Without Vasu's real case-study data, this is a scaled-content-abuse risk and should NOT be built.",
+          "whyItWorks": "Programmatic still works when each page has genuinely unique data + UX, not variable substitution; brand-vs-brand and use-case pages with real data survived the 2026 updates. The penalty is now SITEWIDE, so the economics only work above the uniqueness bar — which for an agency means founder-supplied results/process per industry, not a spun template.",
+          "effort": "High",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "HIGH if done thin — a batch of near-identical industry stubs can trigger scaled-content-abuse and demote the WHOLE site 50-90%. Only build once real per-industry data exists; start with 3-5 pages, not 50.",
+          "steps": [
+            "GATE: do not build any of these until Vasu supplies at least one unique asset per intended page — a client result, an industry-specific workflow, real numbers, or named case data.",
+            "Start with 3-5 industries where Vasu has the most real proof; write each as a 1,500-2,500 word page with that proprietary data point, not a template fill.",
+            "Hold each page to the 30-40%+ uniqueness bar (compare against your other pages and the SERP); kill any that would just rehash the generic service page.",
+            "Wire each into the money-page hub and add a tailored CTA; treat them as spokes, not orphan pages.",
+            "Publish in small batches and watch GSC for any sitewide impression drop — if the corpus looks templated, pause and consolidate.",
+            "If Vasu has NO per-industry data yet, skip this entirely and reallocate the effort to the long-tail and internal-linking findings above."
+          ],
+          "sources": [
+            "https://www.digitalapplied.com/blog/programmatic-seo-after-march-2026-surviving-scaled-content-ban",
+            "https://www.1clickreport.com/blog/google-may-2026-core-update-programmatic-seo-dead",
+            "https://developers.google.com/search/docs/essentials/spam-policies",
+            "https://www.breaklineagency.com/guide-to-googles-scaled-content-abuse/"
+          ]
+        }
+      ]
+    },
+    {
+      "dimension": "Reverse-engineered backlink sources for Quickomate — replicable FREE link categories that small AI-automation agencies and adjacent tools actually win, ordered by impact then effort",
+      "summary": "Hard evidence from the repo's own competitor backlink CSVs (Lindy, Gumloop, Relevance AI) shows their profiles are dominated by ONE replicable category: free AI-tool directories. topai.tools links to ALL THREE (2,770 / 1,443 / 10,116 backlinks), and aitoolnet.com, aitinkerers.org, eesel.ai, postmake.io, saashub.com, toolify.ai recur across every competitor — these are self-submit, mostly dofollow, and free. The second tier is data-PR (original research is the #1-rated 2026 link tactic at 48.6%) plus the journalist-request platforms that replaced HARO (Featured, Qwoted, Source of Sources — Connectively shut Dec 2024). For Quickomate specifically, the highest-leverage non-link move is fixing the brand-entity/autocorrect problem via a Wikidata QID + Crunchbase (both dofollow, DA 91+, and direct inputs to Google's Knowledge Graph). Agency directories (Clutch, DesignRush, GoodFirms) are real but mostly vanity/pay-to-rank for a brand-new agency with no reviews — list on the free tiers only and don't over-invest. Most of the directory submissions and the data-PR asset are Claude-preppable (I can build the listing copy, the research study page, and the schema); the actual account creation and outreach are Vasu's off-site homework.",
+      "findings": [
+        {
+          "tactic": "Blitz the free AI-tool directories that link to EVERY competitor",
+          "what": "Self-submit Quickomate (frame it as 'AI automation agency + free ROI calculator / readiness quiz tools') to the exact directories that appear in Lindy's, Gumloop's, and Relevance AI's backlink profiles in your own repo CSVs: topai.tools (links to all 3 competitors), aitoolnet.com, toolify.ai, futurepedia.io, theresanaiforthat.com, saashub.com, postmake.io, aitinkerers.org, aitools.love, dofollow.tools, thenextai.com. The best-of-ai/ai-directories GitHub repo aggregates 200+ more.",
+          "whyItWorks": "This is the single most replicable pattern in the data — these directories are the connective tissue of the entire AI-tool link graph. topai.tools alone sends 2,770 / 1,443 / 10,116 backlinks to your three named competitors. Each listing is an indexed, topically-relevant, often-dofollow link that also raises entity recognition (Quickomate appears next to Lindy/Gumloop in the same category) and increases odds of ChatGPT/Perplexity citation, which mine these directories. Cumulative DR lift is what moves you off page 4-9.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free (most), some offer paid 'featured' you should skip",
+          "owner": "Both",
+          "risk": "Low — white-hat self-submission. Skip any directory demanding a reciprocal/embedded badge link or payment for the basic listing; a few are low-quality but the topical relevance outweighs it.",
+          "steps": [
+            "Claude: write a reusable submission kit (50/100/300-char descriptions, category = 'AI Automation Agency'/'Sales & Marketing AI', tags, logo URL, screenshot, the ROI-calculator + readiness-quiz tool URLs as the 'product', founder name Vasu Gupta).",
+            "Claude: pull the full target list from github.com/best-of-ai/ai-directories and cross-reference it against research/backlinks_*.csv to prioritize directories that already link 2+ competitors.",
+            "Vasu: submit to the top 25 first (topai.tools, aitoolnet.com, toolify.ai, futurepedia.io, theresanaiforthat.com, saashub.com, dofollow.tools, thenextai.com, postmake.io, aitools.love), then work the long tail 5-10/week.",
+            "After each goes live, fire IndexNow (already wired) and recheck the link attribute (dofollow vs nofollow) so you know which actually pass equity."
+          ],
+          "sources": [
+            "https://github.com/best-of-ai/ai-directories",
+            "https://thesaasdir.com/blog/best-directories-ai-tools/",
+            "https://dofollow.tools/",
+            "https://www.futurepedia.io/",
+            "https://saaslee.com/free-websites-submit-ai-tools/"
+          ]
+        },
+        {
+          "tactic": "Create a Wikidata entity (QID) + Crunchbase profile to fix the 'quickmate' autocorrect and seed the Knowledge Graph",
+          "what": "Create a Wikidata item for Quickomate (instance-of: organization/business; P856 official website; P571 inception; founder = Vasu Gupta; industry = AI automation) plus a free Crunchbase organization profile. Both are dofollow, both feed Google's Knowledge Graph, and Wikidata's QID + unique description is the canonical machine-readable way to disambiguate a brand whose name collides with a common word.",
+          "whyItWorks": "Your #1 problem is an ENTITY problem, not a links problem — Google autocorrects 'quickomate' to 'quickmate' because it doesn't recognize Quickomate as a distinct entity. Wikidata has NO notability threshold (unlike Wikipedia), assigns a persistent QID that resolves name ambiguity, and is the single most powerful sameAs target because it's a primary input to the Knowledge Graph. Crunchbase carries DA ~91 and a dofollow website link, and journalists cite it (gateway to secondary editorial links). Add both QIDs/URLs to your existing Organization JSON-LD sameAs array so the on-site graph points at them.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — but Wikidata items for non-notable orgs can be flagged/merged if data is unsourced; cite the official site, LinkedIn, and any press as references on the item to make it stick.",
+          "steps": [
+            "Vasu: register a Wikidata account; create the Quickomate item with P31 (business), P856 (quickomate.com), P571 (inception year), founder statement linking to a Vasu Gupta item, and a unique English description ('US-based B2B AI automation agency') so the QID disambiguates from 'quickmate'.",
+            "Vasu: create the free Crunchbase profile (organization + founder), confirm the website field renders dofollow.",
+            "Claude: add the new Wikidata QID URL (wikidata.org/wiki/Q...) and Crunchbase URL into the sameAs arrays of the Organization and Person JSON-LD already in the codebase.",
+            "Vasu: reference the Wikidata item in Crunchbase and vice-versa, and ensure both cite quickomate.com as official site to reinforce the entity loop."
+          ],
+          "sources": [
+            "https://www.reputationx.com/blog/wikidata",
+            "https://www.digitalapplied.com/blog/entity-seo-knowledge-graph-optimization-guide-2026",
+            "https://www.crunchbase.com/organization/do-follow-backlinks",
+            "https://www.clickrank.ai/google-openai-knowledge-graph/"
+          ]
+        },
+        {
+          "tactic": "Publish ONE original-data research study as a linkable asset and pitch it via the post-HARO journalist platforms",
+          "what": "Turn your funnel data into a small original-research report — e.g. 'We analyzed N B2B cold-email campaigns: reply-rate benchmarks by industry/subject-line' or 'AI automation ROI benchmarks from X businesses' (you already have the ROI calculator collecting the inputs). Host it as a stat-dense page with charts + FAQPage schema, then pitch it through Source of Sources (free), Qwoted (free tier: 2 pitches/mo), and Featured (free Starter: 3 answers/mo) — the platforms that replaced HARO/Connectively after it shut Dec 9 2024.",
+          "whyItWorks": "Digital PR backed by original research is the #1-rated link-building tactic for 2026 (48.6% of SEO pros) and 68% of journalists prefer pitches with original data. A single citable stat earns editorial links from DR 50+ sites — and DR 50+ domains appear in AI answers 5x more than DR<30. This is the ONLY category in your competitors' profiles that yields high-authority editorial links (vs. directory links); it directly attacks your authority deficit and your striking-distance commercial queries ('marketing automation roi', 'ai automation examples').",
+          "effort": "High",
+          "impact": "High",
+          "cost": "Free (SOS, Qwoted/Featured free tiers)",
+          "owner": "Both",
+          "risk": "Low — only real risk is wasted effort if the data is thin; make the sample size and methodology honest and specific. Off-topic pitches get you banned on SOS, so only respond to relevant queries.",
+          "steps": [
+            "Claude: design + build the research page (answer-first, numbered stats, pure-CSS charts, methodology box, FAQPage + Dataset schema) as a permanent linkable asset on quickomate.com.",
+            "Vasu: aggregate the underlying numbers (anonymized campaign/ROI-calculator data) into a clean dataset; one strong headline stat is enough.",
+            "Vasu: sign up for Source of Sources (sourceofsources.com, free), Qwoted, and Featured; answer relevant 'AI automation / cold email / B2B sales' queries citing the study with a link.",
+            "Claude: repurpose the same data into a press-pitch one-pager and a LinkedIn carousel for Vasu to distribute."
+          ],
+          "sources": [
+            "https://www.digitalapplied.com/blog/link-building-2026-digital-pr-outreach-guide",
+            "https://www.instantpress.co/digital-pr-statistics",
+            "https://www.qwoted.com/connectively-haro-is-going-away-heres-how-qwoted-can-help/",
+            "https://mentionagent.ai/blog/haro-alternatives/"
+          ]
+        },
+        {
+          "tactic": "Get added to existing 'Best AI Automation Agencies 2026' roundups via direct outreach",
+          "what": "The market exploded to 12,000+ AI automation agencies in 2026 and there are dozens of ranked listicles (NextAutomation, AutomateNexus, Codeless, SuperDupr, Uvik, OwnAI, eSparkBiz, Eliya). Most independent ones (not Clutch/DesignRush) add agencies on request if you email the author with a tight case study. This is classic roundup link-building applied to your exact niche.",
+          "whyItWorks": "These pages already rank for your money keyword ('ai automation agency', where you sit at pos 82). A contextual link + brand mention inside a topically-perfect, already-ranking article passes strong relevance signals and gets you in front of buyers AND in front of the LLMs that summarize 'best AI automation agencies'. It's higher authority than a directory link and far faster than building your own ranking from pos 82.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — avoid any that openly sell placement (that's a paid-link footprint). Target the independent blog roundups, not the pay-to-rank directories.",
+          "steps": [
+            "Claude: assemble a one-paragraph agency blurb + your best quantified case study + logo + the 3 service-page URLs as an outreach-ready kit.",
+            "Vasu: list the non-directory 'best AI automation agencies 2026' articles (NextAutomation, AutomateNexus, Codeless, SuperDupr, Uvik, OwnAI, eSparkBiz), find the author/editor email.",
+            "Vasu: send a short personalized pitch: 'You list 10 agencies — Quickomate is a US AI-automation agency with [case study result], here's a blurb if you want to add us.'",
+            "Track replies; re-pitch the ones that update their lists quarterly."
+          ],
+          "sources": [
+            "https://nextautomation.us/blog/best-ai-agencies-2026",
+            "https://automatenexus.com/blog/best-ai-automation-agencies-top-ai-automation-in-2026",
+            "https://codeless.co/best-ai-automation-agencies/",
+            "https://www.ownai.net/blog/top-ai-automation-agencies"
+          ]
+        },
+        {
+          "tactic": "Publish free n8n / Make workflow templates and submit them to the template marketplaces",
+          "what": "n8n's community template library has 9,970+ public workflows, each on a dofollow-friendly creator page; the Make 'Templates' and Zapier app/partner ecosystems are adjacent. Publish 5-10 genuinely useful automation templates (e.g. 'Cold-email reply auto-router', 'Lead-enrichment → CRM', 'ROI-report generator') under a Quickomate creator profile that links back to your site.",
+          "whyItWorks": "This is the integration-marketplace category visible in competitor profiles (n8n.io itself links to Relevance AI, DR 65). Template pages are indexed, topically perfect, demonstrate competence to exactly your buyer (people automating workflows), and double as content that AI search engines cite for 'how to automate X'. It's product-led link-building unique to an automation agency — the asset IS the marketing.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — link attributes on creator/profile fields vary (some nofollow); the distribution + entity value holds regardless. Don't keyword-stuff the template descriptions.",
+          "steps": [
+            "Vasu: create a Quickomate creator account on n8n.io (and Make template gallery); set the profile website to quickomate.com.",
+            "Claude: draft the template descriptions and a matching how-to blog post on quickomate.com for each template (cross-link both ways) to capture 'how to automate X' search + AI citations.",
+            "Vasu: publish 5-10 templates; share each in r/n8n and r/automation where value-first posts are tolerated.",
+            "Confirm which profile/description fields render as dofollow and prioritize templates accordingly."
+          ],
+          "sources": [
+            "https://n8n.io/workflows/",
+            "https://docs.n8n.io/workflows/templates/",
+            "https://community.n8n.io/t/april-2026-creator-recap-10-workflow-templates-100-downloads-and-what-im-building-next/292354",
+            "https://zapier.com/partnerdirectory"
+          ]
+        },
+        {
+          "tactic": "Value-first answer posts in AI-automation communities (Reddit, AI Tinkerers, Slack/Discord)",
+          "what": "Post genuinely helpful build write-ups and benchmark answers in r/Automate, r/n8n, r/AI_Agents (a fast-growing agent-builder community), r/AIEngineer, and join AI Tinkerers (aitinkerers.org — global hands-on AI-builder community with meetups + a job board you can post to). Reddit content is the single biggest LLM citation source.",
+          "whyItWorks": "Perplexity draws ~46.7% of its top citations from Reddit; ChatGPT favors community sources too. A well-upvoted Reddit thread mentioning Quickomate (or just establishing Vasu as a credible builder) gets surfaced in AI answers and ranks in Google's 'Discussions' module — directly attacking your zero-AI-citation problem on Bing/ChatGPT. AI Tinkerers (aitinkerers.org, DR 31) already links to Lindy and Gumloop in your CSVs, confirming it's a real source in this graph.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium — most subreddits ban direct promotion; spray-and-pray gets you shadowbanned. Strategy is value-first with rare, contextual mentions. AI Tinkerers job board and demos are promo-friendly; subreddit links are mostly nofollow but citation/entity value is the point, not link equity.",
+          "steps": [
+            "Vasu: build karma/credibility with 5-10 pure-value posts in r/Automate, r/n8n, r/AI_Agents before any mention of Quickomate.",
+            "Claude: turn each of your blog posts into a Reddit-native answer (no link-drop) Vasu can post when a relevant question appears, with the site mentioned only when directly asked.",
+            "Vasu: create an AI Tinkerers profile, attend/demo at a meetup, and post any open role to its job board (which links across city pages).",
+            "Repurpose the original-research stat (tactic #3) as a standalone Reddit data post — those reliably earn upvotes and citations."
+          ],
+          "sources": [
+            "https://contently.com/2026/04/29/top-sources-llms-cite/",
+            "https://linkeddit.com/blog/best-subreddits-for-ai-marketing-2026",
+            "https://aitinkerers.org/",
+            "https://www.presspilot.io/academy/how-to-get-cited-by-chatgpt"
+          ]
+        },
+        {
+          "tactic": "Indie/startup launch directories (BetaList, TinyLaunch, PeerPush, IndieHackers, F6S, Uneed)",
+          "what": "Submit Quickomate's free tools (ROI calculator, readiness quiz) as a 'launch' to the startup-directory layer: TinyLaunch (DR 72, dofollow), PeerPush (DR 74, dofollow), BetaList, Uneed, IndieHackers products, F6S, AlternativeTo, FoundrList. These advertise free submissions with dofollow editorial listings.",
+          "whyItWorks": "A cluster of 30-50 directory links in a short window is a recognized 2026 launch-foundation play; several (TinyLaunch DR 72, PeerPush DR 74) are explicitly dofollow and free, which is rare. It builds the baseline DR floor that everything else compounds on, gets the free tools in front of indie/SaaS buyers, and adds more sameAs-able profiles for the entity graph. Lower impact-per-link than directories tactic #1 but very low effort per submission.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free (skip paid 'featured/skip-the-queue' upsells)",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — these are legitimate; just don't pay for queue-jumping and don't submit to obvious link-farm 'directory of directories' with no traffic.",
+          "steps": [
+            "Claude: reuse the submission kit from tactic #1; position the ROI calculator / readiness quiz as the launchable 'product' (free tools launch better than 'an agency').",
+            "Vasu: submit to TinyLaunch, PeerPush, BetaList, Uneed, IndieHackers products, F6S, AlternativeTo, FoundrList over week 1-2.",
+            "Verify dofollow on TinyLaunch/PeerPush (advertised) and prioritize those; deprioritize anything nofollow with no traffic.",
+            "Add the resulting profile URLs to the brand sameAs set."
+          ],
+          "sources": [
+            "https://launchdirectories.com/directory/tinylaunch",
+            "https://launchdirectories.com/directory/peerpush",
+            "https://www.foundrlist.com/blogs/complete-startup-directory-list-2026",
+            "https://www.betterlaunch.co/blog/indie-hacker"
+          ]
+        },
+        {
+          "tactic": "Founder podcast guesting via free-tier matching platforms",
+          "what": "Use MatchMaker.fm (free tier: 10 messages) and PodMatch (from ~$6/mo) to book Vasu onto small B2B/AI/sales-automation podcasts. Show notes almost always include a dofollow backlink + brand mention, and the episode itself is evergreen distribution.",
+          "whyItWorks": "Warm-ish outreach (podcast hosts who accepted you) converts at 15-30% vs 1-3% for cold link requests. Each booked show = a contextual dofollow link in show notes from a real site + a transcript that AI engines can cite + authority signals tying the 'Vasu Gupta' person entity to the Quickomate org entity (reinforcing the Knowledge Graph work in tactic #2). It's founder-executable and compounds your personal brand alongside the company.",
+          "effort": "High",
+          "impact": "Medium",
+          "cost": "Free tier (MatchMaker.fm) / ~$6-29/mo (PodMatch)",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — only cost is Vasu's time. Vet shows for real audiences/indexed episode pages; skip pay-to-appear 'podcasts' that are link schemes.",
+          "steps": [
+            "Vasu: build a guest profile on MatchMaker.fm (free) with 2-3 talk angles ('AI automation ROI for SMBs', 'cold-email infrastructure that doesn't get flagged', 'building LLM agents for sales').",
+            "Claude: draft the one-sheet, bio, and 3 pitch angles + an FAQ of talking points.",
+            "Vasu: pitch 10-15 relevant B2B/AI shows; confirm hosts add a quickomate.com link to show notes.",
+            "Claude: publish each episode as a page on quickomate.com (embed + transcript + schema) so you also own the SEO/citation value, not just the host's site."
+          ],
+          "sources": [
+            "https://www.matchmaker.fm/",
+            "https://podmatch.com/",
+            "https://edwardsturm.com/articles/get-on-podcasts-as-guest-2026/",
+            "https://www.digitalapplied.com/blog/link-building-2026-digital-pr-outreach-guide"
+          ]
+        },
+        {
+          "tactic": "Submit Quickomate to free-tier B2B AGENCY directories — but treat as low-priority/vanity",
+          "what": "Claim free profiles on GoodFirms, FindBestFirms, DesignRush, The Manifest, and Clutch's free tier. List the agency + service categories (AI automation, cold email, lead gen). Do NOT buy paid placement on any of them.",
+          "whyItWorks": "Clutch (and its sister The Manifest) pass authentic-looking dofollow links Google trusts, and these directories rank for 'best AI automation agency' lists. The honest caveat: visibility on Clutch/DesignRush is pay-to-rank ($1,500-1,800+/yr) and gated behind verified client reviews you don't have yet — so the FREE profile is a thin entity/link signal, not a lead source. Worth claiming once for the link + sameAs, not worth chasing rankings on.",
+          "effort": "Low",
+          "impact": "Low",
+          "cost": "Free (paid tiers explicitly OFF-limits per your constraints)",
+          "owner": "Vasu (off-site)",
+          "risk": "Low financially (free tier only). The real risk is opportunity cost — don't let these consume time that tactics #1-#3 deserve. This is the 'vanity' bucket: claim and move on.",
+          "steps": [
+            "Vasu: create free profiles on GoodFirms (goodfirms.co/get-listed), FindBestFirms, DesignRush, The Manifest, Clutch free tier — full descriptions, service categories, the case study.",
+            "Claude: supply consistent NAP/description copy so all profiles match (entity consistency).",
+            "Vasu: collect 2-3 real client reviews on Clutch over time (free) — the only thing that makes these eventually useful — but don't pay for placement.",
+            "Add profile URLs to sameAs; then stop — do not iterate on this bucket."
+          ],
+          "sources": [
+            "https://www.goodfirms.co/get-listed",
+            "https://findbestfirms.com/clutch-co-directory-alternatives",
+            "https://www.designrush.com/agency",
+            "https://www.weballways.com/best-free-business-listing-sites/"
+          ]
+        },
+        {
+          "tactic": "Get listed on GitHub 'awesome-AI-agents' lists via pull request",
+          "what": "Open PRs adding Quickomate (or an open-sourced mini-tool/template repo of yours) to active awesome-lists: awesome-ai-agents-2026, jim-schwoebel/awesome_ai_agents (1,500+ entries), e2b-dev/awesome-ai-agents, slavakurilyak/awesome-ai-agents. Best if you first publish a small genuinely-useful open-source repo (e.g. the n8n templates from tactic #5, or a cold-email deliverability checker) so the listing is legitimate.",
+          "whyItWorks": "GitHub is a DA-high domain that appears in profile-creation and AI-citation source lists for 2026; awesome-lists are heavily scraped by both Google and LLMs building 'AI agent tool' answers. A merged PR is a permanent, topically-relevant link/mention earned with zero spend, and a public repo gives you a GitHub org profile (another sameAs entity node). Low volume but genuinely underused by agencies.",
+          "effort": "Medium",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — maintainers reject pure self-promo PRs, so you need a real repo/tool behind the listing. Don't spam multiple lists with a thin entry.",
+          "steps": [
+            "Vasu/Claude: open-source one small useful thing (the n8n template pack, an MIT-licensed prompt library, or a deliverability checker) under a Quickomate GitHub org linking to quickomate.com.",
+            "Claude: draft the awesome-list PRs with a one-line description matching each list's format.",
+            "Vasu: submit PRs to jim-schwoebel/awesome_ai_agents, e2b-dev/awesome-ai-agents, slavakurilyak/awesome-ai-agents, and the awesome-ai-agents-2026 lists.",
+            "Add the GitHub org URL to the brand sameAs array."
+          ],
+          "sources": [
+            "https://github.com/jim-schwoebel/awesome_ai_agents",
+            "https://github.com/e2b-dev/awesome-ai-agents",
+            "https://github.com/slavakurilyak/awesome-ai-agents",
+            "https://www.w3era.com/blog/seo/profile-creation-sites-list/"
+          ]
+        },
+        {
+          "tactic": "Newsjack AI-automation trends with fast reaction content + a citable POV",
+          "what": "When a major automation/agent news event hits (n8n/Make pricing change, a new OpenAI/Anthropic agent release, an AI-layoffs or 'agents replacing SDRs' news cycle), publish a same-week, opinionated, data-backed reaction post ('What [news] means for B2B teams automating sales') and push the take through SOS/Qwoted and LinkedIn while the topic is hot.",
+          "whyItWorks": "Trend-hijacking earns links because journalists and bloggers covering a breaking topic need expert reaction fast — and there's a short window where being the cited POV is easy. Pairs with the journalist-request platforms (tactic #3): respond to time-sensitive 'AI automation' queries the day they post. Freshness also matters for AI citations (engines favor recently-updated content), so this feeds both backlinks and GEO.",
+          "effort": "Medium",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — only risk is publishing a weak/late take. Speed and a specific, quotable stat or prediction are what get cited; generic recaps don't.",
+          "steps": [
+            "Vasu: monitor 3-4 trigger sources (n8n/Make/Zapier changelogs, OpenAI/Anthropic announcements, r/Automate) for events worth reacting to.",
+            "Claude: on a trigger, draft a tight, opinionated, data-referenced reaction post (answer-first, one bold prediction or stat) within 24-48h, with FAQ schema.",
+            "Vasu: pitch the take same-week via Source of Sources/Qwoted and post the POV as a LinkedIn thread inviting press to quote you.",
+            "Claude: link the reaction post to the relevant service/blog pages to pass the earned authority inward."
+          ],
+          "sources": [
+            "https://www.digitalapplied.com/blog/link-building-2026-digital-pr-outreach-guide",
+            "https://surferseo.com/blog/llm-citations/",
+            "https://12amagency.com/blog/seo-trends-for-link-building/",
+            "https://www.instantpress.co/digital-pr-statistics"
+          ]
+        }
+      ]
+    },
+    {
+      "dimension": "FREE exact-match \"Quickomate\" citation + backlink sources that double as brand-entity disambiguation signals",
+      "summary": "The autocorrect-to-\"quickmate\" problem and the authority deficit have ONE shared root cause: Google has no strong entity for \"Quickomate\" because the brand exists on too few corroborating sources. The 2026 reality is that consistent brand CITATIONS (NAP + identical description + reciprocal sameAs) now matter more than raw dofollow PageRank for both Google entity recognition AND AI-engine citations — Reddit brand mentions are reportedly ~3x more predictive of AI citation than backlinks. The fix is a tight \"citation cluster\": claim ~15-20 high-authority profiles with the IDENTICAL name \"Quickomate\", the IDENTICAL canonical description already in your schema, and cross-link them back into your site's sameAs array so Google can connect the dots. WARNING: several once-free channels have changed — TAAFT and Futurepedia are now effectively paid, Wellfound pivoted to recruiting, and a no-storefront online-only agency is NOT eligible for Google Business Profile (faking it risks suspension). The list below is filtered to what is actually free and current in June 2026. Claude can pre-draft 100% of profile copy, descriptions, and the sameAs URL set; Vasu must create/verify accounts (most need email + phone verification a bot can't do).",
+      "findings": [
+        {
+          "tactic": "Reciprocal sameAs entity cluster (the meta-move that ties every profile below together)",
+          "what": "Before claiming any directory, Claude pre-drafts ONE canonical identity kit: exact name 'Quickomate' (never 'Quickmate', never 'Quickomate AI'), the canonical 1-line + 1-paragraph description already in your Organization schema ('Quickomate is an AI automation agency and AI Growth Partner for B2B companies. We build custom AI automation, B2B lead generation, cold email infrastructure, LLM agents, and sales automation systems that clients own outright — no retainers.'), founder 'Vasu Gupta', US target market, and a master list of every profile URL. Each new profile links back to quickomate.com AND is added to the SAME_AS array in src/App.jsx (currently only 2 URLs: x.com/vaaasug + linkedin.com/in/refer-vasu). This makes the citations reciprocal — Google verifies the entity by matching your site's sameAs against the profiles' back-links.",
+          "whyItWorks": "Entity disambiguation is a graph-matching problem. 'Quickomate' autocorrects to 'quickmate' because Google sees one weak node (your site) with only 2 sameAs edges, versus multiple strong 'Quickmate' entities (app stores, quickmate.io). Adding 15-20 authoritative profiles that ALL spell 'Quickomate' identically and ALL point back, with your site pointing out to them, creates a dense corroborated cluster Google can lock onto as a distinct entity — which both kills the autocorrect ('Quickomate' becomes a known proper noun, not a typo) and feeds the brand-authority signal that LLMs use to cite you.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — the only risk is INCONSISTENT name/description across profiles, which weakens the cluster. Claude eliminates that by drafting one identity kit everyone copies.",
+          "steps": [
+            "Claude: produce identity-kit.md with exact name, 50/160/300-char descriptions, founder bio, logo URL (quickomate.com/logo.png), categories, and a running sameAs URL table.",
+            "Claude: after each profile goes live, add its public URL to the SAME_AS = [...] array in src/App.jsx (lines 72-75) so ORG/PERSON/WEBSITE schema all reference it.",
+            "Vasu: paste the identical description into every profile; never improvise per-site copy.",
+            "Claude: re-deploy so the expanded sameAs ships; submit updated sitemap via IndexNow."
+          ],
+          "sources": [
+            "https://searchengineland.com/guide/brand-to-links-ratio-revolution",
+            "https://upgrowth.in/entity-authority-ai-citation-2026/",
+            "https://schema.org/sameAs"
+          ]
+        },
+        {
+          "tactic": "LinkedIn COMPANY Page (you only have a personal profile)",
+          "what": "Create a dedicated LinkedIn Company Page for 'Quickomate' (distinct from Vasu's personal profile). Set the public URL to /company/quickomate, tagline = canonical 1-liner, About = canonical paragraph, website = quickomate.com, specialties = AI automation, B2B lead generation, cold email infrastructure, LLM agents.",
+          "whyItWorks": "LinkedIn is DR~98 and one of the most-trusted entity sources Google and LLMs ingest. A company page (not just a person) is the single strongest signal that 'Quickomate' is a real organization, directly countering the 'Quickmate on LinkedIn' competitor result. It also unlocks the Crunchbase/other profiles that ask for a LinkedIn company URL.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low. Link is nofollow but the entity/citation value is what matters here.",
+          "steps": [
+            "Vasu: linkedin.com/company/setup/new — requires an existing personal LinkedIn (you have one) and a company email if available.",
+            "Vasu: set custom URL to /company/quickomate; paste Claude's canonical copy verbatim.",
+            "Claude: add the resulting /company/quickomate URL to the Organization sameAs array.",
+            "Vasu: post 2-3 times so it doesn't look abandoned (Google weights active pages)."
+          ],
+          "sources": [
+            "https://www.linkedin.com/help/linkedin/answer/710/create-a-linkedin-page",
+            "https://www.seoninja.com/blog/seo/brand-mentions/"
+          ]
+        },
+        {
+          "tactic": "Crunchbase free Organization profile",
+          "what": "Create a free Crunchbase Organization profile for Quickomate: name, canonical description, founded date, HQ (city/US), founder Vasu Gupta, website, LinkedIn company URL, categories (Artificial Intelligence, SaaS, Sales Automation, Lead Generation).",
+          "whyItWorks": "Crunchbase is a top-tier entity source explicitly ingested by Google's Knowledge Graph and by Perplexity/ChatGPT for company facts. A Crunchbase node with founder + description that matches your schema is one of the highest-leverage single citations for both entity disambiguation and AI citation. Free tier lets ANY registered user add an organization.",
+          "effort": "Low",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — Crunchbase only wants tech-ecosystem orgs (you qualify as an AI company). A non-tech listing risks removal; yours is squarely in-scope.",
+          "steps": [
+            "Vasu: register at crunchbase.com (Google/LinkedIn sign-in), then Contribute Data > Add new profile > Organization.",
+            "Vasu: paste Claude-drafted fields; add Vasu Gupta as Founder (separate person record) and link the two.",
+            "Claude: add the crunchbase.com/organization/quickomate URL to sameAs.",
+            "Vasu: keep it complete — Crunchbase ranks complete profiles higher internally and Google trusts them more."
+          ],
+          "sources": [
+            "https://support.crunchbase.com/hc/en-us/articles/115011823988-How-do-I-create-a-Crunchbase-profile",
+            "https://support.crunchbase.com/hc/en-us/articles/115010642588-Requirements-to-Create-a-Crunchbase-Profile-Page"
+          ]
+        },
+        {
+          "tactic": "Featured.com (the revived 'HARO') + Source of Sources + Help a B2B Writer + Qwoted — free expert-quote / digital-PR stack",
+          "what": "HARO is back: Featured.com bought the HARO brand in April 2025 and runs free daily journalist-query newsletters. Pair it with Source of Sources (sos.help — by HARO's original founder, free), Help a B2B Writer (helpab2bwriter.com — 100% free, B2B-only, perfect fit), and Qwoted (free plan). Vasu answers relevant queries as 'Vasu Gupta, founder of Quickomate, an AI automation agency' to earn editorial mentions/links on real publications.",
+          "whyItWorks": "This is the #1 white-hat way to get genuine EDITORIAL backlinks + brand mentions on high-authority news/blog sites in 2026 — exactly the 'authority/links' deficit your GSC data shows. An editorial mention of 'Quickomate, an AI automation agency' on a DR-70+ publication is worth more for entity strength than any directory, and these mentions are what LLMs cite. The B2B-specific platforms have low competition.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low (white-hat, editorially earned). Effort risk: requires consistent weekly responses to land hits.",
+          "steps": [
+            "Vasu: sign up for Featured.com (sourcer/expert side), sos.help, helpab2bwriter.com, and Qwoted free plan.",
+            "Claude: draft 4-5 reusable expert-answer templates on AI automation, cold email, lead-gen ROI, and the topics where you already rank pos 40-85 (so a link reinforces those pages).",
+            "Vasu: answer 3-5 relevant queries/week; always sign 'Vasu Gupta, founder of Quickomate (quickomate.com)' with the canonical descriptor.",
+            "Claude: when a mention lands, add the publication URL to a press list and, if it links, note the new referring domain."
+          ],
+          "sources": [
+            "https://www.buzzstream.com/blog/haro-alternatives/",
+            "https://www.prezly.com/academy/the-best-haro-alternatives",
+            "https://inboundblogging.com/connectively-shutting-down/"
+          ]
+        },
+        {
+          "tactic": "Reddit + Quora authentic citations (done the non-spammy way)",
+          "what": "Vasu participates as a genuine practitioner in r/automation, r/AI_Agents, r/msp, r/sales, r/coldemail, r/Entrepreneur, r/SaaS and in Quora topics like 'AI automation agency', 'cold email deliverability', 'B2B lead generation'. Mention Quickomate only where it genuinely answers the question (e.g. 'I run an AI automation agency, Quickomate — here's how we structure cold email infra...'), and link to a specific helpful blog/tool page, not the homepage, and not every time.",
+          "whyItWorks": "Links are rel='nofollow ugc' so they pass no PageRank — but Reddit brand mentions are reported ~3x MORE predictive of AI-citation visibility than backlinks, and Reddit/Quora content dominates AI-engine training and live retrieval. A repeated, positively-contextualized 'Quickomate' mention from a real account is editorial-grade entity reinforcement that is hard to fake — it both teaches Google 'Quickomate' is a real brand (anti-autocorrect) and gets you cited by ChatGPT/Perplexity.",
+          "effort": "Medium",
+          "impact": "High",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium — spam/self-promo gets removed and can damage the brand. Mitigate with a real aged account, 90%+ non-promotional contribution, and mentions only where on-topic.",
+          "steps": [
+            "Vasu: use a real, established account; build karma with genuinely helpful answers first.",
+            "Claude: build a target-thread list by searching Reddit/Quora for the exact queries you rank for (pos 40-85) so mentions reinforce those topics.",
+            "Vasu: mention Quickomate in ~1 of every 8-10 contributions, always with a specific helpful link (a tool/blog page), never the same boilerplate.",
+            "Claude: draft 5-6 genuinely useful long-form answers Vasu can adapt (not copy-paste verbatim across threads)."
+          ],
+          "sources": [
+            "https://aboveapex.com/brand-mentions-for-seo/",
+            "https://bluetree.digital/google-backlink-policy/",
+            "https://www.techloy.com/how-to-build-brand-mentions-and-links-that-force-llms-chatgpt-gemini-perplexity-to-cite-and-recommend-your-brand/"
+          ]
+        },
+        {
+          "tactic": "SaaSHub free profile (dofollow)",
+          "what": "Submit Quickomate to SaaSHub as a software/service listing with canonical description, logo, categories (AI Automation, Sales Automation, Lead Generation), and link to quickomate.com.",
+          "whyItWorks": "SaaSHub is a well-respected DR-70+ software directory that grants FREE DOFOLLOW links — one of the few genuinely free dofollow citations left in 2026. It compounds as an SEO foundation and is regularly ingested by AI tool aggregators, so it both passes link equity and reinforces the entity.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low.",
+          "steps": [
+            "Vasu: saashub.com > Submit a Product; create account.",
+            "Vasu: paste Claude's canonical name/description, upload logo, pick categories.",
+            "Claude: add the saashub.com/quickomate URL to sameAs once live."
+          ],
+          "sources": [
+            "https://www.saashub.com/services/submit",
+            "https://startupa.ge/blog/best-startup-directories-dofollow-backlinks"
+          ]
+        },
+        {
+          "tactic": "AlternativeTo free listing (dofollow, compounds for SEO)",
+          "what": "Add Quickomate on AlternativeTo positioned as an AI automation agency / cold-email-and-lead-gen service, listing it as an alternative to the categories your competitors sit in (workflow automation, lead-gen).",
+          "whyItWorks": "AlternativeTo is DR~90, free, and provides dofollow links; its pages compound in Google over months and feed comparison-style AI answers ('alternatives to X'). Listing against your competitor set also surfaces you in high-intent comparison searches.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — must be framed as a real product/service alternative, not spam.",
+          "steps": [
+            "Vasu: create an AlternativeTo account; add Quickomate via the 'Add application' flow.",
+            "Vasu: tag it against relevant categories and a couple of legitimate alternatives.",
+            "Claude: draft the description and the 'alternative to' positioning; add the live URL to sameAs."
+          ],
+          "sources": [
+            "https://launchdirectories.com/directory/saashub",
+            "https://startupa.ge/blog/best-startup-directories-dofollow-backlinks"
+          ]
+        },
+        {
+          "tactic": "F6S startup profile (free, dofollow)",
+          "what": "Create an F6S profile for Quickomate (startup/agency) with founder, description, categories, website. F6S is a startup-ecosystem network used for programs/accelerators.",
+          "whyItWorks": "F6S is a free, high-authority startup directory that gives dofollow links and is a recognized entity source. It corroborates Quickomate as a real company and occasionally surfaces partnership/accelerator opportunities.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low.",
+          "steps": [
+            "Vasu: register at f6s.com, create the company/startup profile.",
+            "Vasu: paste canonical copy, add founder Vasu Gupta and website.",
+            "Claude: add f6s.com/quickomate to sameAs."
+          ],
+          "sources": [
+            "https://startupa.ge/blog/best-startup-directories-dofollow-backlinks",
+            "https://launchdirectories.com/top-10-directories-by-domain-rating"
+          ]
+        },
+        {
+          "tactic": "GitHub Organization 'quickomate' (dev credibility + dofollow README link)",
+          "what": "Create a GitHub Organization named 'quickomate' with a profile README, logo, bio = canonical 1-liner, website link, and publish 1-2 small genuinely-useful public repos (e.g. an open cold-email-deliverability checklist, an n8n/automation snippet, or the source of one of your free tools like the ROI calculator).",
+          "whyItWorks": "GitHub is DR~96 and the org page + repo READMEs carry dofollow links and are heavily crawled and ingested by LLMs (code+docs are core training data). For an AI automation agency, a GitHub org is a strong, on-brand E-E-A-T/credibility signal that competitors rarely bother with, and the unusual exact-string 'github.com/quickomate' is a clean entity anchor.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — keep repos genuinely useful, not empty placeholder spam.",
+          "steps": [
+            "Vasu: create GitHub org 'quickomate'; verify the quickomate.com domain in org settings (adds a verified badge + strengthens the entity link).",
+            "Claude: write the org profile README (canonical bio + link) and prepare 1-2 small shippable repos (e.g. extract the ROI-calculator logic or a deliverability checklist).",
+            "Claude: add github.com/quickomate to sameAs and reference the repo from a relevant blog post."
+          ],
+          "sources": [
+            "https://startupa.ge/blog/best-startup-directories-dofollow-backlinks",
+            "https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations"
+          ]
+        },
+        {
+          "tactic": "Indie Hackers product page + founder profile",
+          "what": "Create an Indie Hackers account for Vasu and add Quickomate as a product with the canonical description and quickomate.com link; share 1-2 build/strategy posts.",
+          "whyItWorks": "Indie Hackers is a credible maker/founder community whose product pages are crawled and surface in AI answers about indie SaaS/agencies. It's a legitimate founder-credibility citation and an active brand-mention surface — and it's a free alternative to a paid Product Hunt launch.",
+          "effort": "Low",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low.",
+          "steps": [
+            "Vasu: sign up at indiehackers.com, complete founder profile, add Quickomate as a product.",
+            "Claude: draft the product description + an intro 'how I built X' post tied to your free tools.",
+            "Claude: add the product URL to sameAs."
+          ],
+          "sources": [
+            "https://startupproject.org/resources/places-to-launch/",
+            "https://www.evalyze.ai/blog/30-best-platforms-to-launch-your-startup"
+          ]
+        },
+        {
+          "tactic": "Dev.to + Hashnode developer-blog profiles (DOFOLLOW, syndicate with canonical)",
+          "what": "Create Dev.to and Hashnode accounts under the Quickomate brand. Republish your existing technical blog posts (with rel=canonical pointing back to quickomate.com) and link contextually to your tools/services in the body. Hashnode supports a custom subdomain (quickomate.hashnode.dev).",
+          "whyItWorks": "Dev.to and Hashnode are among the few platforms that pass DOFOLLOW links when you publish original content, and both are heavily ingested by LLMs. Canonical-tagged syndication earns you the dofollow + brand mention on DR-90 platforms WITHOUT duplicate-content risk to your own pages. Bio links also corroborate the entity.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Both",
+          "risk": "Low — set rel=canonical to your original URL on every syndicated post so your site keeps ranking authority.",
+          "steps": [
+            "Vasu: create Dev.to + Hashnode accounts; set bio to canonical 1-liner + quickomate.com.",
+            "Claude: take 3-4 existing answer-first blog posts, add canonical tags, and adapt them for each platform with contextual links to relevant tools/pages.",
+            "Claude: add the two profile URLs to sameAs."
+          ],
+          "sources": [
+            "https://resources.plainenglish.io/in-plain-english-vs-devto-hashnode-medium-and-hackernoon-best-platform-for-reach-in-2026",
+            "https://baca.hashnode.dev/dofollow-and-nofollow-links"
+          ]
+        },
+        {
+          "tactic": "BetaList + Uneed + Peerlist + Startup Stash (free startup/maker directories)",
+          "what": "Submit Quickomate (or one of your free interactive tools like the ROI calculator / readiness quiz, which IS a launchable 'product') to BetaList (DR~75, dofollow), Uneed (curated, 1-3 day approval), Peerlist (builder network), and Startup Stash (DR~65). Use the free tool as the submittable artifact since these directories favor products over pure agencies.",
+          "whyItWorks": "These are free, fast, and several pass dofollow links from DR 65-75 domains. Submitting your free tool gives you a legitimate 'product' to list (solving the 'they want tools not agencies' problem) while every listing still mentions 'Quickomate' and links your domain — stacking citations + a few dofollow links cheaply.",
+          "effort": "Medium",
+          "impact": "Medium",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low. BetaList review can take 4-6 weeks; others clear in days.",
+          "steps": [
+            "Claude: pick the strongest free tool to feature (ROI calculator) and write a launch description for each directory.",
+            "Vasu: submit to BetaList, Uneed, Peerlist, Startup Stash with the same name/description.",
+            "Claude: add each live URL to sameAs; note which returned a dofollow link."
+          ],
+          "sources": [
+            "https://launchdirectories.com/directory/betalist",
+            "https://startupa.ge/blog/best-startup-directories-dofollow-backlinks",
+            "https://smollaunch.com/product-hunt-alternatives"
+          ]
+        },
+        {
+          "tactic": "Free AI-tool directories that still accept submissions (curated free-only subset)",
+          "what": "Submit your free tool / agency to the genuinely-free AI directories from the maintained best-of-ai/ai-directories list: dofollow.tools, AIToolzDir (free DR-27 backlink), AI Tools Submit (submitaitools.org), Altern.ai, AIDirs, OpenTools, FutureTools, AI Tools Pin. SKIP the now-paid ones — There's An AI For That ($347 / only one free pick per monthly X thread) and Futurepedia ($497 verified-only) are NOT worth your time on the free path.",
+          "whyItWorks": "These directories are free, several are dofollow, and collectively they create a cluster of 'Quickomate' mentions in the AI-tools space that LLMs and Google associate with the brand. Volume of consistent low-DR citations still helps disambiguation even when individual link value is small. The GitHub list is community-maintained so it filters out dead/scam directories.",
+          "effort": "Medium",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Low — avoid pay-to-list traps; only use the free-confirmed ones and never the spammy '1000 backlinks' sellers.",
+          "steps": [
+            "Claude: from github.com/best-of-ai/ai-directories, hand Vasu the vetted free-submission shortlist with URLs.",
+            "Vasu: submit identical name/description/logo to each; batch them in one sitting.",
+            "Claude: add the live profile URLs to sameAs; deprioritize this vs. the higher-impact items above."
+          ],
+          "sources": [
+            "https://github.com/best-of-ai/ai-directories",
+            "https://theresanaiforthat.com/get-featured/",
+            "https://www.futurepedia.io/verified"
+          ]
+        },
+        {
+          "tactic": "Trustpilot free business profile (claim + collect reviews)",
+          "what": "Claim/create a free Trustpilot business profile for quickomate.com with the canonical name/description, then invite 3-5 genuine past clients to leave reviews.",
+          "whyItWorks": "Trustpilot is a DR-90+ trusted review entity that Google surfaces and AI engines cite for reputation. A claimed 'Quickomate' profile with real reviews is strong third-party corroboration of the brand (anti-autocorrect) and a trust signal. The free plan covers claiming, replying, and review-collection.",
+          "effort": "Low",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium — NEVER fake reviews (Trustpilot detects and penalizes; it also undermines the entity-trust goal). Only invite real clients.",
+          "steps": [
+            "Vasu: business.trustpilot.com/signup, claim the quickomate.com profile (verify via domain or Google Business if eligible).",
+            "Vasu: paste canonical description; email real clients a review invite.",
+            "Claude: draft the profile description and a short client review-request email; add the Trustpilot URL to sameAs."
+          ],
+          "sources": [
+            "https://business.trustpilot.com/pricing/free",
+            "https://help.trustpilot.com/s/article/Claim-your-business-profile"
+          ]
+        },
+        {
+          "tactic": "Bing Places + Apple Business Connect — ONLY if you have real in-person/local eligibility (conditional)",
+          "what": "If Vasu has a genuine business address / does any in-person client work, claim Bing Places for Business and Apple Business Connect. These feed Bing/Copilot and Apple Maps/Siri/Spotlight respectively. If the agency is 100% online with no in-person contact, SKIP these and skip Google Business Profile too.",
+          "whyItWorks": "Bing/Copilot and Apple ecosystems are separate citation graphs from Google; a verified business there broadens entity coverage and is exactly where your Bing visibility (currently ~3 pages, 0 citations) is weakest. BUT eligibility is real: a no-storefront, online-only, no-in-person-contact business is NOT eligible for Google Business Profile, and faking an address risks suspension — so treat these as conditional, not default.",
+          "effort": "Medium",
+          "impact": "Low",
+          "cost": "Free",
+          "owner": "Vasu (off-site)",
+          "risk": "Medium — listing a fake/PO-box address for an ineligible online-only business can get the profile suspended and is against guidelines. Only do this if genuinely eligible.",
+          "steps": [
+            "Vasu: honestly assess eligibility — do you meet clients in person or have a real verifiable address? If no, skip all map/local profiles.",
+            "Vasu (if eligible): claim Bing Places (bingplaces.com) and Apple Business Connect (businessconnect.apple.com) with consistent NAP + canonical description.",
+            "Claude: pre-fill the descriptions and categories; add any public profile URLs to sameAs."
+          ],
+          "sources": [
+            "https://support.google.com/business/answer/13763036",
+            "https://www.envisiondesignsolutions.com/google-business-profile-verification-in-2026-why-its-a-headache-and-how-service-businesses-without-a-storefront-can-still-get-verified/",
+            "https://www.bingplaces.com/"
+          ]
+        }
+      ]
+    }
+  ],
+  "verify": {
+    "outdatedOrWrong": [
+      {
+        "tactic": "Create a free Crunchbase profile for a 'dofollow, DA 91' backlink (cited across multiple agents as High-impact dofollow)",
+        "problem": "Crunchbase's free-tier website link is NOFOLLOW in 2026, not dofollow. Multiple agents list it as a 'dofollow DR 91' link and rank it High-impact partly on link equity that does not exist. Worse, Crunchbase links are commonly stripped/not even shown in Ahrefs, so the SEO link value is near-zero.",
+        "correction": "Keep Crunchbase, but reclassify it as an ENTITY/citation signal (it genuinely feeds Google's Knowledge Graph + is cited by Perplexity/ChatGPT for company facts), NOT a link-building tactic. Do it for the sameAs + Wikidata-reference value, then stop expecting authority transfer. Verify the rel attribute by viewing source on the live profile before counting it as anything."
+      },
+      {
+        "tactic": "Set up Google Business Profile as a service-area business with a hidden address (rated High/Medium impact by one agent as a 'Google-owned brand surface')",
+        "problem": "An online-only B2B agency with NO in-person client contact is NOT eligible for GBP in 2026, full stop. Google's 2026 guidelines explicitly state a business that operates entirely online without face-to-face customer contact does not qualify, and video verification now actively checks for signage, workspace, and a person at the claimed address. Registering a home address you then hide for a business with zero in-person service is exactly what gets profiles suspended.",
+        "correction": "One agent already flagged this correctly (the 4th research dimension marks Bing Places/Apple/GBP as CONDITIONAL on real in-person eligibility). Adopt that stance: SKIP GBP, Bing Places, and Apple Business Connect entirely unless Vasu genuinely meets clients in person. Do not fake an address. The brand-surface goal is better served by the LinkedIn Company Page + Wikidata + Crunchbase, which carry no suspension risk."
+      },
+      {
+        "tactic": "Create a Wikidata item using your own Crunchbase profile + LinkedIn + business registry as the references that clear notability (presented as the references that make the item 'stick')",
+        "problem": "Wikidata's 2026 verifiability bar does NOT accept self-published/primary sources as the corroboration. A business registry listing is explicitly called out as an identifier that does NOT confer notability, and Crunchbase + your own LinkedIn are self-referential. An item whose only references are your own profiles is precisely what gets flagged and deleted in 2026, and creating an item whose sole purpose is your own entity makes you 'less likely to receive the benefit of the doubt.'",
+        "correction": "Sequence it: get at least one or two genuinely INDEPENDENT references FIRST (a podcast episode page, a journalist quote from Source of Sources/Featured, an editorial mention, or an independent directory write-up), THEN create the Wikidata item citing those. Keep it strictly factual/neutral. Until an independent source exists, the item is premature and deletion-prone — so this is gated behind the off-site PR work, not a week-1 move."
+      },
+      {
+        "tactic": "Treat llms.txt as something to 'keep auto-synced' / a live AI-visibility lever (some agents soften it; others still imply maintenance value)",
+        "problem": "Confirmed dead as an AI-visibility signal: Google (Illyes/Mueller) says Search does not use it and won't, and NO major AI provider (OpenAI, Anthropic, Google, Meta, Mistral) consumes it in production. The one honest agent got this right. Any time spent 'auto-syncing' it is wasted.",
+        "correction": "Leave the static file in place (harmless) and invest literally zero further engineering on it — no auto-sync pipeline, no monitoring. The Chrome Lighthouse 'llms.txt check' that appeared in 2026 audits page hygiene, not ranking. Reallocate all of it to Bing indexation + answer-first schema."
+      },
+      {
+        "tactic": "Manufacture branded 'quickomate' search demand with a tiny $5-10/day LinkedIn/Meta retargeting layer to drive name-searches",
+        "problem": "This is the slowest, most marginal lever for a tiny brand and the research over-weights paid retargeting. Defeating Google's autocorrect needs a VOLUME of distinct real users typing 'quickomate' and clicking — $5-10/day retargeting at the handful of people who already visited your site produces a trickle, not the volume Google needs, and it's the one paid spend in an otherwise free plan.",
+        "correction": "Keep the FREE branded-demand mechanics (verbal 'search Quickomate on Google' CTAs in LinkedIn posts, email signature, podcast intros, lead-magnet footers) — those are high-leverage and cost nothing. Drop or heavily deprioritize the paid retargeting; if anything, the entity-cluster work (LinkedIn Company Page + Wikidata + consistent 'Quickomate not Quickmate' citations) flips the autocorrect faster than micro-budget ads. Set the honest expectation: autocorrect fixes take weeks-to-months even when done right."
+      },
+      {
+        "tactic": "Submit to a long tail of free AI-tool directories (theresanaiforthat, futurepedia, plus dozens of low-DR aggregators) as a High-impact link blitz",
+        "problem": "Two of the named flagship directories are now effectively PAID — There's An AI For That ($347, one free pick per monthly X thread) and Futurepedia ($497 verified-only) — so the 'free blitz' framing is outdated for the highest-value targets. And the agency's existing profile is already polluted with spam directory links (n8nworkflows.xyz, byteshort.xyz); piling on dozens more low-DR AI-tool directories risks reinforcing a spammy, irrelevant link footprint for what is an AGENCY, not a self-serve tool.",
+        "correction": "Be selective, not high-volume. Hit the genuinely-free, genuinely-relevant ones that competitors validate (SaaSHub and AlternativeTo — both confirmed free dofollow in 2026 — plus a small set of agency-appropriate directories). Frame Quickomate's free ROI calculator/quiz as the listable 'product' where a tool listing is required. Skip the paid flagships and skip the long tail of zero-traffic aggregators; they're entity-noise at best and footprint-risk at worst."
+      }
+    ],
+    "mustDoFirst": [
+      {
+        "action": "Expand the on-site sameAs/entity graph in src/App.jsx: add a brand Brand node, legalName, foundingDate, areaServed US, slogan, and a disambiguatingDescription ('Quickomate is a US B2B AI automation agency founded by Vasu Gupta; unrelated to Quickmate'), and make SAME_AS append-only as each off-site profile goes live",
+        "owner": "Claude (on-site)",
+        "why": "Verified: the live SAME_AS array has only 2 URLs (x.com/vaaasug + personal LinkedIn) and there is NO disambiguatingDescription or brand node. This is the cheapest, fully-in-my-control half of the autocorrect fix and the reciprocal anchor every off-site profile points back to. Ships today.",
+        "effort": "Low",
+        "impact": "High"
+      },
+      {
+        "action": "Add a crawlable, prerendered 'Quickomate (with an O) — not Quickmate' clarification: one line in the hero/About copy + an FAQPage Q&A 'Is Quickomate the same as Quickmate?' mirrored in the existing FAQ schema, with 'Quickomate' dense in title/H1/first paragraph",
+        "owner": "Claude (on-site)",
+        "why": "Gives Google and LLMs an explicit in-index disambiguation statement that pairs 'Quickomate' with 'not Quickmate' and a definition — directly attacking the spell-correction. Free, compounds with every other signal, and must be in the prerendered HTML since it's an SPA.",
+        "effort": "Low",
+        "impact": "Medium"
+      },
+      {
+        "action": "Fix Bing indexation: verify quickomate.com in Bing Webmaster Tools (import from GSC), submit sitemap.xml, and bulk-submit all ~48 URLs via URL Submission",
+        "owner": "Vasu (off-site)",
+        "why": "Highest-leverage AI-search unlock that needs no content or links. ChatGPT Search still uses Bing as a primary index in 2026 (~87% of ChatGPT citations match Bing's top organic); going from ~3 to ~48 indexed pages multiplies the ChatGPT/Copilot citation surface. One-time technical gate.",
+        "effort": "Low",
+        "impact": "High"
+      },
+      {
+        "action": "Create the LinkedIn COMPANY Page for 'Quickomate' (distinct from Vasu's personal profile) with the exact canonical name/description, then add /company/quickomate to SAME_AS",
+        "owner": "Vasu (off-site)",
+        "why": "Single strongest free 'Quickomate is a real organization' signal, directly countering the competing 'Quickmate on LinkedIn' SERP result, and it's the prerequisite many other profiles (Crunchbase) ask for. Vasu only has a personal profile today.",
+        "effort": "Low",
+        "impact": "High"
+      },
+      {
+        "action": "Sculpt internal links into the 3 service money pages: add /ai-automation-agency, /cold-email-agency, /b2b-lead-generation-agency as real Navbar items and add contextual body links UP from the relevant blog spokes (varied anchors), plus a hub block DOWN to supporting posts",
+        "owner": "Claude (on-site)",
+        "why": "The Navbar links to NONE of the money pages today, so authority pools on the homepage (why nearly all clicks are brand/homepage). This is the cheapest way to lift pages Google already indexes (e.g. 'ai automation agency' pos 82) and doubles as a topical-authority signal for LLMs.",
+        "effort": "Low",
+        "impact": "High"
+      },
+      {
+        "action": "Work the free journalist-source stack consistently: Source of Sources (free, highest do-follow rate), Featured.com, Qwoted free tier, Help a B2B Writer (B2B-only, best fit). Answer 3-5 relevant queries/week as 'Vasu Gupta, founder of Quickomate', confirm spelling on publish",
+        "owner": "Vasu (off-site)",
+        "why": "All four confirmed alive and active in 2026. This is the only tactic that produces genuine INDEPENDENT editorial mentions — which simultaneously (a) builds the authority the GSC data is missing, (b) creates the non-self-published references Wikidata requires, and (c) plants the correctly-spelled brand token in trusted third-party text for both Google and LLM training.",
+        "effort": "Medium",
+        "impact": "High"
+      },
+      {
+        "action": "Build one original-data linkable asset: /resources/cold-email-benchmarks-2026 from Vasu's REAL numbers (the ~4% reply rate, deliverability benchmarks) with Dataset+Article schema, answer-first stat callouts, pure-CSS/SVG charts, methodology box, and an 'embed this stat' do-follow attribution snippet",
+        "owner": "Both",
+        "why": "Original-research pages are the #1 passive link magnet and the single highest-ROI asset I can build on-site. It becomes the thing every journalist/podcast/Reddit pitch points to, and feeds AI engines a quotable Quickomate-attributed stat. Gated only on Vasu supplying honest numbers + sample size (do not fabricate).",
+        "effort": "Medium",
+        "impact": "High"
+      },
+      {
+        "action": "Add the free 'embed this calculator/quiz' snippet (single contextual do-follow 'Powered by Quickomate') to the existing ROI calculator + readiness quiz, give each a clean canonical URL + WebApplication schema, and build a /tools or /resources hub",
+        "owner": "Both",
+        "why": "The tools are already built — this harvests passive links from an asset that exists (the proven SurferSEO/Keyword-Surfer mechanism). Low effort, and the hub gives curators and crawlers a single 'linkable assets' index to find.",
+        "effort": "Low",
+        "impact": "High"
+      },
+      {
+        "action": "Founder Reddit + niche-community presence as the real expert: build karma first, then answer genuine questions in r/sales, r/coldemail, r/automation, r/msp, r/SaaS, naming 'Quickomate' only when it truly answers the question",
+        "owner": "Vasu (off-site)",
+        "why": "Reddit is the #1 LLM citation source in 2026 (~40% of citations; ~1-in-5 on Perplexity). Links are nofollow/ugc so they pass no PageRank, but the brand-MENTION value is the point — it both teaches Google 'Quickomate' is a real proper noun (anti-autocorrect) and gets the brand cited by ChatGPT/Perplexity. Founder-run only; spray-and-pray gets banned.",
+        "effort": "Medium",
+        "impact": "High"
+      },
+      {
+        "action": "Claim the free entity-citation cluster with ONE identical NAP/description everywhere: Crunchbase, SaaSHub, AlternativeTo, F6S, Indie Hackers, GitHub org 'quickomate'; add each live URL to SAME_AS as it goes live",
+        "owner": "Both",
+        "why": "A dense, identical-spelling 'Quickomate' citation set is the disambiguation move that flips the autocorrect and feeds the Knowledge Graph. Treat Crunchbase as entity-value only (nofollow in 2026); SaaSHub + AlternativeTo are confirmed free dofollow and add real referring domains. I draft one canonical identity kit so nothing is spelled inconsistently.",
+        "effort": "Medium",
+        "impact": "Medium"
+      },
+      {
+        "action": "Convert the ~10 impression-earning posts to AI-Overview-citable format: 40-60 word answer capsule under each H2/H3, 4-5 cited stats in the first 300 words (incl. one proprietary number from Vasu), and a 7-question FAQPage block; bump dateModified + re-ping IndexNow",
+        "owner": "Both",
+        "why": "Realistic traffic path for a low-authority site whose blue-link ranks are stuck at pos 40-85: get extracted into AI Overviews/ChatGPT/Perplexity instead of waiting on rank (38-46% of AI-Overview citations now come from outside the top 10). Additive, on-brand with the existing answer-first content, and aimed only at pages that already earn impressions.",
+        "effort": "Medium",
+        "impact": "High"
+      }
+    ],
+    "missing": [
+      "Bing IndexNow vs Bing indexation are conflated: the repo already fires IndexNow, but IndexNow only PINGS Bing — it does not guarantee indexation, and the ~3-indexed-pages reality proves it. No agent calls out that you must separately confirm coverage in Bing Webmaster Tools' Index Explorer and resubmit crawled-but-skipped pages; Bing also silently de-indexes thin pages, so this needs an explicit monitoring loop, not a one-time submit.",
+      "No agent recommends a Bing-specific E-E-A-T/thin-content pass. Bing's indexation filter is harsher than Google's on low-depth pages — several of the 48 may be getting crawled and dropped. Auditing which specific URLs Bing rejected (and beefing them up) is the actual unlock behind 'fix Bing', not just bulk-submitting.",
+      "Defensive/typo domain + brand monitoring is absent: nobody suggests checking whether 'quickmate.com'-style or 'quickomate' typo variants are available to register and 301 to the main site, or setting a Google Alert / Bing alert specifically for the 'Search instead for quickomate' banner state so you can measure when the autocorrect actually breaks.",
+      "Measurement of the autocorrect fix itself is hand-waved. The concrete, free test — running 'quickomate' in a logged-out/incognito SERP weekly and recording whether the 'showing results for quickmate' banner still fires, plus tracking the GSC 'quickomate' query impression trend — should be the explicit success metric for the whole entity workstream, with a realistic weeks-to-months timeline stated up front.",
+      "YouTube is treated as a generic 'make videos' play, but the specific 2026 mechanic is missed in the priority logic: AI engines cite the TRANSCRIPT + chapter markers, not the video, and views/subs barely matter — so a brand-new channel can be cited immediately if (and only if) each video ships a corrected full transcript + 5-8 descriptive chapters. Without that structure the videos are invisible to AI; the structure IS the tactic.",
+      "No one frames the realistic referring-domain target or the time-to-impact curve as a planning input. For a brand at Authority Score 2 / ~17 referring domains, the honest 12-month goal is 30-60 genuine topical referring domains — and links/brand demand move on a months-long lag while on-site schema/internal-linking move in weeks. Sequencing should be driven by that lag, which the ranked lists imply but never state as the governing constraint."
+    ],
+    "realityCheck": "For a brand-new agency at Authority Score 2 with ~17 referring domains and a name Google actively autocorrects, almost nothing moves the needle on rankings in 90 days — links and branded-search demand are slow and compound over months, so don't measure success by position changes this quarter. What you CAN win fast is (1) the autocorrect/entity problem via on-site disambiguation schema + a LinkedIn Company Page + a consistent free citation cluster, and (2) AI-search surface via Bing indexation and answer-first/FAQ formatting, both of which are technical and within weeks. The single most leveraged off-site habit is showing up: weekly Source-of-Sources/Featured answers and genuine founder Reddit participation, because those produce the independent mentions that simultaneously build authority, unlock Wikidata, and teach Google + LLMs that 'Quickomate' is a real proper noun. Treat the benchmark data-study page as the asset that makes every one of those outreach touches convert. Be honest internally: the realistic 90-day win is 'autocorrect starts breaking + 5-15 new genuine referring domains + first ChatGPT/Perplexity citations', not page-1 commercial rankings."
+  }
+}

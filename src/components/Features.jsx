@@ -256,6 +256,26 @@ export default function Features() {
                         </div>
                     </article>
                 </div>
+
+                {/* Internal-link equity: descriptive, crawlable links from the homepage
+                    into the three service money pages (was footer-only — this concentrates
+                    authority on the pages that should rank). Varied anchor text. */}
+                <div className="mt-14 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 border-t-4 border-primary pt-8">
+                    <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest shrink-0">
+                        Explore the systems <span className="text-accent">→</span>
+                    </span>
+                    <div className="flex flex-wrap gap-x-6 gap-y-3 font-mono text-sm font-bold">
+                        <a href="/ai-automation-agency" className="text-primary underline decoration-accent decoration-2 underline-offset-4 hover:text-accent transition-colors">
+                            AI automation agency
+                        </a>
+                        <a href="/cold-email-agency" className="text-primary underline decoration-accent decoration-2 underline-offset-4 hover:text-accent transition-colors">
+                            Cold email infrastructure
+                        </a>
+                        <a href="/b2b-lead-generation-agency" className="text-primary underline decoration-accent decoration-2 underline-offset-4 hover:text-accent transition-colors">
+                            B2B lead generation systems
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     );

@@ -69,6 +69,12 @@ const NotFound = lazy(() => import('./components/NotFound'));
 const SITE_URL = 'https://quickomate.com';
 const CAL_URL = 'https://cal.com/vasu-gupta-wv3e0q/discovery-call-quickomate';
 const CONTACT_EMAIL = 'solutions@solariswireless.com';
+// sameAs is APPEND-ONLY and must only ever contain LIVE, resolving profile URLs
+// for the Quickomate entity. Each new exact-match "Quickomate" profile (LinkedIn
+// Company Page, Crunchbase, SaaSHub, AlternativeTo, GitHub org, YouTube, Wikidata
+// QID, etc.) gets added here AS IT GOES LIVE — a dense, consistent sameAs chain is
+// the primary entity signal that teaches Google "Quickomate" is a real brand (and
+// stops the "quickmate" autocorrect). Do NOT add a URL before the profile exists.
 const SAME_AS = [
   'https://x.com/vaaasug',
   'https://www.linkedin.com/in/refer-vasu/'
@@ -120,7 +126,24 @@ const ORG_SCHEMA = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   "name": "Quickomate",
-  "alternateName": "Quickomate AI Automation Agency",
+  // Brand-disambiguation: the exact-match spelling variants real users type.
+  // Deliberately spelled with the "o" (Quick-O-mate) — NEVER "Quickmate".
+  "alternateName": [
+    "Quickomate AI Automation Agency",
+    "Quickomate AI",
+    "Quickomate Agency"
+  ],
+  // The single most important anti-autocorrect signal: an explicit, in-index
+  // statement that Quickomate is a distinct brand and is NOT "Quickmate".
+  "disambiguatingDescription": "Quickomate (spelled with an O — Quick-O-mate) is a US-based B2B AI automation agency founded by Vasu Gupta. It is a distinct, independent brand and is unrelated to any company, app, or tool named \"Quickmate\".",
+  "slogan": "AI automation systems you own — not retainers.",
+  "areaServed": { "@type": "Country", "name": "United States" },
+  "brand": {
+    "@type": "Brand",
+    "name": "Quickomate",
+    "url": SITE_URL,
+    "logo": `${SITE_URL}/logo.png`
+  },
   "url": SITE_URL,
   "logo": {
     "@type": "ImageObject",
@@ -197,6 +220,14 @@ function HomePage() {
           "@context": "https://schema.org",
           "@type": "FAQPage",
           "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Quickomate the same as Quickmate?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Quickomate (spelled with an O — Quick-O-mate) is a US-based B2B AI automation agency founded by Vasu Gupta. It is a distinct, independent brand and is not affiliated with any company, app, or tool named \"Quickmate\". If Google shows \"results for quickmate\", choose \"search instead for quickomate\" to reach the official site at quickomate.com."
+              }
+            },
             {
               "@type": "Question",
               "name": "What does an AI Growth Partner actually do?",
