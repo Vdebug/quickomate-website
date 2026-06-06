@@ -42,6 +42,7 @@ export default function Footer() {
                             { label: 'AI Automation', href: '/ai-automation-agency' },
                             { label: 'Cold Email Agency', href: '/cold-email-agency' },
                             { label: 'B2B Lead Gen', href: '/b2b-lead-generation-agency' },
+                            { label: 'Free Tools', href: '/tools' },
                             { label: 'Case Studies', href: '/#case-studies' },
                             { label: 'About', href: '/about' },
                             { label: 'Blog', href: '/blog' },

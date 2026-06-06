@@ -29,8 +29,8 @@ export default function Navbar() {
 
     const navItems = [
         { label: 'Services', href: isHome ? '#services' : '/#services' },
+        { label: 'Tools', href: '/tools' },
         { label: 'Case Studies', href: isHome ? '#case-studies' : '/#case-studies' },
-        { label: 'Protocol', href: isHome ? '#protocol' : '/#protocol' },
         { label: 'Blog', href: '/blog' },
     ];
 

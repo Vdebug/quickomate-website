@@ -28,6 +28,7 @@ const entries = [
   url(`${SITE_URL}/cold-email-agency`, newest, 'monthly', '0.9'),
   url(`${SITE_URL}/b2b-lead-generation-agency`, newest, 'monthly', '0.9'),
   url(`${SITE_URL}/about`, newest, 'monthly', '0.7'),
+  url(`${SITE_URL}/tools`, newest, 'monthly', '0.8'),
   url(`${SITE_URL}/blog`, newest, 'weekly', '0.8'),
   ...blogPosts.map((p) =>
     url(`${SITE_URL}/blog/${p.slug}`, p.updatedIso || p.dateIso, 'monthly', '0.9')

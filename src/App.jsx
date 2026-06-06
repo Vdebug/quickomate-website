@@ -64,6 +64,7 @@ const About = lazy(() => import('./components/About'));
 const ServiceAiAutomation = lazy(() => import('./components/ServiceAiAutomation'));
 const ServiceColdEmail = lazy(() => import('./components/ServiceColdEmail'));
 const ServiceLeadGen = lazy(() => import('./components/ServiceLeadGen'));
+const ToolsHub = lazy(() => import('./components/ToolsHub'));
 const NotFound = lazy(() => import('./components/NotFound'));
 
 const SITE_URL = 'https://quickomate.com';
@@ -346,6 +347,78 @@ function AboutPage() {
       </Helmet>
       <Navbar />
       <main><About /></main>
+      <Footer />
+    </>
+  );
+}
+
+function ToolsPage() {
+  const url = `${SITE_URL}/tools`;
+  const toolsOg = ogImage({ title: 'Free B2B Automation & Cold Email Tools', tag: 'FREE TOOLKIT', kind: 'site' });
+  const TOOLS = [
+    { name: 'Sales Automation ROI Calculator', url: `${SITE_URL}/blog/sales-automation-roi-calculator`, desc: 'Calculate the hours and dollars you would save by automating manual sales work.' },
+    { name: 'AI Automation Readiness Quiz', url: `${SITE_URL}/blog/how-to-know-if-your-business-needs-ai-automation`, desc: 'A 7-question scored quiz that tells you whether your business is ready to automate and where to start.' },
+    { name: 'Cold Email Infrastructure Checklist', url: `${SITE_URL}/blog/cold-email-infrastructure-how-many-domains-inboxes`, desc: 'The domain, inbox, warm-up and authentication setup behind a deliverable cold email system.' },
+    { name: 'B2B Cold Email Swipe File', url: `${SITE_URL}/blog/cold-email-subject-lines-that-get-b2b-replies`, desc: 'Subject-line and opener archetypes pulled from campaigns that book meetings.' },
+    { name: 'Realistic Cold Email Benchmarks (2026)', url: `${SITE_URL}/blog/b2b-cold-email-benchmarks-2026`, desc: 'Poor/average/good/elite benchmark table for reply rate, positive reply rate, and meetings per send.' },
+  ];
+  return (
+    <>
+      <Helmet>
+        <title>Free B2B Automation &amp; Cold Email Tools – Quickomate</title>
+        <meta name="description" content="Free, no-signup tools from Quickomate: a Sales Automation ROI calculator, AI Automation Readiness quiz, cold email infrastructure checklist, B2B swipe file, and realistic 2026 cold email benchmarks." />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content="Free B2B Automation & Cold Email Tools – Quickomate" />
+        <meta property="og:description" content="Free interactive calculators, checklists, and benchmark data for B2B automation and cold email. No email gate." />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={toolsOg} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={toolsOg} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Free B2B Automation & Cold Email Tools",
+          "url": url,
+          "description": "A free toolkit of interactive calculators, checklists, and benchmark data for B2B automation and cold email, published by Quickomate.",
+          "isPartOf": { "@id": `${SITE_URL}/#website` },
+          "publisher": { "@id": `${SITE_URL}/#organization` },
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": TOOLS.map((t, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "url": t.url,
+              "name": t.name
+            }))
+          }
+        })}</script>
+        {TOOLS.slice(0, 2).map((t) => (
+          <script type="application/ld+json" key={t.url}>{JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": t.name,
+            "url": t.url,
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "description": t.desc,
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "publisher": { "@id": `${SITE_URL}/#organization` }
+          })}</script>
+        ))}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+            { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": url }
+          ]
+        })}</script>
+      </Helmet>
+      <Navbar />
+      <main><ToolsHub /></main>
       <Footer />
     </>
   );
@@ -1733,7 +1806,7 @@ function BlogColdEmailBenchmarksPage() {
           "author": { "@type": "Person", "name": "Vasu Gupta", "url": "https://www.linkedin.com/in/refer-vasu/" },
           "publisher": { "@type": "Organization", "name": "Quickomate", "url": SITE_URL, "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } },
           "datePublished": "2026-05-19",
-          "dateModified": "2026-05-19",
+          "dateModified": "2026-06-06",
           "mainEntityOfPage": { "@type": "WebPage", "@id": url },
           "inLanguage": "en-US",
           "keywords": "cold email benchmarks 2026, cold email reply rate, b2b cold email statistics, meetings per send, cold email open rate",
@@ -1743,9 +1816,28 @@ function BlogColdEmailBenchmarksPage() {
           "@context": "https://schema.org",
           "@type": "FAQPage",
           "mainEntity": [
-            { "@type": "Question", "name": "What is a realistic cold email reply rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A realistic overall reply rate on cold B2B email in 2026 is roughly 3.4–5.8%, of which 1-2% are positive replies. Vendor case studies showing 8-12%+ are almost always cherry-picked warm audiences or tiny sends. Above ~5% sustained on genuinely cold traffic is the exception, not the benchmark." } },
-            { "@type": "Question", "name": "How many meetings should 100 cold emails produce?", "acceptedAnswer": { "@type": "Answer", "text": "Expect roughly 1-2 booked meetings per 100 well-targeted cold emails, or about 0.15-0.25% meetings per email sent across a campaign. Tighter targeting and a relevant offer push toward the top of that range; broad lists and generic copy fall below it." } },
-            { "@type": "Question", "name": "Do smaller cold email sends really get higher reply rates?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Highly targeted batches under ~50 recipients commonly see reply rates around 5.8% versus roughly 2.1% for large untargeted blasts. Smaller sends let you research the recipient and write a relevant line, which is the single biggest driver of replies." } }
+            { "@type": "Question", "name": "What is a realistic cold email reply rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A realistic total reply rate on cold B2B email in 2026 is about 2–4%. Anything above 2% on genuinely cold traffic is a good, well-run campaign; 4%+ is the strong end. Vendor case studies showing 8–12%+ are almost always cherry-picked warm audiences or tiny sends." } },
+            { "@type": "Question", "name": "What is a good positive reply rate for cold email?", "acceptedAnswer": { "@type": "Answer", "text": "The positive reply rate — genuinely interested replies divided by emails sent — is the metric that actually predicts meetings. In 2026, 0.3–0.5% is strong and a clean 0.5% is elite. Total reply rate looks bigger because it includes 'no thanks', wrong-person, and out-of-office auto-replies, which book nothing." } },
+            { "@type": "Question", "name": "How many meetings should 100 cold emails produce?", "acceptedAnswer": { "@type": "Answer", "text": "Expect roughly 0.2–0.4 booked meetings per 100 well-targeted cold emails — about one qualified meeting per 250–500 sends at strong performance, and 500–1,000 on an average campaign. Tighter targeting and a relevant offer push toward the top of that range." } },
+            { "@type": "Question", "name": "Do smaller cold email sends really get higher reply rates?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Highly targeted batches under ~50 recipients commonly see reply rates around 5% versus roughly 2% for large untargeted blasts. Smaller sends let you research the recipient and write a relevant line, which is the single biggest driver of replies." } }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          "name": "Realistic 2026 B2B Cold Email Benchmarks",
+          "description": "Benchmark ranges for B2B cold email in 2026 — total reply rate, positive reply rate, and meetings per 100 sends — graded poor/average/good/elite, compiled by Quickomate from well-run B2B campaigns.",
+          "url": url,
+          "creator": { "@id": `${SITE_URL}/#organization` },
+          "datePublished": "2026-05-19",
+          "dateModified": "2026-06-06",
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "isAccessibleForFree": true,
+          "keywords": ["cold email reply rate", "positive reply rate", "b2b cold email benchmarks 2026", "meetings per send"],
+          "variableMeasured": [
+            { "@type": "PropertyValue", "name": "Total reply rate (good)", "value": "2–4%" },
+            { "@type": "PropertyValue", "name": "Positive reply rate (elite)", "value": "0.5%" },
+            { "@type": "PropertyValue", "name": "Meetings per 100 sends (good)", "value": "0.2–0.4" }
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema(title, slug))}</script>
@@ -2996,6 +3088,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/tools" element={<ToolsPage />} />
             <Route path="/ai-automation-agency" element={<ServiceAiAutomationPage />} />
             <Route path="/cold-email-agency" element={<ServiceColdEmailPage />} />
             <Route path="/b2b-lead-generation-agency" element={<ServiceLeadGenPage />} />

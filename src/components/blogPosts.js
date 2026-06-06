@@ -185,9 +185,10 @@ export const blogPosts = [
   {
     slug: 'b2b-cold-email-benchmarks-2026',
     title: 'Realistic B2B Cold Email Benchmarks in 2026: Reply Rates, Meetings & Why Small Sends Win',
-    excerpt: 'Vendor benchmark reports inflate every number. Here are the realistic 2026 figures — reply rates, positive replies, meetings per hundred sends — and why small, targeted sends beat big blasts.',
+    excerpt: 'Vendor benchmark reports inflate every number. Here are the realistic 2026 figures — 2-4% reply rate, 0.3-0.5% positive reply rate (0.5% is elite), meetings per send — with a poor/average/good/elite table you can cite.',
     date: 'May 2026',
     dateIso: '2026-05-19',
+    updatedIso: '2026-06-06',
     readTime: '9 min read',
     tags: ['Benchmarks', 'Cold Email', 'Data'],
   },

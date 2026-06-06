@@ -55,10 +55,10 @@ export default function BlogColdEmailBenchmarks() {
                             <h3 className="font-heading font-black text-lg text-primary uppercase mb-4">Realistic Range</h3>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                                 {[
-                                    { label: 'Reply rate', value: '3.4–5.8%' },
-                                    { label: 'Positive replies', value: '1–2%' },
-                                    { label: 'Meetings / 100 sends', value: '1–2' },
-                                    { label: 'Meetings / email', value: '0.15–0.25%' },
+                                    { label: 'Reply rate (total)', value: '2–4%' },
+                                    { label: 'Positive reply rate', value: '0.3–0.5%' },
+                                    { label: 'Meetings / 100 sends', value: '0.2–0.4' },
+                                    { label: 'Sends / meeting', value: '250–500' },
                                 ].map((stat) => (
                                     <div key={stat.label} className="bg-primary p-4">
                                         <span className="font-heading font-black text-xl sm:text-2xl text-accent block">{stat.value}</span>
@@ -68,11 +68,56 @@ export default function BlogColdEmailBenchmarks() {
                             </div>
                         </div>
                         <p className="mb-4">
-                            Read those numbers carefully, because the gap between them is where most people set wrong expectations. A 4-5% reply rate sounds healthy until you remember that most replies aren't "yes." After you strip out "no thanks," "wrong person," and out-of-office bounces, you're left with roughly <strong>1-2% genuinely positive replies</strong>. From those, you book <strong>1-2 meetings per 100 sends</strong>.
+                            Read those numbers carefully, because the gap between them is where most people set wrong expectations. A <strong>2-4% total reply rate</strong> is a healthy, well-run campaign. But most replies aren't "yes" — after you strip out "no thanks," "wrong person," and out-of-office auto-replies, you're left with the only metric that matters: the <strong>positive reply rate</strong>. A genuinely strong campaign lands <strong>0.3-0.5% positive replies</strong>, and a clean <strong>0.5% is elite</strong> — that's a beast of a campaign, not a starting point.
                         </p>
-                        <p>
-                            That last number is the only one that pays your bills. Translated: it takes roughly <strong>400-700 well-targeted sends to book a single qualified meeting</strong>. If your math assumed a meeting per 50 emails, this is why your pipeline disappointed you. The channel works — it's just not magic, and anyone quoting you a meeting per 30 sends is selling you a fantasy. For the upstream question of whether cold email is even right for you, see <Link to="/blog/is-cold-email-still-worth-it-2026" className="text-accent font-bold underline hover:text-primary">our honest take on whether it's worth it in 2026</Link>.
+                        <p className="mb-4">
+                            That positive-reply number is the one that pays your bills. Translated: at elite performance it takes roughly <strong>250-500 well-targeted sends to book one qualified meeting</strong>; on an average campaign, closer to 500-1,000. If your math assumed a meeting per 50 emails, this is why your pipeline disappointed you. The channel works — it's just not magic, and anyone quoting a meeting per 30 sends is selling a fantasy. For the upstream question of whether cold email is even right for you, see <Link to="/blog/is-cold-email-still-worth-it-2026" className="text-accent font-bold underline hover:text-primary">our honest take on whether it's worth it in 2026</Link>.
                         </p>
+
+                        {/* Benchmark ranges table — the linkable data asset */}
+                        <div className="bg-surface border-4 border-primary p-5 sm:p-6 mt-6 overflow-x-auto">
+                            <h3 className="font-heading font-black text-lg text-primary uppercase mb-1">2026 B2B Cold Email Benchmark Ranges</h3>
+                            <p className="font-mono text-[11px] text-primary/50 uppercase tracking-widest mb-4">Higher is better · clean infra, tight ICP, real personalization</p>
+                            <table className="w-full border-collapse text-left min-w-[520px]">
+                                <thead>
+                                    <tr className="font-mono text-[10px] uppercase tracking-widest">
+                                        <th className="border-2 border-primary bg-primary text-surface p-2">Metric</th>
+                                        <th className="border-2 border-primary p-2 text-primary/70">Poor</th>
+                                        <th className="border-2 border-primary p-2 text-primary/70">Average</th>
+                                        <th className="border-2 border-primary p-2 text-primary">Good</th>
+                                        <th className="border-2 border-primary bg-accent text-background p-2">Elite</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="font-mono text-xs sm:text-sm">
+                                    {[
+                                        { m: 'Reply rate (total)', poor: '< 1%', avg: '1–2%', good: '2–4%', elite: '4–6%' },
+                                        { m: 'Positive reply rate', poor: '< 0.1%', avg: '0.1–0.3%', good: '0.3–0.5%', elite: '0.5%+' },
+                                        { m: 'Meetings / 100 sends', poor: '< 0.1', avg: '0.1–0.2', good: '0.2–0.4', elite: '0.4–0.6' },
+                                    ].map((r) => (
+                                        <tr key={r.m}>
+                                            <td className="border-2 border-primary bg-primary/5 p-2 font-bold text-primary">{r.m}</td>
+                                            <td className="border-2 border-primary p-2 text-primary/60">{r.poor}</td>
+                                            <td className="border-2 border-primary p-2 text-primary/60">{r.avg}</td>
+                                            <td className="border-2 border-primary p-2 font-bold text-primary">{r.good}</td>
+                                            <td className="border-2 border-primary p-2 font-black text-accent">{r.elite}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <p className="font-sans text-xs text-primary/70 mt-4 border-l-4 border-accent pl-3">
+                                <strong>Guardrails (lower is better):</strong> bounce rate &lt; 3% · spam complaint rate &lt; 0.3% · inbox placement &gt; 90%. Blow any of these and the reply numbers above stop mattering — you're in spam.
+                            </p>
+                        </div>
+
+                        {/* Embed / cite snippet — passive backlink magnet */}
+                        <div className="bg-primary border-4 border-accent p-5 sm:p-6 mt-6">
+                            <h3 className="font-mono text-sm font-black text-accent uppercase tracking-widest mb-2">Cite / embed this benchmark</h3>
+                            <p className="font-sans text-xs text-surface/80 mb-3">
+                                Using these numbers in a post, deck, or report? Please credit the source — copy the line below:
+                            </p>
+                            <pre className="bg-background/95 text-primary text-[11px] sm:text-xs p-3 border-2 border-surface/30 overflow-x-auto whitespace-pre-wrap break-words"><code>{`Realistic 2026 B2B cold email benchmarks: 2–4% total reply rate, 0.3–0.5% positive reply rate (0.5% is elite). Source: Quickomate — https://quickomate.com/blog/b2b-cold-email-benchmarks-2026`}</code></pre>
+                            <p className="font-mono text-[10px] text-surface/50 uppercase tracking-widest mt-3">Free to reuse with attribution.</p>
+                        </div>
                     </section>
 
                     {/* Section 2 — Small vs large send comparison */}
@@ -211,7 +256,7 @@ export default function BlogColdEmailBenchmarks() {
                             Our brand number is a ~4% reply rate. We could quote 15% like the loud accounts on LinkedIn — nobody fact-checks a screenshot — but we don't, for a simple reason: the clients we want are the ones who respect honest numbers and would rather hit a real 4% than be sold an imaginary 15%.
                         </p>
                         <p className="mb-4">
-                            Four percent sits right in the realistic 3.4-5.8% band above. It assumes a tight ICP, clean deliverability, real personalization, and a proper follow-up sequence. It's a number we can hit consistently and forecast against — which means we can tell you, before you spend a dollar, roughly how many meetings a given volume will produce.
+                            Four percent sits at the strong end of the realistic 2-4% reply band above — and it only counts paired with a ~0.5% positive reply rate, the metric that actually forecasts meetings. It assumes a tight ICP, clean deliverability, real personalization, and a proper follow-up sequence. It's a number we can hit consistently and forecast against — which means we can tell you, before you spend a dollar, roughly how many meetings a given volume will produce.
                         </p>
                         <p>
                             That predictability is the whole point of an honest benchmark. A 15% promise can't be planned around because it isn't real. A 4% promise can be turned into a pipeline forecast: this many sends, at this reply rate, at this positive-reply ratio, equals this many meetings per month. Boring, defensible, and it actually shows up in your calendar.

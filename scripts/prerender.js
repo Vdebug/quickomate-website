@@ -32,7 +32,7 @@ function getRoutes() {
   const slugs = [...blogPostsSrc.matchAll(/slug:\s*'([^']+)'/g)].map((m) => m[1]);
   const blogRoutes = slugs.map((s) => `/blog/${s}`);
   const serviceRoutes = ['/ai-automation-agency', '/cold-email-agency', '/b2b-lead-generation-agency'];
-  return ['/', '/blog', '/about', '/privacy', ...serviceRoutes, ...blogRoutes];
+  return ['/', '/blog', '/about', '/tools', '/privacy', ...serviceRoutes, ...blogRoutes];
 }
 
 // --- 2. Find a Chrome/Chromium executable across environments ---
