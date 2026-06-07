@@ -228,6 +228,9 @@ export default function BlogBusinessProcessesToAutomate() {
                             <p className="font-mono text-sm font-bold text-primary uppercase border-l-4 border-accent pl-4">
                                 Pick one process that scores high on all four questions, ship it, and measure the hours saved. One clean win beats a sprawling automation plan that never leaves the whiteboard.
                             </p>
+                            <p className="mt-4 text-sm font-bold">
+                                Want help finding and building that first automation? See the <Link to="/ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI automation agency service</Link>.
+                            </p>
                         </div>
                     </section>
 

@@ -191,6 +191,9 @@ export default function BlogAiAgentWorkflowAutomation() {
                             <p className="font-mono text-sm font-bold text-primary uppercase border-l-4 border-accent pl-4">
                                 Start narrow. Pick one decision-heavy workflow, give the agent the smallest toolset that does the job, instrument it so you can see every step, and define what happens when it's unsure. Prove that one works before you scale to the next.
                             </p>
+                            <p className="mt-4 text-sm font-bold">
+                                Want agentic workflows built and run on your stack? See the <Link to="/ai-automation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">AI automation agency service</Link>.
+                            </p>
                         </div>
                     </section>
 

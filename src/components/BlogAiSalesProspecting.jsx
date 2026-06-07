@@ -196,6 +196,9 @@ export default function BlogAiSalesProspecting() {
                             <p className="font-mono text-sm font-bold text-primary uppercase border-l-4 border-accent pl-4">
                                 The teams winning with AI in 2026 aren't the ones who automated the most. They're the ones who automated the right things and left a human exactly where reply rate is decided.
                             </p>
+                            <p className="mt-4 text-sm font-bold">
+                                Want this hybrid prospecting stack run for you? See the <Link to="/b2b-lead-generation-agency" className="text-accent font-bold underline decoration-2 underline-offset-4 hover:text-primary">B2B lead generation service</Link>.
+                            </p>
                         </div>
                     </section>
 
