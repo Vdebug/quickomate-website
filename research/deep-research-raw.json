@@ -1,0 +1,337 @@
+{
+  "question": "Exact, current (2026), prioritized tactics to rank quickomate.com higher in Google and AI search.\n\nCONTEXT: Quickomate is a brand-new, US-targeted B2B AI automation agency (services: custom AI automation, LLM agents, cold email infrastructure, B2B lead generation). Two confirmed ranking problems from live data:\n(1) BRAND-ENTITY: Googling the brand \"quickomate\" triggers Google's \"showing results for quickmate\" autocorrect; page 1 is entirely unrelated companies named Quickmate; Google does not recognize \"Quickomate\" as a distinct entity. In GSC, the query \"quickmate\" shows position ~6, \"quickomate.com\" position 1.\n(2) AUTHORITY DEFICIT: roughly 0 referring domains (vs competitor lindy.ai at ~3,100 in Bing). Commercial/informational keywords (\"ai automation agency\", \"marketing automation roi\", \"b2b email subject lines\", \"ai automation examples\") earn impressions but rank Google pages 4-9 with near-zero clicks. Only ~3 pages indexed in Bing. The 3 service money pages were \"Discovered, currently not indexed\" until just requested.\n\nALREADY IMPLEMENTED (do NOT merely repeat these; build beyond them): Organization/Brand/Person JSON-LD with disambiguatingDescription (\"Quickomate is unrelated to Quickmate\") + sameAs (LinkedIn company page, GitHub org, X); homepage FAQ + a visible crawlable \"Quickomate (with an O), not Quickmate\" line; FAQPage + Dataset schema; an honest cold-email-benchmarks data asset (poor/average/good/elite table) with an embed/cite snippet; a /tools hub + an embeddable ROI calculator widget with attribution backlink; prerendered React SPA; XML sitemap + IndexNow; Bing sitemap resubmit + 48 URL submissions; Google request-indexing on the 3 money pages; internal linking from blog posts to money pages; live Clutch + GoodFirms + LinkedIn company + GitHub profiles; foundingDate set.\n\nCONSTRAINTS: white-hat only (no PBNs, no link buying, no Google Docs spam, no fake Wikipedia); no paid G2 or paid Product Hunt as a primary tactic; founder-executable; low budget; primary market US/global B2B buyers.\n\nRESEARCH AND RETURN the highest-ROI EXACT actions for 2026 to:\n(a) Defeat the Google brand autocorrect (quickomate -> quickmate) and win/own the brand SERP, including what actually triggers Google to stop a spell-correction on a coined brand name and what earns a knowledge panel for a tiny company.\n(b) Lift the commercial keywords off pages 4-9 for a low-authority B2B services site: what actually moves rankings now (links vs on-page vs entity vs experience/engagement signals), which link types and sources still pass real value for a B2B agency in 2026, and the realistic order of operations.\n(c) Get cited by ChatGPT Search, Perplexity, and Google AI Overviews / AI Mode (which third-party sources these engines pull from, and how a small brand gets into them).\n\nAlso cover the current 2026 Google ranking-system signals (helpful content system, E-E-A-T, link signals, branded-search demand, navboost/click signals) and a realistic 90-day prioritized sequence with measurable checkpoints. Cite current, real sources.",
+  "summary": "For a brand-new, zero-authority US B2B AI-automation agency, the 2026 evidence points to one dominant lever that simultaneously addresses the brand-entity, classic-ranking, and AI-citation problems: earned, unlinked brand mentions and branded-search demand, not classic backlinks. Ahrefs' 75,000-brand study shows brands in the top web-mentions quartile earn roughly 10x more AI-Overview citations than the next quartile, and ~95% of AI citations come from unpaid/earned sources (Muck Rack, 1M+ links). Unlinked mentions do not pass PageRank but do feed Google's entity recognition (confirmed by John Mueller and Google's \"implied links\" patent) — the exact mechanism Quickomate needs to teach Google that \"Quickomate\" is a distinct entity and defeat the quickomate→quickmate autocorrect. For AI-search citations specifically, the playbook is engine-specific: Wikipedia-tier reference sources dominate ChatGPT (7.8% of all citations, ~48% among its top sources), while authentic Reddit presence dominates Perplexity (6.6%, its highest single-source concentration). The realistic order of operations is therefore: seed correctly-contextualized unlinked mentions and branded-search demand first (entity + autocorrect fix), pursue earned editorial coverage and reference-source inclusion next (authority + ChatGPT), and build authentic community presence (Reddit/YouTube) for Perplexity/AIO citation.",
+  "findings": [
+    {
+      "claim": "Earned, unlinked brand mentions and branded-search demand — not classic backlinks — are the highest-ROI lever for a zero-authority B2B brand, because mentions don't pass PageRank but do feed Google's entity recognition (defeating the quickomate→quickmate autocorrect) AND brands in the top web-mentions quartile earn ~10x more AI-Overview citations.",
+      "confidence": "high",
+      "vote": "merged: claims [2] (2-1) + [4] (1-1)",
+      "evidence": "Claim [4]: Unlinked mentions signal awareness but pass no SEO authority, yet improve entity recognition — corroborated by a PRIMARY source beyond Search Engine Land: John Mueller ('Even unlinked mentions can help Google understand more about your website and brand') and Google's 2012 'implied links' patent. This maps exactly onto Quickomate's brand-entity disambiguation problem: seeding correctly-contextualized mentions ('Quickomate, the AI automation agency') teaches Google the entity is distinct from Quickmate even before backlinks accrue. Context is current: Gary Illyes said links weren't a top-3 factor (2023) and Google's 2024 spam-policy update removed the 'links as a factor' statement, consistent with rising weight on brand/entity signals. Claim [2]: Ahrefs' study of 75,000 brands (May 26, 2025) found brands in the top web-mentions quartile average 169 AI-Overview mentions vs 14 in the next quartile down (≈12x; 'up to 10x' is accurate/conservative), via Spearman correlation, DR>40 filter, millions of AIO responses through Brand Radar. Independently reported by BrightEdge, Conductor, and BusinessWire (May 2026). Caveat carried from verifiers: Ahrefs explicitly states correlation ≠ causation. NOTE: several stronger correlation-magnitude claims (mentions 3x stronger than backlinks, 0.664 vs 0.218) were REFUTED 0-3 / 0-2 in verification, so this finding asserts only the directional 10x-quartile threshold and the entity-recognition mechanism, not a precise correlation coefficient.",
+      "sources": [
+        "https://www.muckrack.com/blog/mentions-vs-backlinks-for-ai-visibility",
+        "https://ahrefs.com/blog/ai-overview-brand-correlation/",
+        "https://searchengineland.com/guide/unlinked-mentions"
+      ]
+    },
+    {
+      "claim": "~95% of AI citations come from unpaid/earned (non-advertising) sources, so a low-budget founder should prioritize earned media, digital PR, and being referenced in editorial/reference content over any paid placement.",
+      "confidence": "high",
+      "vote": "3-0",
+      "evidence": "Muck Rack's 'What Is AI Reading?' report (original Aug 2025, updated for 2026), analyzing 1M+ links cited by leading AI models, states '>95% of links cited by AI are from non-paid sources' (also posted verbatim on Muck Rack's X account). Corroborated by independent coverage in the National Law Review, PRSay, Yahoo Finance, and Britopian. Minor imprecisions noted by verifiers (exact figure varies by cut: earned media alone ~82%, journalistic sources ~25%) do not refute the top-line non-paid figure. Directly actionable and constraint-compatible: the user's white-hat, no-paid-G2/Product-Hunt, low-budget constraints align with the data — paid placements are the wrong investment for AI visibility. Caveat: Muck Rack is a PR/earned-media SaaS vendor whose interpretation is self-interested, but the narrow unpaid-vs-paid statistic is methodologically simple and externally corroborated.",
+      "sources": [
+        "https://www.muckrack.com/blog/mentions-vs-backlinks-for-ai-visibility",
+        "https://www.muckrack.com/blog/what-is-ai-reading-new-insights"
+      ]
+    },
+    {
+      "claim": "To win ChatGPT Search citations, getting referenced by/on Wikipedia-tier reference sources matters far more than for any other engine: Wikipedia is ChatGPT's single most-cited source at 7.8% of ALL its citations and ~47.9% among ChatGPT's top sources.",
+      "confidence": "high",
+      "vote": "3-0",
+      "evidence": "Profound's primary study (~680M citations, Aug 2024–Jun 2025) states Wikipedia = 7.8% of total ChatGPT citations and 47.9% among ChatGPT's leading sources. The engine-specificity is corroborated, not contradicted: Wikipedia is only 0.6% of Google AI Overviews' citations and absent from Perplexity's top 10. Independent replication: Ahrefs finds Wikipedia is the single most-cited content type at 29.7% of ChatGPT's top 1,000 pages; 5W/PR Newswire finds Wikipedia+Reddit drive 25%+ of US ChatGPT citations; a Q1 2026 synthesis of nine datasets (Similarweb, SEMrush, Profound, Peec, SE Ranking, Goodie, Ahrefs, Evertune, Passionfruit) confirms Wikipedia's dominance. Actionable for Quickomate: pursue legitimate reference-source presence (e.g., being cited in/by Wikipedia-tier sources, industry wikis, authoritative reference pages) — consistent with the user's hard constraint of NO fake Wikipedia article. Caveat: exact percentage varies by methodology (7.8% Profound vs 13.15% in a Jan–Feb 2026 study vs 29.7% of top pages in Ahrefs); all agree on direction.",
+      "sources": [
+        "https://www.tryprofound.com/blog/ai-platform-citation-patterns",
+        "https://ahrefs.com/blog/chatgpts-most-cited-pages"
+      ]
+    },
+    {
+      "claim": "To win Perplexity citations, authentic Reddit presence is the highest-leverage tactic: Reddit is Perplexity's top source at 6.6% of citations (the highest single-source concentration of any engine studied), with YouTube secondary.",
+      "confidence": "medium",
+      "vote": "2-1",
+      "evidence": "Profound's study (680M-citation dataset) lists, under 'Perplexity Overall Citation Percentages,' Reddit 6.6% (highest single source), YouTube 2.0%, Gartner 1.0% — these are Perplexity-specific, not aggregated ('Reddit emerges as the leading source for both Google AI Overviews (2.2%) and Perplexity (6.6%)'). Independently corroborated for 2026: Contently (Apr 2026) ranks Reddit #1 for Perplexity; aisosystem reports Reddit in 46.7% of Perplexity responses; Bluefish/Adweek (Jan 2026) found 24% of all Perplexity citations from Reddit ('one in five citations'). QUALIFICATION (the dissenting vote): the YouTube portion is weaker and partly dated — a Jan 2026 PikaSEO/Bluefish dataset found YouTube has OVERTAKEN Reddit by percentage of LLM answers (16% vs 10%) while Reddit still leads in absolute citation volume, so YouTube's exact rank is volatile. This qualifies but does not refute the central claim (Reddit as Perplexity's top source is robustly true). Actionable: authentic, genuinely helpful Reddit participation in relevant B2B/automation subreddits, plus YouTube, are the concrete Perplexity tactics.",
+      "sources": [
+        "https://www.tryprofound.com/blog/ai-platform-citation-patterns"
+      ]
+    }
+  ],
+  "caveats": "SCOPE OF WHAT SURVIVED VERIFICATION: Only 5 claims passed adversarial voting, and the strongest-worded ones were trimmed. Notably, every precise correlation figure (the widely-cited 'brand mentions 3x stronger than backlinks,' 0.664 vs 0.218, AI Mode 0.709) was REFUTED in this round (votes 0-3, 0-2) — so this report deliberately asserts only the directional/threshold version (top-quartile mentions ≈10x more AIO citations) and the qualitative entity-recognition mechanism, NOT any exact coefficient. Treat anyone quoting the 0.664 number as overstating the evidence.\n\nDIRECT-ANSWER GAPS: The research that survived does NOT contain confirmed, source-backed specifics for several parts of the original question. There is NO surviving evidence on (a) the exact mechanism that triggers Google to stop spell-correcting a coined brand name, (b) the concrete threshold/criteria to earn a Knowledge Panel for a tiny company, (c) Google AI Overviews' precise source mix (the Reddit-led AIO mix claim was refuted 1-2), or (d) a concrete 90-day sequence with named checkpoints. The original prompt asked for these; they were not established by verified sources here and should be researched separately rather than inferred.\n\nSOURCE-QUALITY / TIME-SENSITIVITY: Two of the four findings (the 95% unpaid figure and the 10x mention threshold) trace to Muck Rack and Ahrefs respectively — both vendors with commercial interests in the 'earned media/mentions > backlinks' narrative; the underlying statistics are externally corroborated but the strategic framing is self-interested. The Profound citation-mix percentages are from a single (large) dataset spanning Aug 2024–Jun 2025 and are already partly stale by mid-2026 (YouTube vs Reddit ordering on Perplexity shifted in Jan 2026 data); exact percentages drift quarter-to-quarter, so treat them as directional, not fixed. All findings are white-hat and founder-executable, consistent with the user's stated constraints.\n\nALREADY-IMPLEMENTED OVERLAP: The user already shipped Organization/Brand/Person JSON-LD with disambiguatingDescription, sameAs, a crawlable 'Quickomate (with an O), not Quickmate' line, FAQ/Dataset schema, a citable data asset, and an embeddable ROI widget. The surviving evidence builds BEYOND these by pointing to off-site earned mentions, branded-search demand, reference-source inclusion, and authentic community presence as the next-stage levers — the on-site entity signals are necessary but, per the entity-recognition finding, insufficient without external corroborating mentions.",
+  "openQuestions": [
+    "What specifically causes Google to stop spell-correcting a coined brand term like 'quickomate' — is it a branded-search-volume threshold, entity confidence in the Knowledge Graph, click-through behavior on the correct spelling, or a manual/feedback mechanism? No surviving source answered this.",
+    "What are the realistic 2026 criteria and minimum entity-corroboration needed for a tiny company to earn a Google Knowledge Panel, given the user explicitly rules out a fake Wikipedia article?",
+    "What is the current (mid-2026) source mix for Google AI Overviews specifically? The Reddit-led AIO claim was refuted 1-2, leaving AIO's citation sources unresolved for this brand.",
+    "Which exact white-hat link/mention TYPES still pass meaningful value for a B2B agency in 2026 (HARO/Connectively, original-research data studies, niche edits, integration directories)? Several such claims appeared in the candidate pool but received 0-0 (untested) votes, so none are confirmed here and they need a dedicated verification pass."
+  ],
+  "refuted": [
+    {
+      "claim": "Google AI Overviews relies on a more balanced source mix led by Reddit (2.2%), then YouTube (1.9%), Quora (1.5%), and LinkedIn (1.3%) — community platforms and user-generated Q&A dominate its top citations rather than any one reference site.",
+      "vote": "1-2",
+      "source": "https://www.tryprofound.com/blog/ai-platform-citation-patterns"
+    },
+    {
+      "claim": "Branded web mentions are the strongest driver of visibility in Google's AI Overviews, roughly 3x stronger than backlinks, per an Ahrefs study of 75,000 brands (mentions correlation 0.664 vs backlinks 0.218).",
+      "vote": "0-3",
+      "source": "https://www.muckrack.com/blog/mentions-vs-backlinks-for-ai-visibility"
+    },
+    {
+      "claim": "For LLM/AI-search citations, link volume and domain-authority scores are NOT the determining factors; what drives AI citations is the content you publish and how much people talk about your brand — directly relevant to a zero-backlink brand trying to get cited by AI engines.",
+      "vote": "0-0",
+      "source": "https://searchengineland.com/guide/unlinked-mentions"
+    },
+    {
+      "claim": "Brand popularity — measured as how often a brand is mentioned and searched by name across the web — strongly correlates with how often that brand appears in AI search results, per an independent analysis by Kevin Indig; this means growing branded-mention/branded-search demand is a lever for AI visibility.",
+      "vote": "0-0",
+      "source": "https://searchengineland.com/guide/unlinked-mentions"
+    },
+    {
+      "claim": "AI engines pull from sources that traditional SEO rankings do not predict: a Semrush study found nearly 9 of 10 webpages cited by ChatGPT rank outside the top 20 organic results for the same query, so ranking on Google page 1 is neither necessary nor sufficient to get cited by ChatGPT.",
+      "vote": "0-0",
+      "source": "https://searchengineland.com/guide/unlinked-mentions"
+    },
+    {
+      "claim": "Branded search demand (users searching 'SEO tips memorabledesign.com' rather than the generic query) is treated by Google as a strong positive ranking signal — relevant to the brand-entity recovery and authority strategy for Quickomate.",
+      "vote": "0-0",
+      "source": "https://memorable.design/google-ranking-brand-signals-2026/"
+    },
+    {
+      "claim": "Being recognized as a brand in Google's Knowledge Graph confers a 'Trust Buffer' that benefits rankings — bearing directly on Quickomate's entity-recognition / knowledge-panel goal.",
+      "vote": "0-0",
+      "source": "https://memorable.design/google-ranking-brand-signals-2026/"
+    },
+    {
+      "claim": "In 2026 the relative weight of backlinks has shifted toward unlinked brand mentions and co-occurrence, which act as 'digital citations' for brand authority.",
+      "vote": "0-0",
+      "source": "https://memorable.design/google-ranking-brand-signals-2026/"
+    },
+    {
+      "claim": "In an Ahrefs study of 75,000 brands, branded web mentions correlate with AI Overview visibility at 0.664, far stronger than backlinks at 0.218 — meaning unlinked brand mentions matter ~3x more than backlinks for getting cited in AI search.",
+      "vote": "0-0",
+      "source": "https://medium.com/machine-relations/brand-mentions-vs-backlinks-for-ai-visibility-what-the-data-shows-8412550788e0"
+    },
+    {
+      "claim": "Branded web mentions correlate even more strongly with Google AI Mode visibility (0.709) than with AI Overviews (0.664), and branded anchor text correlates at 0.527 (AI Overviews) and 0.628 (AI Mode), while domain rating sits at only 0.312 — entity/mention signals outrank classic authority metrics for AI citation.",
+      "vote": "0-0",
+      "source": "https://medium.com/machine-relations/brand-mentions-vs-backlinks-for-ai-visibility-what-the-data-shows-8412550788e0"
+    },
+    {
+      "claim": "Brand mentions correlate far more strongly with AI search visibility (0.664) than backlinks do (0.218), implying that for getting cited by AI engines, earning brand mentions matters more than traditional link acquisition.",
+      "vote": "0-0",
+      "source": "https://emgigroup.com/blog/white-hat-link-building-saas/"
+    },
+    {
+      "claim": "For B2B/SaaS, the highest-revenue-impact link types in 2026 are listicle/roundup placements on buying-mode queries, integration-directory listings (e.g. Salesforce AppExchange, HubSpot App Marketplace, cited as DR 80+), original research/data studies, and expert-commentary placements via HARO-style services (Connectively, Qwoted, Featured.com).",
+      "vote": "0-0",
+      "source": "https://emgigroup.com/blog/white-hat-link-building-saas/"
+    },
+    {
+      "claim": "HARO-style expert-commentary responses to journalist queries can earn high-authority (DR 60-85) backlinks at a 5-15% placement rate, with low labor cost ($50-$200) and immediate-to-3-month timelines, making it a viable founder-executable low-budget tactic.",
+      "vote": "0-0",
+      "source": "https://linksurge.jp/blog/en/safe-link-building-guide-2026/"
+    },
+    {
+      "claim": "Publishing original research/data assets drives outsized link and brand outcomes; a single report yielded 22 backlinks, 3 interview requests, and 156% branded search growth.",
+      "vote": "0-0",
+      "source": "https://linksurge.jp/blog/en/safe-link-building-guide-2026/"
+    },
+    {
+      "claim": "Branded web mentions now have a stronger correlation with AI search visibility than backlinks do, especially in trust-sensitive industries (finance, legal, healthcare) — meaning a low-authority B2B brand should prioritize earning unlinked brand mentions over traditional link building to get cited in AI answers.",
+      "vote": "0-0",
+      "source": "https://exposureninja.com/blog/increase-brand-mentions-for-ai-search/"
+    },
+    {
+      "claim": "Per an Ahrefs finding, brands in the top 25% for web mentions earn over 10x more visibility in AI Overviews than brands in the next quartile down — a quantified threshold effect that frames brand-mention volume as the key lever for AI Overview citation.",
+      "vote": "0-0",
+      "source": "https://exposureninja.com/blog/increase-brand-mentions-for-ai-search/"
+    },
+    {
+      "claim": "Reddit and Quora (UGC forums) are the most commonly cited websites in Google AI Overviews, so authentic participation on these platforms is a concrete tactic to get a small brand surfaced in AI answers.",
+      "vote": "0-0",
+      "source": "https://exposureninja.com/blog/increase-brand-mentions-for-ai-search/"
+    },
+    {
+      "claim": "White-hat B2B/SaaS link building in 2026 still relies on guest posting on authoritative industry blogs, digital PR/HARO editorial placements, niche edits (contextual links inside already-ranked pages), and brand mentions (including on Reddit) as the link types that pass value.",
+      "vote": "0-0",
+      "source": "https://www.quoleady.com/saas-link-building-agencies/"
+    },
+    {
+      "claim": "For links to pass real value, agencies target high-authority domains (DA 50+, ideally 80+) that have genuine topical relevance and actual traffic, prioritizing editorial placements on real websites over volume.",
+      "vote": "0-0",
+      "source": "https://www.quoleady.com/saas-link-building-agencies/"
+    },
+    {
+      "claim": "Reddit is the single most-cited source for Perplexity (46.5% of citations) and a major source for Google AI Overviews (21%), making Reddit presence a high-leverage GEO tactic for a small brand seeking AI citations.",
+      "vote": "0-0",
+      "source": "https://www.frase.io/blog/how-to-get-cited-by-ai-search-engines-the-complete-geo-playbook"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://kalicube.com/entity/entity-management/",
+      "quality": "unreliable",
+      "angle": "Brand-entity / autocorrect & knowledge panel",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.energise.co.nz/blog/google-thinks-brand-misspelled/",
+      "quality": "unreliable",
+      "angle": "Brand-entity / autocorrect & knowledge panel",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/entity-seo-knowledge-graph-optimization-guide-2026",
+      "quality": "unreliable",
+      "angle": "Brand-entity / autocorrect & knowledge panel",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.reputationx.com/blog/knowledge-panel-sources",
+      "quality": "unreliable",
+      "angle": "Brand-entity / autocorrect & knowledge panel",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.seo-stack.io/blog/navboost-unpacked-what-the-google-content-warehouse-leak-actually-tells-us-about-click-based-ranking",
+      "quality": "unreliable",
+      "angle": "2026 ranking-system signals (links vs on-page vs engagement)",
+      "claimCount": 0
+    },
+    {
+      "url": "https://memorable.design/google-ranking-brand-signals-2026/",
+      "quality": "blog",
+      "angle": "2026 ranking-system signals (links vs on-page vs engagement)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://emulent.com/resources/google-updates/national-seo-ranking-factors-and-projected-values/",
+      "quality": "unreliable",
+      "angle": "2026 ranking-system signals (links vs on-page vs engagement)",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/e-e-a-t-march-2026-google-rewards-experience-content-guide",
+      "quality": "unreliable",
+      "angle": "2026 ranking-system signals (links vs on-page vs engagement)",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.muckrack.com/blog/mentions-vs-backlinks-for-ai-visibility",
+      "quality": "secondary",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://medium.com/machine-relations/brand-mentions-vs-backlinks-for-ai-visibility-what-the-data-shows-8412550788e0",
+      "quality": "blog",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://emgigroup.com/blog/white-hat-link-building-saas/",
+      "quality": "blog",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://linksurge.jp/blog/en/safe-link-building-guide-2026/",
+      "quality": "blog",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://exposureninja.com/blog/increase-brand-mentions-for-ai-search/",
+      "quality": "blog",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.quoleady.com/saas-link-building-agencies/",
+      "quality": "blog",
+      "angle": "White-hat B2B link building that still passes value",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.tryprofound.com/blog/ai-platform-citation-patterns",
+      "quality": "primary",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.frase.io/blog/how-to-get-cited-by-ai-search-engines-the-complete-geo-playbook",
+      "quality": "blog",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.thevccorner.com/p/geo-aeo-how-to-rank-when-ai-answers",
+      "quality": "blog",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://ailabsaudit.com/blog/en/perplexity-guide-maximize-citations",
+      "quality": "blog",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://discoveredlabs.com/blog/chatgpt-claude-perplexity-and-google-ai-overviews-how-each-platform-cites-sources-differently",
+      "quality": "blog",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.leapd.ai/blog/ai-visibility/how-chatgpt-google-ai-overviews-and-perplexity-source-information-in-2026",
+      "quality": "blog",
+      "angle": "Getting cited by AI engines (LLM/GEO sources)",
+      "claimCount": 5
+    },
+    {
+      "url": "https://searchengineland.com/understanding-resolving-discovered-currently-not-indexed-392659",
+      "quality": "unreliable",
+      "angle": "Indexing & getting off page 4-9 for new low-authority sites",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.onely.com/blog/how-to-fix-discovered-currently-not-indexed-in-google-search-console/",
+      "quality": "blog",
+      "angle": "Indexing & getting off page 4-9 for new low-authority sites",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/seo-content-clusters-2026-topic-authority-guide",
+      "quality": "blog",
+      "angle": "Indexing & getting off page 4-9 for new low-authority sites",
+      "claimCount": 5
+    },
+    {
+      "url": "https://authoritytech.io/blog/how-to-get-cited-by-chatgpt-perplexity-ai-overview-2026",
+      "quality": "blog",
+      "angle": "Indexing & getting off page 4-9 for new low-authority sites",
+      "claimCount": 5
+    },
+    {
+      "url": "https://searchengineland.com/guide/unlinked-mentions",
+      "quality": "secondary",
+      "angle": "Indexing & getting off page 4-9 for new low-authority sites",
+      "claimCount": 5
+    },
+    {
+      "url": "https://www.averi.ai/how-to/chatgpt-vs.-perplexity-vs.-google-ai-mode-the-b2b-saas-citation-benchmarks-report-(2026)",
+      "quality": "unreliable",
+      "angle": "AI-automation-agency niche SERP & competitor backlink reality",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.theturngroup.com/blog/google-not-indexing-your-company-name-do-you-get-did-you-mean",
+      "quality": "unreliable",
+      "angle": "AI-automation-agency niche SERP & competitor backlink reality",
+      "claimCount": 0
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/link-building-2026-digital-pr-outreach-guide",
+      "quality": "blog",
+      "angle": "AI-automation-agency niche SERP & competitor backlink reality",
+      "claimCount": 5
+    }
+  ],
+  "stats": {
+    "angles": 6,
+    "sourcesFetched": 28,
+    "claimsExtracted": 90,
+    "claimsVerified": 25,
+    "confirmed": 5,
+    "killed": 20,
+    "afterSynthesis": 4,
+    "urlDupes": 1,
+    "budgetDropped": 7,
+    "agentCalls": 111
+  }
+}
