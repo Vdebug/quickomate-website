@@ -376,6 +376,44 @@ export const blogPosts = [
   },
 ];
 
+// Pages we actively want to lift out of "page 3 limbo" (high search impressions,
+// just below page 1 in GSC). Giving them a small relevance boost means that when
+// they're a genuine topical match they win the related-links slot — which feeds
+// them the internal links + anchor text that help a near-page-1 page break onto
+// page 1. Keep this list short and honest: only pages that are both high-value
+// and topically broad enough to belong in many "related" lists.
+const PRIORITY_SLUGS = new Set([
+  'ai-agent-workflow-automation',
+  'b2b-sales-automation-2026',
+  'ai-sales-prospecting',
+  'marketing-automation-roi-2026',
+]);
+
+/**
+ * Related posts by shared-tag relevance (was: first-3, which gave no SEO value).
+ * Scores every other post by how many tags it shares with the current one, adds
+ * a small boost for PRIORITY_SLUGS, and breaks ties by recency. Falls back to the
+ * newest posts so the block is never empty. Returns post objects ({slug,title,…}).
+ */
 export function getRelatedPosts(currentSlug, count = 3) {
-  return blogPosts.filter((p) => p.slug !== currentSlug).slice(0, count);
+  const current = blogPosts.find((p) => p.slug === currentSlug);
+  const currentTags = new Set(current?.tags || []);
+
+  const scored = blogPosts
+    .filter((p) => p.slug !== currentSlug)
+    .map((p) => {
+      const shared = (p.tags || []).filter((t) => currentTags.has(t)).length;
+      const boost = PRIORITY_SLUGS.has(p.slug) ? 0.5 : 0;
+      return { post: p, score: shared + boost, date: p.dateIso || '' };
+    })
+    .sort((a, b) => b.score - a.score || b.date.localeCompare(a.date));
+
+  const related = scored.filter((s) => s.score >= 1).map((s) => s.post);
+  if (related.length >= count) return related.slice(0, count);
+
+  // Pad with the newest remaining posts so we always return `count` items.
+  const fill = scored
+    .map((s) => s.post)
+    .filter((p) => !related.includes(p));
+  return [...related, ...fill].slice(0, count);
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, CalendarCheck } from 'lucide-react';
-import { clarityEvent } from '../analytics.js';
 
 /**
  * Booking CTA — the single conversion action across the free tools/content.
@@ -31,7 +30,7 @@ export default function BookCallCTA({
                 href={BOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => clarityEvent('book_call_click')}
+                data-cta="BookCallCTA"
                 className="group inline-flex h-14 items-center justify-center gap-2 bg-accent px-7 font-mono font-bold text-sm tracking-widest uppercase text-textInverted border-4 border-accent hover:bg-textInverted hover:text-primary transition-colors"
             >
                 {buttonLabel}

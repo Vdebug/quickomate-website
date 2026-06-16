@@ -18,6 +18,7 @@ import Footer from './components/Footer';
 // SEO tags still render immediately; only the article body is lazy. The
 // prerenderer waits for real content before snapshotting (see scripts/prerender.js).
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const BookingConfirmed = lazy(() => import('./components/BookingConfirmed'));
 const BlogIndex = lazy(() => import('./components/BlogIndex'));
 const BlogColdEmail = lazy(() => import('./components/BlogColdEmail'));
 const BlogOwnInfra = lazy(() => import('./components/BlogOwnInfra'));
@@ -81,9 +82,10 @@ const SAME_AS = [
   'https://x.com/vaaasug',
   'https://www.linkedin.com/in/refer-vasu/',
   'https://www.linkedin.com/company/quickomate',
-  'https://github.com/quickomate'
-  // Pending public publish, add when live: clutch.co/profile/quickomate (under review),
-  // goodfirms.co/... (need final URL), crunchbase, saashub, alternativeto, wikidata QID.
+  'https://github.com/quickomate',
+  'https://clutch.co/profile/quickomate'
+  // Pending public publish, add when live: goodfirms.co/... (need final URL),
+  // crunchbase, saashub, alternativeto, wikidata QID.
 ];
 
 function ogImage({ title, tag, kind = 'article' } = {}) {
@@ -353,6 +355,24 @@ function AboutPage() {
       </Helmet>
       <Navbar />
       <main><About /></main>
+      <Footer />
+    </>
+  );
+}
+
+// Thank-you page shown after a completed cal.com booking (cal.com "redirect on
+// booking" target). Fires the GA4 `book_call_confirmed` conversion on mount.
+// noindex so it never surfaces in search.
+function BookingConfirmedPage() {
+  return (
+    <>
+      <Helmet>
+        <title>Booking Confirmed – Quickomate</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href={`${SITE_URL}/booking-confirmed`} />
+      </Helmet>
+      <Navbar />
+      <main><BookingConfirmed /></main>
       <Footer />
     </>
   );
@@ -3123,6 +3143,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/booking-confirmed" element={<BookingConfirmedPage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/embed/roi-calculator" element={<EmbedRoiCalculatorPage />} />
             <Route path="/ai-automation-agency" element={<ServiceAiAutomationPage />} />
