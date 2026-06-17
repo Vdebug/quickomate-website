@@ -66,7 +66,14 @@ export function clarityEvent(name) {
 export function initGA() {
     if (!GA_ID) return;                 // dormant until VITE_GA_ID is set
     if (!isLiveBrowser()) return;
-    if (document.getElementById('ga4-tag')) return; // idempotent
+    // IMPORTANT: guard on a RUNTIME flag, not on the #ga4-tag DOM node. The
+    // prerenderer bakes the gtag.js <script> into the static HTML, so on a real
+    // load the node already exists — guarding on it would make this return early
+    // and skip the gtag('config') call below, leaving gtag.js loaded but never
+    // configured (no measurement, no page_view). The config push is what actually
+    // activates GA4 and MUST run on every real page load.
+    if (window.__qkmGAInit) return;
+    window.__qkmGAInit = true;
 
     window.dataLayer = window.dataLayer || [];
     // Use a real function (not arrow) so `arguments` is captured for gtag's queue.
@@ -76,11 +83,14 @@ export function initGA() {
     // route-change page_views (browser-history events), so we don't send them here.
     window.gtag('config', GA_ID);
 
-    const s = document.createElement('script');
-    s.id = 'ga4-tag';
-    s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    document.head.appendChild(s);
+    // Only inject the loader if it isn't already in the HTML (prerender bakes it).
+    if (!document.getElementById('ga4-tag')) {
+        const s = document.createElement('script');
+        s.id = 'ga4-tag';
+        s.async = true;
+        s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(s);
+    }
 }
 
 /** Fire a GA4 event. Safe no-op when GA isn't loaded. */
