@@ -117,3 +117,12 @@ Pulled live GSC + Bing + Clarity (via Claude-in-Chrome, Vasu profile). Full diag
 - [ ] **cal.com:** event type → Advanced → Redirect on booking → https://quickomate.com/booking-confirmed (activates real appointment tracking).
 - [ ] **Push** commit ec18d4f to prod (needs approval; gh active acct = Vdebug).
 - [ ] **Off-site content** (publish, drafts in MARKETING-GROWTH-PLAN.html): LinkedIn 2x/wk, journalist answers 3-5/wk, Reddit, listicle pitches.
+
+### GA4 ACTIVATED + VERIFIED LIVE (2026-06-17, commits 8e3f44f, bd35333)
+- Created GA4 property "Quickomate" (id 542051976) → stream "Quickomate Web" (quickomate.com), **Measurement ID G-50HX9YWEYH** (hardcoded default in analytics.js, public/safe; overridable via VITE_GA_ID). Objectives: Generate leads + Understand web traffic. Enhanced Measurement ON (owns pageviews + outbound clicks).
+- **BUG FOUND + FIXED:** prerenderer bakes the gtag.js <script id="ga4-tag"> into static HTML → initGA's `getElementById('ga4-tag')` idempotency guard returned early on real loads, skipping `gtag('config')` → tag loaded but never configured, zero data. Fixed by guarding on runtime flag `window.__qkmGAInit` instead; only the script injection is skipped when baked. (Clarity unaffected — its tag isn't baked + self-inits from URL.) **Lesson: any prerender-baked analytics tag must guard config on a runtime flag, not a DOM node.**
+- Verified END-TO-END on live site: window.gtag=function, dataLayer has ["config","G-50HX9YWEYH"], collect beacon 204, **GA4 Realtime showed 1 user / 2 page_views**. ✅
+
+### REMAINING MANUAL (Vasu)
+- [ ] **cal.com:** discovery-call event → Advanced → "Redirect on booking" → https://quickomate.com/booking-confirmed (activates book_call_confirmed conversion = real appointments).
+- [ ] **GA4 key events:** once book_call_click + book_call_confirmed first fire, star them in GA4 → Admin → Events as key events (can't pre-create by name in this GA4 version).
