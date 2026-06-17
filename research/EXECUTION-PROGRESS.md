@@ -96,3 +96,24 @@ Research: 6-agent web-grounded workflow + adversarial verify → research/RANKIN
 - [ ] #7: /resources/cold-email-benchmarks-2026 original-data page — BLOCKED on Vasu's real reply/deliverability numbers (do not fabricate).
 - [ ] OFF-SITE (Vasu): LinkedIn Company Page → send URL for SAME_AS; journalist stack (Source of Sources/Featured/Help-a-B2B-Writer) 3-5/wk; free citations (Crunchbase/SaaSHub/AlternativeTo/GitHub org/Indie Hackers); founder Reddit; "search Quickomate on Google" CTAs.
 - SKIP (verified): GBP/Bing Places/Apple (ineligible), paid AI dirs, llms.txt tuning, paid retargeting, Crunchbase-as-link.
+
+---
+
+## PHASE 5 — Live-data audit + measurement layer + internal linking (2026-06-17, commit ec18d4f)
+Pulled live GSC + Bing + Clarity (via Claude-in-Chrome, Vasu profile). Full diagnosis: research/MARKETING-GROWTH-PLAN.html.
+
+### Fresh baseline (2026-06-17, was 2026-06-04)
+- **GSC (3mo):** 77 clicks (was 54), 3.47k impr (was 1.35k, +157%), CTR 2.2%, avg pos 34.1 (was 38.4). 49 indexed (was 41), 375 queries (was 172). "Discovered-not-indexed" now 0 (money pages crawled). 5 non-indexed all benign (canonicals/redirects).
+- **The core problem:** content earns big impressions but sits page 3-6 → ~0 clicks. Homepage pos 3.0 but 52 of 77 clicks are "quickmate.com" brand-confusion (not qualified). Striking-distance pages (pos 11-30): ai-agent-workflow-automation (672 impr @ 25.3), b2b-sales-automation-2026 (202 @ 22.5), ai-sales-prospecting (126 @ 19.6). Far pages (pos 36-57): sales-roi-calc (56.9), what-processes (52.6), ai-automation-examples (49.3), generative-ai (49.7), mktg-roi (36.1).
+- **Bing:** 0 clicks, 0 impr, 0 AI citations (Copilot). Non-factor; needs off-site authority. No technical issues flagged.
+- **Clarity (90d):** 96 sessions, 80 users, 1.52 pp/session, 59s active, 32% scroll. NO UX red flags (0% rage, 2% dead clicks, 0% excessive scroll). Channels: Other 37, OrganicSearch 28, Referral 18, **AIPlatform 10**, Direct 9. Outbound clicks (booking proxy): 9. Funnels: not set up. Verdict: traffic volume is the bottleneck, not UX.
+
+### Shipped (commit ec18d4f)
+- [x] **GA4 + conversion tracking** (was Clarity-only, zero attribution). analytics.js: env-gated GA4 (VITE_GA_ID), SPA page_view on route change, ONE delegated listener fires book_call_click for every cal.com link site-wide. New /booking-confirmed (noindex) fires book_call_confirmed conversion — the cal.com "redirect on booking" target → real appointments measurable.
+- [x] **Internal-link sculpting.** getRelatedPosts() → shared-tag relevance + priority boost; BlogPostFooter renders crawlable "Related guides" on all 40 posts. Orphans fixed: ai-agent-workflow-automation 0→8, b2b-sales-automation-2026 0→9, ai-sales-prospecting 3→12 inbound links.
+
+### BLOCKERS / MANUAL (Vasu)
+- [ ] **Create GA4 property** → add `VITE_GA_ID=G-XXXX` to Vercel env (Production) → redeploy. Mark book_call_confirmed + book_call_click as Key Events in GA4.
+- [ ] **cal.com:** event type → Advanced → Redirect on booking → https://quickomate.com/booking-confirmed (activates real appointment tracking).
+- [ ] **Push** commit ec18d4f to prod (needs approval; gh active acct = Vdebug).
+- [ ] **Off-site content** (publish, drafts in MARKETING-GROWTH-PLAN.html): LinkedIn 2x/wk, journalist answers 3-5/wk, Reddit, listicle pitches.

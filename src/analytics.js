@@ -6,11 +6,16 @@
 // build-time hits are recorded; the injected <script> tags are baked into the
 // static HTML and load for real visitors.
 //
-// To activate GA4: create a GA4 property at https://analytics.google.com, copy
-// its Measurement ID (G-XXXXXXXXXX), then set
-//   VITE_GA_ID=G-XXXXXXXXXX
-// in the Vercel project env (Production) and redeploy. Until then the GA loader
-// stays dormant. Clarity is already live (id below).
+// GA4 property "Quickomate" → stream "Quickomate Web" (quickomate.com), created
+// 2026-06-17. The Measurement ID below is public (it ships in client JS on every
+// GA site, exactly like the Clarity id), so it's safe to commit as the default;
+// override with VITE_GA_ID if the property is ever rotated.
+//
+// Page views: GA4 Enhanced Measurement (enabled on the stream) owns page_view
+// — including SPA route changes via browser-history events — so we do NOT send
+// page_view from code (that would double-count). Code only adds the custom
+// conversion events Enhanced Measurement can't infer: book_call_click and
+// book_call_confirmed.
 
 // ---------------------------------------------------------------------------
 // Microsoft Clarity — heatmaps, scroll maps, session recordings.
@@ -18,8 +23,8 @@
 // Public Clarity project id (safe to commit — it ships in client JS regardless).
 const CLARITY_ID = import.meta.env.VITE_CLARITY_ID || 'x1q9yo84hf';
 
-// GA4 Measurement ID — env-gated so the loader stays dormant until it's set.
-const GA_ID = import.meta.env.VITE_GA_ID || '';
+// GA4 Measurement ID (public — ships in client JS). Overridable via env.
+const GA_ID = import.meta.env.VITE_GA_ID || 'G-50HX9YWEYH';
 
 function isLiveBrowser() {
     if (import.meta.env.DEV) return false;                              // never on the dev server
@@ -67,9 +72,9 @@ export function initGA() {
     // Use a real function (not arrow) so `arguments` is captured for gtag's queue.
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
-    // send_page_view:false — this is an SPA, so we fire page_view manually on
-    // each React Router navigation (see trackPageview) to avoid missing routes.
-    window.gtag('config', GA_ID, { send_page_view: false });
+    // Default config: Enhanced Measurement handles the initial page_view AND SPA
+    // route-change page_views (browser-history events), so we don't send them here.
+    window.gtag('config', GA_ID);
 
     const s = document.createElement('script');
     s.id = 'ga4-tag';
@@ -82,20 +87,6 @@ export function initGA() {
 export function gaEvent(name, params = {}) {
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
         try { window.gtag('event', name, params); } catch { /* ignore */ }
-    }
-}
-
-/** Fire a GA4 page_view for SPA route changes. Safe no-op when GA isn't loaded. */
-export function trackPageview(path) {
-    if (!GA_ID) return;
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        try {
-            window.gtag('event', 'page_view', {
-                page_path: path,
-                page_location: window.location.href,
-                page_title: document.title,
-            });
-        } catch { /* ignore */ }
     }
 }
 
